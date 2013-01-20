@@ -29,6 +29,12 @@
             android:key="battery_style_pref"
             android:title="@string/battery_icon_title" />
 
+	<!-- Battery bar -->
+         <PreferenceScreen
+            android:key="battery_bar_cat"
+            android:fragment="com.android.settings.beanstalk.BatteryBar"
+            android:title="@string/battery_bar_cat" />
+
 	<!-- Clock style -->
         <PreferenceScreen
             android:fragment="com.android.settings.beanstalk.StatusBarClockStyle"
