@@ -1702,8 +1702,6 @@
 
 	<activity android:name=".cyanogenmod.KeyboardInputSettings" />
 
-	<activity android:name=".beanstalk.ExcludedAppsActivity" />
-
 	<activity android:name=".beanstalk.About" />
 
         <activity android:name=".ApnEditor" />
