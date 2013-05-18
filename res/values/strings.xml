@@ -6071,7 +6071,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="power_notifications_ringtone_silent">Silent</string>
 
     <!-- Donate to BeanStalk -->
-    <string name="donate_beanstalk_title">Support BeanStalk Builds</string>
+    <string name="donate_beanstalk_title">Support BeanStalk</string>
     <string name="donate_beanstalk_summary">Donate to BeanStalk Builds.</string>
     <string name="donate_link" formatted="false">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HUUHRXDXNMZPU</string>
 

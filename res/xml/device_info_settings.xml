@@ -43,11 +43,6 @@
                     android:targetClass="com.android.settings.deviceinfo.Status" />
         </PreferenceScreen>
 
-	<Preference
-            android:key="donate"
-            android:title="@string/donate_beanstalk_title"
-            android:summary="@string/donate_beanstalk_summary" />
-
         <!-- Legal Information -->
         <PreferenceScreen
                 android:key="container"
@@ -146,6 +141,11 @@
                 style="?android:preferenceInformationStyle"
                 android:title="@string/mod_version"
                 android:summary="@string/mod_version_default" />
+
+	<Preference
+            android:key="donate"
+            android:title="@string/donate_beanstalk_title"
+            android:summary="@string/donate_beanstalk_summary" />
 
         <!-- Mod build date -->
 <!--        <Preference android:key="build_date"
