@@ -1707,6 +1707,8 @@
     <string name="vibrate_in_silent_title">Vibrate when silent</string>
     <!-- Sound settings screen, setting option name -->
     <string name="notification_sound_title">Default notification</string>
+    <!-- Always show notification drawer settings button -->
+    <string name="notification_settings_btn_title">Always show settings button</string>
     <!-- Sound settings screen, the title of the volume bar to adjust the incoming call volume -->
     <string name="incoming_call_volume_title">Ringtone</string>
     <!-- Sound settings screen, the title of the volume bar to adjust the notification volume -->
@@ -4606,9 +4608,6 @@
     <string name="lockscreen_battery_status_alwayson">Always on</string>
 
     <string name="dialog_indicator_color_title">Select color</string>
-
-    <string name="power_widget_longpress_qs_title">Longpress visibility toggle</string>
-    <string name="power_widget_longpress_qs_summary">Longpress QuickSettings flip button to toggle visibility</string>
 
     <!-- Profiles settings  -->
     <string name="profiles_settings_title">Profiles</string>

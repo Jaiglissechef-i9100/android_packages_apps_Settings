@@ -63,9 +63,9 @@ public class PowerWidget extends SettingsPreferenceFragment implements
     private static final String UI_EXP_WIDGET_HIDE_ONCHANGE = "expanded_hide_onchange";
     private static final String UI_EXP_WIDGET_HIDE_SCROLLBAR = "expanded_hide_scrollbar";
     private static final String UI_EXP_WIDGET_HAPTIC_FEEDBACK = "expanded_haptic_feedback";
-    private static final String LONGPRESS_QS_TOGGLE = "longpress_qs_toggle";
     private static final String ENABLE_TOGGLE_COLORS = "enable_toggle_colors";
     private static final String ENABLE_TOGGLE_BAR = "enable_toggle_bar";
+    private static final String PREF_NOTIFICATION_SETTINGS_BTN = "notification_settings_btn";
     private static final String TOGGLE_ICON_ON_COLOR = "toggle_icon_color_on";
     private static final String TOGGLE_ICON_OFF_COLOR = "toggle_icon_color_off";
     private static final String KEY_NOTIFICATION_BEHAVIOUR = "notifications_behaviour";
@@ -74,13 +74,12 @@ public class PowerWidget extends SettingsPreferenceFragment implements
     private CheckBoxPreference mPowerWidgetHideOnChange;
     private CheckBoxPreference mPowerWidgetHideScrollBar;
     private ListPreference mPowerWidgetHapticFeedback;
-    private CheckBoxPreference mLongpressQSToggle;
     private CheckBoxPreference mEnableToggleColors;
     private CheckBoxPreference mEnableToggleBar;
     private ListPreference mNotificationsBeh;
     private ContentResolver mCr;
     private PreferenceScreen mPrefSet;
-
+    CheckBoxPreference mSettingsBtn; 
     private Preference mToggleIconOnColor;
     private Preference mToggleIconOffColor;
 
@@ -106,11 +105,6 @@ public class PowerWidget extends SettingsPreferenceFragment implements
             mPowerWidgetHapticFeedback.setOnPreferenceChangeListener(this);
             mPowerWidgetHapticFeedback.setSummary(mPowerWidgetHapticFeedback.getEntry());
 
-	    mLongpressQSToggle = (CheckBoxPreference) findPreference(LONGPRESS_QS_TOGGLE);
-            mLongpressQSToggle.setChecked((Settings.System.getInt(getActivity().getApplicationContext()
-                    .getContentResolver(),
-                    Settings.System.QS_LONGPRESS_PW_TOGGLE, 0) == 1));
-
 	    mEnableToggleColors = (CheckBoxPreference) prefSet.findPreference(ENABLE_TOGGLE_COLORS);
             mEnableToggleBar = (CheckBoxPreference) prefSet.findPreference(ENABLE_TOGGLE_BAR);
 
@@ -135,6 +129,10 @@ public class PowerWidget extends SettingsPreferenceFragment implements
 
 	    mToggleIconOnColor = (Preference) prefSet.findPreference(TOGGLE_ICON_ON_COLOR);
             mToggleIconOffColor = (Preference) prefSet.findPreference(TOGGLE_ICON_OFF_COLOR);
+
+	mSettingsBtn = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_SETTINGS_BTN);
+        mSettingsBtn.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.NOTIFICATION_SETTINGS_BUTTON, 0) == 1);
 
 	    int CurrentBeh = Settings.System.getInt(mCr, Settings.System.NOTIFICATIONS_BEHAVIOUR, 0);
         mNotificationsBeh = (ListPreference) findPreference(KEY_NOTIFICATION_BEHAVIOUR);
@@ -181,11 +179,11 @@ public class PowerWidget extends SettingsPreferenceFragment implements
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.EXPANDED_HIDE_SCROLLBAR,
                     value ? 1 : 0);
-	} else if (preference == mLongpressQSToggle) {
-            value = mLongpressQSToggle.isChecked();
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.QS_LONGPRESS_PW_TOGGLE,
-                    value ? 1 : 0);
+	} else if (preference == mSettingsBtn) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NOTIFICATION_SETTINGS_BUTTON,
+                    mSettingsBtn.isChecked() ? 1 : 0);
+            return true;
 	} else if (preference == mEnableToggleColors) {
             value = mEnableToggleColors.isChecked();
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),

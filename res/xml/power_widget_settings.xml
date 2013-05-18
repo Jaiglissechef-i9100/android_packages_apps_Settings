@@ -42,6 +42,11 @@
             android:fragment="com.android.settings.cyanogenmod.PowerWidget$PowerWidgetOrder">
         </PreferenceScreen>
 
+	<CheckBoxPreference
+            android:key="notification_settings_btn"
+            android:title="@string/notification_settings_btn_title"
+            android:defaultValue="false" />
+
         <ListPreference
             android:key="notifications_behaviour"
             android:title="@string/notification_behaviour_title"
@@ -117,12 +122,6 @@
             android:title="@string/expanded_haptic_feedback_title"
             android:entries="@array/haptic_feedback_entries"
             android:entryValues="@array/haptic_feedback_values"
-            android:dependency="expanded_widget" />
-
-	<CheckBoxPreference
-            android:key="longpress_qs_toggle"
-            android:title="@string/power_widget_longpress_qs_title"
-            android:summary="@string/power_widget_longpress_qs_summary"
             android:dependency="expanded_widget" />
 
     </PreferenceCategory>
