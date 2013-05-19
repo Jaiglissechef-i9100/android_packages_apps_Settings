@@ -6114,9 +6114,8 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="edge_swipe_move_summary">Stop touches in zones from reaching the application</string>
     <string name="edge_swipe_none">No action</string>
     <string name="edge_swipe_expand">Expand notifications</string>
-    <string name="edge_swipe_recents">Recent apps</string>
     <string name="edge_swipe_hide">Toggle status bar</string>
-    <string name="edge_swipe_expand_qs">Expand quick settings</string>
+    <string name="edge_swipe_recents">Expand quick settings</string>
     <string name="edge_swipe_back">Back</string>
     <string name="edge_swipe_home">Home</string>
     <string name="edge_swipe_menu">Menu</string>

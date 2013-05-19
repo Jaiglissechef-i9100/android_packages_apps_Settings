@@ -2654,12 +2654,11 @@
         <item>@string/edge_swipe_none</item>
         <item>@string/edge_swipe_expand</item>
         <item>@string/edge_swipe_hide</item>
-        <item>@string/edge_swipe_expand_qs</item>
+        <item>@string/edge_swipe_recents</item>
         <item>@string/edge_swipe_back</item>
         <item>@string/edge_swipe_home</item>
         <item>@string/edge_swipe_menu</item>
         <item>@string/edge_swipe_app</item>
-	<item>@string/edge_swipe_recents</item>
     </string-array>
 
     <string-array name="edge_swipe_values" translatable="false">
@@ -2671,7 +2670,6 @@
         <item>5</item>
         <item>6</item>
         <item>7</item>
-        <item>8</item>
     </string-array>
 
     <string-array name="gesture_type_entries">
