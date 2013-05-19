@@ -6076,20 +6076,20 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="donate_link" formatted="false">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HUUHRXDXNMZPU</string>
 
     <!-- App sidebar -->
-    <string name="app_sidebar_title">Appbar</string>
-    <string name="app_sidebar_enable_title">Enable appbar</string>
-    <string name="app_sidebar_enable_summaryOn">Appbar is enabled</string>
-    <string name="app_sidebar_enable_summaryOff">Appbar is disabled</string>
-    <string name="app_sidebar_setup_items_title">Setup appbar content</string>
-    <string name="app_sidebar_setup_items_summary">Add, remove, and position items in the appbar</string>
-    <string name="app_sidebar_transparency_title">Appbar transparency</string>
-    <string name="app_sidebar_transparency_summary">Adjust the appbar transparency level</string>
-    <string name="app_sidebar_position_title">Appbar position</string>
-    <string name="app_sidebar_position_summary">Position the appbar on the left or right side of the screen</string>
+    <string name="app_sidebar_title">\@ppbar</string>
+    <string name="app_sidebar_enable_title">Enable \@ppbar</string>
+    <string name="app_sidebar_enable_summaryOn">\@appbar is enabled</string>
+    <string name="app_sidebar_enable_summaryOff">\@appbar is disabled</string>
+    <string name="app_sidebar_setup_items_title">Setup \@ppbar content</string>
+    <string name="app_sidebar_setup_items_summary">Add, remove, and position items in the @ppbar</string>
+    <string name="app_sidebar_transparency_title">\@ppbar transparency</string>
+    <string name="app_sidebar_transparency_summary">Adjust the \@ppbar transparency level</string>
+    <string name="app_sidebar_position_title">\@ppbar position</string>
+    <string name="app_sidebar_position_summary">Position the \@ppbar on the left or right side of the screen</string>
     <string name="app_sidebar_position_left">Left</string>
     <string name="app_sidebar_position_right">Right</string>
     <string name="app_sidebar_hide_labels_title">Hide icon labels</string>
-    <string name="app_sidebar_hide_labels_summary">Hide appbar icon labels</string>
+    <string name="app_sidebar_hide_labels_summary">Hide \@ppbar icon labels</string>
     <string name="tab_category">Visible Tab</string>
     <string name="use_tab_title">Display tab</string>
     <string name="use_tab_summary">Display a visible tab on the side which will display the \@appbar when touched.</string>
