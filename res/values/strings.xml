@@ -6118,7 +6118,6 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <string name="edge_swipe_hide">Toggle status bar</string>
     <string name="edge_swipe_expand_qs">Expand quick settings</string>
     <string name="edge_swipe_back">Back</string>
-    <string name="edge_swipe_app_switch">Quick app switch</string>
     <string name="edge_swipe_home">Home</string>
     <string name="edge_swipe_menu">Menu</string>
     <string name="edge_swipe_app">Launch application ...</string>
