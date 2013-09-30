@@ -50,6 +50,7 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
     private static final String BATTERY_AROUND_LOCKSCREEN_RING = "battery_around_lockscreen_ring";
     private static final String HOME_UNLOCK_SCREEN = "home_unlock_screen";
     private static final String MENU_UNLOCK_SCREEN = "menu_unlock_screen";
+    private static final String CAMERA_UNLOCK_SCREEN = "camera_unlock_screen";
 
     private CheckBoxPreference mSeeThrough;
     private ListPreference mBatteryStatus;
@@ -60,6 +61,7 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
     private CheckBoxPreference mLockRingBattery;
     private CheckBoxPreference mHomeUnlock;
     private CheckBoxPreference mMenuUnlock;
+    private CheckBoxPreference mCameraUnlock;
 
     public boolean hasButtons() {
         return !getResources().getBoolean(com.android.internal.R.bool.config_showNavigationBar);
@@ -98,6 +100,10 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         mMenuUnlock.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.MENU_UNLOCK_SCREEN, 0) == 1); 
 
+        mCameraUnlock = (CheckBoxPreference) findPreference(CAMERA_UNLOCK_SCREEN);
+        mCameraUnlock.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.CAMERA_UNLOCK_SCREEN, 0) == 1);
+
         mBlurBehind = (CheckBoxPreference) findPreference(KEY_BLUR_BEHIND);
         mBlurBehind.setChecked(Settings.System.getInt(getContentResolver(), 
             Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1);
@@ -114,6 +120,11 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
 	// Remove lockscreen button actions if device doesn't have hardware keys
         if (!hasButtons()) {
             prefScreen.removePreference(mMenuUnlock);
+        }
+
+	// Hide the CameraUnlock setting if no camera button is available
+        if ((ButtonSettings.KEY_MASK_CAMERA) == 0) {
+            additionalPrefs.removePreference(cameraUnlock);
         }
 
         updateBlurPrefs();
@@ -160,6 +171,13 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
                     Settings.System.MENU_UNLOCK_SCREEN, mMenuUnlock.isChecked()
                     ? 1 : 0);
             return true;
+
+        } else if (preference == mCameraUnlock) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.CAMERA_UNLOCK_SCREEN, mMenuUnlock.isChecked()
+                    ? 1 : 0);
+            return true;
+
         } else if (preference == mBlurBehind) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_BLUR_BEHIND,
                     mBlurBehind.isChecked() ? 1 : 0);
