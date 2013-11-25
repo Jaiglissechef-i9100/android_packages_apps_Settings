@@ -2343,4 +2343,7 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="weather_tile_color">Color Icon</string>
     <string name="weather_tile_mono">Mono Icon</string>
     <string name="weather_tile_vclouds">vClouds Icon</string>
+
+    <!-- Theme chooser -->
+    <string name="themes_settings_title">Themes</string>
 </resources>
