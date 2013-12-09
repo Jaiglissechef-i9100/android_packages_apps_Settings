@@ -18,7 +18,9 @@
 */
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-
+   
+    <!-- About device screen, Hardware info -->
+    <string name="hardware_info">Hardware info</string>
     <!-- About device screen, Cpu info. -->
     <string name="cpu_info">CPU</string>
     <!-- About device Screen, hardware info, GPU info -->
