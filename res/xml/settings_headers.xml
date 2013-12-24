@@ -289,12 +289,12 @@
         android:icon="@drawable/ic_settings_performance"
         android:title="@string/performance_settings_title" />
 
-    <!-- About BeanStalk -->
+    <!-- About BeanStalk 
     <header
         android:id="@+id/about_rom"
         android:fragment="com.android.settings.beanstalk.About"
         android:icon="@drawable/ic_settings_about_beanstalk"
-        android:title="@string/about_beanstalk_settings_title" />
+        android:title="@string/about_beanstalk_settings_title" />-->
 
     <!-- About Device -->
     <header
