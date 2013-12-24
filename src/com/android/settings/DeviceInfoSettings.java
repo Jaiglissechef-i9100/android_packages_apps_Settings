@@ -35,7 +35,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileInputStream;
 import java.io.IOException;
-import android.net.Uri;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -50,7 +49,6 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
     private static final String FILENAME_PROC_CPUINFO = "/proc/cpuinfo";
 
     private static final String KEY_CONTAINER = "container";
-    private static final String KEY_BS_DONATE= "donate";
     private static final String KEY_TEAM = "team";
     private static final String KEY_CONTRIBUTORS = "contributors";
     private static final String KEY_REGULATORY_INFO = "regulatory_info";
@@ -181,7 +179,6 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
         removePreferenceIfBoolFalse(KEY_REGULATORY_INFO,
                 R.bool.config_show_regulatory_info);
 
-	getPreferenceScreen().findPreference(KEY_BS_DONATE).setWidgetLayoutResource(R.layout.donate);
     }
 
     @Override
@@ -247,10 +244,6 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
                         Toast.LENGTH_LONG);
                 mDevHitToast.show();
             }
-	} else if (preference.getKey().equals(KEY_BS_DONATE)) {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(getActivity().getString(R.string.donate_link)));
-            startActivity(browserIntent);
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
