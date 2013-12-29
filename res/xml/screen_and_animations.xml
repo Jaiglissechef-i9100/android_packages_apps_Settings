@@ -16,6 +16,11 @@
 	    android:title="@string/ad_settings_title"	
 	    android:summary="@string/ad_settings_summary" /> 
 
+	<PreferenceScreen
+                android:key="screen_recorder"
+                android:title="@string/screen_recorder_title"
+                android:fragment="com.android.settings.beanstalk.ScreenRecorderSettings" />
+
 	<!-- CRT animation -->
         <ListPreference
             android:key="system_power_crt_mode"

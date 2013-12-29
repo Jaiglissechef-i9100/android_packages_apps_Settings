@@ -23,17 +23,22 @@
         android:key="misc_options_prefs"
         android:title="@string/misc_settings_title">
 
+    <PreferenceScreen
+        android:key="recents_view_settings"
+        android:fragment="com.android.settings.beanstalk.RamSettings"
+        android:title="@string/recents_view_settings" />
+
+    <PreferenceScreen
+        android:key="recents_ram_bar"
+        android:fragment="com.android.settings.beanstalk.RamBar"
+        android:title="@string/ram_bar" />
+
     <ListPreference
         android:key="media_scanner_on_boot"
         android:title="@string/media_scanner_on_boot_title"
         android:persistent="false"
         android:entries="@array/media_scanner_on_boot_entries"
         android:entryValues="@array/media_scanner_on_boot_values" />
-
-    <PreferenceScreen
-        android:key="recents_ram_bar"
-        android:fragment="com.android.settings.beanstalk.RamBar"
-        android:title="@string/ram_bar" />
 
     <ListPreference
         android:key="lcd_density"

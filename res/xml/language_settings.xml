@@ -38,10 +38,16 @@
                 android:title="@string/current_input_method" />
     </PreferenceCategory>
 
+    <PreferenceScreen
+         android:key="keyboard_input_settings"
+         android:fragment="com.android.settings.beanstalk.InputMethodsSettings"
+         android:title="@string/title_keyboard_input" />
+
     <PreferenceCategory
             android:key="hard_keyboard"
             android:title="@string/builtin_keyboard_settings_title"
             android:persistent="false">
+
         <!-- Additional preference screens are inserted here programmatically
              with low order values to set the key map of each attached keyboard. -->
 

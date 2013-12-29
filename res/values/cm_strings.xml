@@ -660,4 +660,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
         sliding your finger across the Statusbar. Note: Will not be active when auto-brightness is on
     </string>
 
+    <!-- USB Mass Storage -->
+    <string name="usb_mass_storage_title">Mass storage (UMS)</string>
+    <string name="usb_mass_storage_summary">Lets you transfer any files between your computer and your SD card by mounting it as a flash device</string>
 </resources>
