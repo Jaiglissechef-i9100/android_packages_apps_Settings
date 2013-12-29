@@ -2150,5 +2150,10 @@
             </intent-filter>
         </activity>
 
+         <activity
+            android:name=".beanstalk.LockscreenNotifications"
+            android:label="@string/Lockscreen_notifications_header" >
+        </activity>
+
     </application>
 </manifest>

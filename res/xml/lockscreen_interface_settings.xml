@@ -40,6 +40,12 @@
          <extra android:name="fragment" android:value="com.android.settings.beanstalk.fragments.LockscreenShortcutFragment" />
     </PreferenceScreen>
 
+    <Preference
+        android:fragment="com.android.settings.beanstalk.LockscreenNotifications"
+        android:key="lockscreen_notifications"
+        android:summary="@string/lockscreen_notifications_summary"
+        android:title="@string/Lockscreen_notifications_header" />
+
     <PreferenceScreen
         android:key="keyguard_style"
         android:fragment="com.android.settings.beanstalk.LockscreenStyle"
