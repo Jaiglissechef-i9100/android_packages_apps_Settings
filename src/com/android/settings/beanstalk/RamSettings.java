@@ -25,8 +25,11 @@ public class RamSettings extends SettingsPreferenceFragment implements
     private static final String SHOW_RECENTS_MEMORY_INDICATOR = "show_recents_memory_indicator";
     private static final String RECENTS_MEMORY_INDICATOR_LOCATION =
             "recents_memory_indicator_location";
+    private static final String SHOW_RAMBAR_GB =
+            "show_rambar_gb";
 
     private CheckBoxPreference mRecentClearAll;
+    private CheckBoxPreference mRambarGB;
     private ListPreference mRecentClearAllPosition;
     private CheckBoxPreference mShowRecentsMemoryIndicator;
     private ListPreference mRecentsMemoryIndicatorPosition;
@@ -49,6 +52,11 @@ public class RamSettings extends SettingsPreferenceFragment implements
             mRecentClearAllPosition.setValue(recentClearAllPosition);
         }
         mRecentClearAllPosition.setOnPreferenceChangeListener(this);
+
+        mRambarGB = (CheckBoxPreference) prefSet.findPreference(SHOW_RAMBAR_GB);
+        mRambarGB.setChecked(Settings.System.getInt(resolver,
+                Settings.System.SHOW_GB_RAMBAR, 0) == 1);
+        mRambarGB.setOnPreferenceChangeListener(this);
 
         mShowRecentsMemoryIndicator = (CheckBoxPreference)
                 prefSet.findPreference(SHOW_RECENTS_MEMORY_INDICATOR);
@@ -75,6 +83,9 @@ public class RamSettings extends SettingsPreferenceFragment implements
         if (preference == mRecentClearAll) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(resolver, Settings.System.SHOW_CLEAR_RECENTS_BUTTON, value ? 1 : 0);
+	} else if (preference == mRambarGB) {
+            boolean value = (Boolean) objValue;
+            Settings.System.putInt(resolver, Settings.System.SHOW_GB_RAMBAR, value ? 1 : 0);
         } else if (preference == mRecentClearAllPosition) {
             String value = (String) objValue;
             Settings.System.putString(resolver, Settings.System.CLEAR_RECENTS_BUTTON_LOCATION, value);

@@ -45,6 +45,12 @@
         android:fragment="com.android.settings.beanstalk.LockscreenStyle"
         android:title="@string/lockscreen_style_title"/>
 
+        <PreferenceScreen
+            android:key="lockscreen_misc"
+            android:fragment="com.android.settings.beanstalk.LockscreenMisc"
+            android:summary="@string/lockscreen_misc_summary"
+            android:title="@string/lockscreen_misc_title"/>
+
     <PreferenceCategory
         android:title="@string/lockscreen_widgets_title"
         android:key="keyguard_enable_widgets" >
