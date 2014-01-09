@@ -1845,6 +1845,25 @@
 	<activity android:name=".beanstalk.RamBar" />
 	<activity android:name=".util.ShowBuildProp" />
 
+	<!-- Telo -->
+        <activity android:name=".beanstalk.TeloRadioSettings"
+            android:label="@string/telo_radio_settings_title"
+            android:launchMode="singleTask"
+            android:process="com.android.phone">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+        <receiver android:name=".beanstalk.TeloRadioBoot">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </receiver>
+
 	<!-- PerformanceControl activities -->
         <activity android:name="com.brewcrewfoo.performance.activities.MainActivity"/>
         <activity android:name="com.brewcrewfoo.performance.activities.PCSettings"/>
