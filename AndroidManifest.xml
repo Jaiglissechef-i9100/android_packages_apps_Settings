@@ -37,6 +37,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.WRITE_APN_SETTINGS"/>
     <uses-permission android:name="android.permission.ACCESS_CHECKIN_PROPERTIES"/>
     <uses-permission android:name="android.permission.READ_USER_DICTIONARY"/>
@@ -1928,7 +1929,26 @@
             </intent-filter>
         </activity>
 
-	<!-- Pseudo-activity used to provide an intent-filter entry point to quite hours settings -->
+        <activity
+            android:name=".aokp.Weather"
+            android:label="@string/title_weather" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".aokp.weather.WeatherReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="com.android.settings.INTENT_WEATHER_REQUEST" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".aokp.weather.WeatherRefreshService" />
+        <service android:name=".aokp.weather.WeatherService" />
+
+        <!-- Pseudo-activity used to provide an intent-filter entry point to quite hours settings -->
         <activity android:name="Settings$QuietHoursSettingsActivity"
                 android:label="@string/quiet_hours_title"
                 android:taskAffinity=""
