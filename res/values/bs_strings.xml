@@ -1312,4 +1312,8 @@
     <string name="lockscreen_battery_status_charging">Only when charging</string>
     <string name="lockscreen_battery_status_alwayson">Always on</string>
     <string name="lockscreen_battery_status_alwaysoff">Always off</string>
+
+    <!-- QuickSettings: Quick Collapse -->
+    <string name="title_collapse_panel">Quick collapse</string>
+    <string name="summary_collapse_panel">Close the notification panel upon toggle</string>
 </resources>
