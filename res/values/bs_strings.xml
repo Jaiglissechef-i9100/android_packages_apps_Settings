@@ -1842,4 +1842,7 @@
     <string name="battery_saver_network_cdma_title">CDMA Networks</string>
     <string name="battery_saver_system_title">System options</string>
 
+    <!-- Fast charge QS tile -->
+    <string name="title_tile_fcharge">Fast charge</string>
+
 </resources>
