@@ -16,9 +16,12 @@
 
 package com.android.settings.beanstalk;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -39,7 +42,14 @@ import com.android.internal.util.beanstalk.DeviceUtils;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.beanstalk.quicksettings.QuickSettingsUtil;
 import com.android.settings.R;
+
 import com.android.settings.beanstalk.SeekBarPreference;
+import com.android.settings.quicklaunch.BookmarkPicker;
+import com.android.settings.widget.SeekBarPreference;
+
+import java.net.URISyntaxException;
+
+import com.android.settings.beanstalk.AppSelectListPreference;
 
 public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
             implements OnPreferenceChangeListener  {
@@ -81,6 +91,10 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
             "quicksettings_tiles_style";
     private static final String PREF_TILE_PICKER =
             "tile_picker";
+    private static final String CLOCK_SHORTCUT =
+            "clock_shortcut";
+    private static final String CALENDAR_SHORTCUT =
+            "calendar_shortcut";
 
     private static final String KEY_POWER_WIDGET = "power_widget";
     private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
@@ -104,6 +118,8 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
     CheckBoxPreference mHeadsUpExpanded;
     CheckBoxPreference mHeadsUpShowUpdates;
     CheckBoxPreference mHeadsUpFloatingWindow;
+    private AppSelectListPreference mClockShortcut;
+    private AppSelectListPreference mCalendarShortcut;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -126,6 +142,14 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
         mStatusBarCustomHeader.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
         mStatusBarCustomHeader.setOnPreferenceChangeListener(this);
+
+        mClockShortcut = (AppSelectListPreference)prefs.findPreference(CLOCK_SHORTCUT);
+        mClockShortcut.setOnPreferenceChangeListener(this);
+
+        mCalendarShortcut = (AppSelectListPreference)prefs.findPreference(CALENDAR_SHORTCUT);
+        mCalendarShortcut.setOnPreferenceChangeListener(this);
+
+        updateClockCalendarSummary();
 
         PackageManager pm = getPackageManager();
         boolean isMobileData = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
@@ -379,6 +403,18 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
                     Settings.System.REMINDER_ALERT_RINGER,
                     val.toString(), UserHandle.USER_CURRENT);
             return true;
+        } else if (preference == mClockShortcut) {
+            String value = (String) newValue;
+            // a value of null means to use the default
+            Settings.System.putString(getContentResolver(),
+                Settings.System.CLOCK_SHORTCUT, value);
+            updateClockCalendarSummary();
+        } else if (preference == mCalendarShortcut) {
+            String value = (String) newValue;
+            // a value of null means to use the default
+            Settings.System.putString(getContentResolver(),
+                Settings.System.CALENDAR_SHORTCUT, value);
+            updateClockCalendarSummary();
         }
         return false;
     }
@@ -504,5 +540,46 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
                 break;
         }
         mReminderMode.setSummary(getResources().getString(resId));
+    }
+
+    private void updateClockCalendarSummary() {
+        final PackageManager packageManager = getPackageManager();
+
+        mClockShortcut.setSummary(getResources().getString(R.string.default_shortcut));
+        mCalendarShortcut.setSummary(getResources().getString(R.string.default_shortcut));
+
+        String clockShortcutIntentUri = Settings.System.getString(getContentResolver(), Settings.System.CLOCK_SHORTCUT);
+        if (clockShortcutIntentUri != null) {
+            Intent clockShortcutIntent = null;
+            try {
+                clockShortcutIntent = Intent.parseUri(clockShortcutIntentUri, 0);
+            } catch (URISyntaxException e) {
+                clockShortcutIntent = null;
+            }
+
+            if(clockShortcutIntent != null) {
+                ResolveInfo info = packageManager.resolveActivity(clockShortcutIntent, 0);
+                if (info != null) {
+                    mClockShortcut.setSummary(info.loadLabel(packageManager));
+                }
+            }
+        }
+
+        String calendarShortcutIntentUri = Settings.System.getString(getContentResolver(), Settings.System.CALENDAR_SHORTCUT);
+        if (calendarShortcutIntentUri != null) {
+            Intent calendarShortcutIntent = null;
+            try {
+                calendarShortcutIntent = Intent.parseUri(calendarShortcutIntentUri, 0);
+            } catch (URISyntaxException e) {
+                calendarShortcutIntent = null;
+            }
+
+            if(calendarShortcutIntent != null) {
+                ResolveInfo info = packageManager.resolveActivity(calendarShortcutIntent, 0);
+                if (info != null) {
+                    mCalendarShortcut.setSummary(info.loadLabel(packageManager));
+                }
+            }
+        }
     }
 }

@@ -33,6 +33,24 @@ limitations under the License.
 	android:persistent="false"
 	android:defaultValue="true" />
 
+    <PreferenceCategory
+            android:key="shortcuts"
+            android:title="@string/notification_bar_shortcuts">
+
+        <com.android.settings.ose.AppSelectListPreference
+                android:key="clock_shortcut"
+                android:title="@string/clock_shortcut_title"
+                android:positiveButtonText="@string/default_shortcut"
+                android:persistent="false"/>
+
+        <com.android.settings.ose.AppSelectListPreference
+                android:key="calendar_shortcut"
+                android:title="@string/calendar_shortcut_title"
+                android:positiveButtonText="@string/default_shortcut"
+                android:persistent="false"/>
+
+    </PreferenceCategory>
+
     <CheckBoxPreference
         android:key="heads_up_show_update"
         android:title="@string/heads_up_show_updates_title"
