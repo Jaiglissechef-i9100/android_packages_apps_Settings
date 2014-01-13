@@ -54,6 +54,7 @@ public class PowerUsageSummary extends PreferenceFragment {
 
     private static final String KEY_APP_LIST = "app_list";
     private static final String KEY_BATTERY_STATUS = "battery_status";
+    private static final String KEY_BATTERY_SAVER = "pref_battery_saver";
 
     private static final int MENU_STATS_TYPE = Menu.FIRST;
     private static final int MENU_STATS_REFRESH = Menu.FIRST + 1;
@@ -61,6 +62,7 @@ public class PowerUsageSummary extends PreferenceFragment {
 
     private PreferenceGroup mAppListGroup;
     private Preference mBatteryStatusPref;
+    private PreferenceScreen mBatterySaverPrefs;
 
     private int mStatsType = BatteryStats.STATS_SINCE_CHARGED;
 
@@ -101,6 +103,10 @@ public class PowerUsageSummary extends PreferenceFragment {
         addPreferencesFromResource(R.xml.power_usage_summary);
         mAppListGroup = (PreferenceGroup) findPreference(KEY_APP_LIST);
         mBatteryStatusPref = mAppListGroup.findPreference(KEY_BATTERY_STATUS);
+
+        mBatterySaverPrefs =
+            (PreferenceScreen) mAppListGroup.findPreference(KEY_BATTERY_SAVER);
+
         setHasOptionsMenu(true);
     }
 
@@ -137,6 +143,9 @@ public class PowerUsageSummary extends PreferenceFragment {
             PreferenceActivity pa = (PreferenceActivity)getActivity();
             pa.startPreferencePanel(BatteryHistoryDetail.class.getName(), args,
                     R.string.history_details_title, null, null, 0);
+            return super.onPreferenceTreeClick(preferenceScreen, preference);
+        }
+        if (preference == mBatterySaverPrefs) {
             return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
         if (!(preference instanceof PowerGaugePreference)) {
@@ -198,6 +207,8 @@ public class PowerUsageSummary extends PreferenceFragment {
         mAppListGroup.removeAll();
         mAppListGroup.setOrderingAsAdded(false);
 
+        mBatterySaverPrefs.setOrder(-6);
+        mAppListGroup.addPreference(mBatterySaverPrefs);
         mBatteryStatusPref.setOrder(-2);
         mAppListGroup.addPreference(mBatteryStatusPref);
         BatteryHistoryPreference hist = new BatteryHistoryPreference(

@@ -44,6 +44,10 @@
         android:title="@string/gesture_anywhere_title" />
 
     <PreferenceScreen
+            android:fragment="com.android.settings.beanstalk.BatterySaverSettings"
+            android:title="@string/battery_saver_title" />
+
+    <PreferenceScreen
         android:key="navbar_settings"
         android:fragment="com.android.settings.beanstalk.NavbarSettings"
         android:title="@string/navigation_bar" />
