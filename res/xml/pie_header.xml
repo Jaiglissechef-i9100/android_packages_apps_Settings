@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+     <!--<Preference
+android:key="slim_pie"
+android:title="@string/slimpie_title"
+android:summary="@string/slimpie_summary"
+android:fragment="com.android.settings.slim.PieControl" />-->
+
+
+     <Preference
+        android:key="paranoid_pie"
+        android:title="@string/pie_title"
+        android:summary="@string/pie_summary"
+        android:fragment="com.android.settings.pa.PAPieControl" />
+
+</PreferenceScreen>

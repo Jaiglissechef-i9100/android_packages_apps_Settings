@@ -52,4 +52,101 @@
     <string name="halo_main">General</string>
     <string name="halo_appearance">Appearance</string>
 
+    <!-- Pie controls -->
+    <string name="pie_help_title">Help</string>
+    <string name="pie_help_text"><b>What is the difference between Paranoid or Slim PIE?</b>
+\n\n
+Paranoid PIE control is wavely based on simple navigation to expanded desktop. Slim PIE Control is more about customizable targets, colors of the chevrons and easy to use to navigate to any of your apps or activity. The difference is all about user choices.
+\n\n\n </string>
+    <string name="slimpie_title">Slim PIE</string>
+    <string name="slimpie_summary">Acts like a navigation bar, but without expanded desktop experience and has multiple targets, customization</string>
+    <string name="pie_title">Paranoid PIE</string>
+    <string name="pie_summary">Controls through your expanded desktop experience</string>
+    <string name="general_ui">General UI</string>
+    <string name="buttons_layout_title">Button Layout</string>
+
+    <string name="pa_pie_controls_title">Pie controls</string>
+    <string name="pa_pie_controls_summary">Allows navigation and status report on expanded desktop mode</string>
+    <string name="pie_gravity_title">Pie gravity</string>
+    <string name="pie_gravity_summary">Select the location where the pie will be placed at</string>
+    <string name="pie_gravity_top">Top</string>
+    <string name="pie_gravity_bottom">Bottom</string>
+    <string name="pie_gravity_right">Right</string>
+    <string name="pie_gravity_left">Left</string>
+    <string name="pie_mode_title">Pie style</string>
+    <string name="pie_mode_summary">Manage how animations and status additions will be handled</string>
+    <string name="pie_mode_bare">Bare</string>
+    <string name="pie_mode_quick">Quick</string>
+    <string name="pie_mode_default">Default</string>
+    <string name="pie_mode_slow">Slow</string>
+    <string name="pie_size_title">Pie size</string>
+    <string name="pie_size_summary">Define pie controls size</string>
+    <string name="pie_size_small">Small</string>
+    <string name="pie_size_default">@string/pie_mode_default</string>
+    <string name="pie_size_large">Large</string>
+    <string name="pie_size_gigantic">Gigantic</string>
+
+    <string name="pie_angle_title">Pie angle</string>
+    <string name="pie_angle_summary">Adjust the angle of pie bords from pie attach</string>
+    <string name="pie_angle_none">None (old)</string>
+    <string name="pie_angle_small">Small</string>
+    <string name="pie_angle_big">Normal(default)</string>
+    <string name="pie_angle_huge">Big</string>
+
+    <string name="pie_menu_title">Show menu button always</string>
+    <string name="pie_menu_summary">Whether or not the menu button will appear when unneeded</string>
+    <string name="pie_search_title">Show search button</string>
+    <string name="pie_search_summary">Access to Google Now via Pie</string>
+    <string name="pie_lastapp_title">Last App button</string>
+    <string name="pie_lastapp_summary">Enable last app button on Pie</string>
+    <string name="pie_power_title">Power button</string>
+    <string name="pie_power_summary">Enable power button on pie controls</string>
+    <string name="pie_killtask_title">Kill task button</string>
+    <string name="pie_killtask_summary">Enable kill task button on Pie</string>
+    <string name="pie_actnotif_title">Action notifications</string>
+    <string name="pie_actnotif_summary">Enable expand notifications button</string>
+    <string name="pie_actqs_title">Action quicksettings</string>
+    <string name="pie_actqs_summary">Enable expand quicksettings button</string>
+    <string name="pie_appwindow_title">App window button</string>
+    <string name="pie_appwindow_summary">Enable app window button on Pie (configure app window in Ribbon settings)</string>
+    <string name="pie_screenshot_title">ScreenShot button</string>
+    <string name="pie_screenshot_summary">Enable ScreenShot button on Pie</string>
+    <string name="pie_center_title">Center pie</string>
+    <string name="pie_center_summary">Center Pie on the trigger edge</string>
+    <string name="pie_stick_title">Prevent rotation</string>
+    <string name="pie_stick_summary">If checked Pie will stay in place no matter which orientation</string>
+    <string name="pie_restart_launcher_title">Restart Launcher</string>
+    <string name="pie_restart_launcher_summary">Allows your launcher to regain sanity after a screensize change (recommended)</string>
+    <string name="pie_notifications_title">Enable chevron targets</string>
+    <string name="pie_notifications_summary">Enabling will let the Notification panel and QuickSettings activate when swiped</string>
+
+    <!-- Pie Color Settings -->
+    <string name="pie_color_title">Pie color settings</string>
+    <string name="pie_button_color_title">Pie button color</string>
+    <string name="pie_color_style_title">Pie color style</string>
+    <string name="pie_background_title">Background color</string>
+    <string name="pie_select_title">Selection color</string>
+    <string name="pie_outlines_title">Outlines color</string>
+    <string name="pie_status_clock_title">Clock color</string>
+    <string name="pie_status_title">Status color</string>
+    <string name="pie_chevron_left_title">Left chevron color</string>
+    <string name="pie_chevron_right_title">Right chevron color</string>
+    <string name="all_color">Colors Everywhere!</string>
+    <string name="stock_color">Stock Color</string>
+    <string name="pie_juice_title">Battery juice color</string>
+
+    <!-- Pie Gap-->
+    <string name="pie_gap_title">Pie gap</string>
+    <string name="pie_gap_summary">Adjust the gap in between pie elements</string>
+    <string name="pie_gap_closed">Closed</string>
+    <string name="pie_gap_small">Small (default)</string>
+    <string name="pie_gap_big">Big</string>
+    <string name="pie_gap_huge">Huge</string>
+    <string name="pie_trigger_title">Trigger size</string>
+    <string name="pie_trigger_summary">Determine the size of the triggering area that will start pie controls</string>
+    <string name="pie_trigger_small">Small</string>
+    <string name="pie_trigger_normal">Normal (Default)</string>
+    <string name="pie_trigger_big">Big</string>
+    <string name="pie_trigger_huge">Huge</string>
+
 </resources>
