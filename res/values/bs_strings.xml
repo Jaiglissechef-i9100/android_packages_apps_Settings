@@ -30,10 +30,10 @@
     <string name="header_category_rom_settings">Advanced</string>
 
     <!-- BeanStalk settings screens -->
-    <string name="interface_settings_title">BeanStalk Options</string>
+    <string name="interface_settings_title">BeanStalk options</string>
 
     <!-- Color Picker -->
-    <string name="dialog_color_picker">Color Picker</string>
+    <string name="dialog_color_picker">Color picker</string>
     <string name="press_color_to_apply">Press on color below to apply</string>
     <string name="arrow_right">→</string>
     <string name="arrow_down">↓</string>
@@ -158,8 +158,8 @@
     <string name="hide_network_speed_summary">Hide network stats indicator when there is no traffic</string>
 
     <!-- Display : Animation options -->
-    <string name="screen_and_animations_title">Screen and animations</string>
-    <string name="display_category_animation_options_title">Screen and animation options</string>
+    <string name="screen_and_animations_title">Display and animations</string>
+    <string name="display_category_animation_options_title">Display and animation options</string>
     <string name="system_power_crt_mode_title">CRT animation </string>
     <string name="system_power_crt_mode_dialog_title">CRT animation</string>
     <string name="system_power_crt_mode_off">Don\'t show</string>
@@ -434,11 +434,11 @@
     <string name="media_scanner_on_boot_disabled">Do not scan media</string>
 
     <!-- TRDS Settings -->
-    <string name="trds_settings_title">Dark Stalk</string>
+    <string name="trds_settings_title">Dark stalk</string>
 
     <!-- Donate to BeanStalk Builds -->
     <string name="donate_beanstalk_title">Support BeanStalk</string>
-    <string name="donate_beanstalk_summary">Donate to BeanStalk Builds</string>
+    <string name="donate_beanstalk_summary">Donate to BeanStalk builds</string>
     <string name="donate_link" formatted="false">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HUUHRXDXNMZPU</string>
 
     <!-- About BeanStalk -->
@@ -746,7 +746,7 @@
 
     <!-- Halo -->
     <string name="halo_settings_title">Halo</string>
-    <string name="halo_behavior_title">Halo Behavior</string>
+    <string name="halo_behavior_title">Halo behavior</string>
     <string name="halo_enabled_title">Enable HALO</string>
     <string name="halo_enabled_summary">Completely enable or disable HALO</string>
     <string name="halo_hide_title">Hide Halo after activity</string>
@@ -1118,4 +1118,44 @@
     <string name="allow_rotate_title">Allow rotation</string>
     <string name="allow_rotate_summary">Enables landscape mode on lockscreen.</string>
 
+    <!-- Show 4G icon instead of LTE. User defined settings -->
+    <string name="show_lte_or_fourgee_title">Show 4G network</string>
+    <string name="show_lte_or_fourgee_summary">This will allow you to show you 4G instead of LTE</string>
+
+    <!-- Gesture swipe navigation -->
+    <string name="edge_swipe_title">Gesture navigation</string>
+    <string name="edge_swipe_right_title">Zone 3 Action</string>
+    <string name="edge_swipe_left_title">Zone 1 Action</string>
+    <string name="edge_swipe_top_title">Zone 2 Action</string>
+    <string name="edge_swipe_bottom_title">Zone 4 Action</string>
+    <string name="edge_swipe_move_title">Capture touch events</string>
+    <string name="edge_swipe_move_summary">Stop touches in zones from reaching the application</string>
+    <string name="edge_swipe_none">No action</string>
+    <string name="edge_swipe_expand">Expand notifications</string>
+    <string name="edge_swipe_recents">Recent apps</string>
+    <string name="edge_swipe_hide">Toggle status bar</string>
+    <string name="edge_swipe_expand_qs">Expand quick settings</string>
+    <string name="edge_swipe_back">Back</string>
+    <string name="edge_swipe_app_switch">Toggle last app</string>
+    <string name="edge_swipe_home">Home</string>
+    <string name="edge_swipe_menu">Menu</string>
+    <string name="edge_swipe_app">Launch application ...</string>
+    <string name="edge_swipe_blacklist_title">Gesture app blacklist</string>
+    <string name="gesture_area_too_large">The selected gesture area is too large and will not be set.</string>
+    <string name="gesture_tap">Single tap</string>
+    <string name="gesture_long_press">Long press</string>
+    <string name="gesture_swipe">Swipe out of zone</string>
+    <string name="gesture_swipe_distance">Swipe distance</string>
+
+    <!-- Section title for list of downloaded apps [CHAR LIMIT=30] -->
+    <string name="user_market_apps_heading">Installed apps</string>
+   
+    <!-- Sound settings screen, setting check box label -->
+    <string name="camera_sounds_title">Camera shutter sound</string>
+    <string name="camera_sounds_entry_stock">Default (bloop)</string>
+    <string name="camera_sounds_entry_realistic">Realistic (click)</string>
+    <string name="camera_sounds_entry_off">Disabled (ILLEGAL in some areas)</string>
+
+    <!-- Minimum Vibration Duration -->
+    <string name="minimum_vibration_duration">Minimum vibration duration</string>
 </resources>

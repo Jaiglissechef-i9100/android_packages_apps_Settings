@@ -1276,4 +1276,52 @@
         <item>60000</item>
     </string-array>
 
+    <string-array name="edge_swipe_entries">
+        <item>@string/edge_swipe_none</item>
+        <item>@string/edge_swipe_expand</item>
+        <item>@string/edge_swipe_expand_qs</item>
+        <item>@string/edge_swipe_back</item>
+        <item>@string/edge_swipe_home</item>
+        <item>@string/edge_swipe_menu</item>
+        <item>@string/edge_swipe_app</item>
+	<item>@string/edge_swipe_recents</item>
+	<item>@string/edge_swipe_app_switch</item>
+    </string-array>
+
+    <string-array name="edge_swipe_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="gesture_type_entries">
+        <item>@string/gesture_tap</item>
+        <item>@string/gesture_long_press</item>
+        <item>@string/gesture_swipe</item>
+    </string-array>
+
+    <string-array name="gesture_type_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Camera sounds -->
+    <string-array name="camera_sounds_entries">
+        <item>@string/camera_sounds_entry_stock</item>
+        <item>@string/camera_sounds_entry_realistic</item>
+        <item>@string/camera_sounds_entry_off</item>
+    </string-array>
+    <string-array name="camera_sounds_values">
+        <item>1</item>
+        <item>2</item>
+        <item>0</item>
+    </string-array>
+
 </resources>

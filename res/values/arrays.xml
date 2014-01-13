@@ -57,6 +57,7 @@
         <item>5 minutes</item>
         <item>10 minutes</item>
         <item>30 minutes</item>
+        <item>Never</item>
     </string-array>
 
     <!-- Do not translate. -->
@@ -75,6 +76,8 @@
         <item>600000</item>
         <!-- Do not translate. -->
         <item>1800000</item>
+	<!-- Do not translate. -->
+        <item>2147483647</item>
     </string-array>
 
     <!-- Display settings.  The delay in inactivity before the dream is shown. These are shown in a list dialog. -->
@@ -87,6 +90,7 @@
         <item>5 minutes</item>
         <item>10 minutes</item>
         <item>30 minutes</item>
+        <item>Never</item>
     </string-array>
 
     <!-- Do not translate. -->
@@ -107,6 +111,8 @@
         <item>600000</item>
         <!-- Do not translate. -->
         <item>1800000</item>
+	<!-- Do not translate. -->
+        <item>2147483647</item>
     </string-array>
 
     <!-- Security settings.  The delay after screen is turned off until device locks.
@@ -121,6 +127,7 @@
         <item>5 minutes</item>
         <item>10 minutes</item>
         <item>30 minutes</item>
+	<item>Never</item>
     </string-array>
 
     <!-- Do not translate. -->
@@ -143,6 +150,8 @@
         <item>600000</item>
         <!-- Do not translate. -->
         <item>1800000</item>
+	<!-- Do not translate. -->
+        <item>2147483647</item>
     </string-array>
 
     <string-array name="entries_font_size">

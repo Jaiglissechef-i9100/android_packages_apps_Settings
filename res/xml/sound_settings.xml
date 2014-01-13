@@ -101,6 +101,13 @@
             android:summary="@string/notification_vibrate_during_calls_summary"
             android:defaultValue="false" />
 
+    <ListPreference
+            android:key="camera_click_sound"
+            android:title="@string/camera_sounds_title"
+            android:entries="@array/camera_sounds_entries"
+            android:entryValues="@array/camera_sounds_values" 
+            android:defaultValue="1" />
+
     <PreferenceCategory
             android:title="@string/sound_category_system_title"/>
 
@@ -125,6 +132,10 @@
             android:key="haptic_feedback_enabled"
             android:title="@string/haptic_feedback_enable_title"
             android:defaultValue="true" />
+
+    <com.android.settings.beanstalk.SeekBarPreference
+            android:key="vibration_duration"
+            android:title="@string/minimum_vibration_duration" />
 
     <com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
             android:key="volume_adjust_sounds_enabled"

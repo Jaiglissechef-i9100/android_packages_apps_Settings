@@ -66,6 +66,7 @@ public class PowerWidget extends SettingsPreferenceFragment implements
     private static final String ENABLE_TOGGLE_COLORS = "enable_toggle_colors";
     private static final String TOGGLE_ICON_ON_COLOR = "toggle_icon_color_on";
     private static final String TOGGLE_ICON_OFF_COLOR = "toggle_icon_color_off";
+    private static final String PREF_BRIGHTNESS_LOC = "brightness_location";
 
     private CheckBoxPreference mPowerWidget;
     private CheckBoxPreference mPowerWidgetHideOnChange;
@@ -75,6 +76,7 @@ public class PowerWidget extends SettingsPreferenceFragment implements
     private CheckBoxPreference mEnableToggleBar;
     private ColorPickerPreference mToggleIconOnColor;
     private ColorPickerPreference mToggleIconOffColor;
+    private ListPreference mBrightnessLocation;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -119,6 +121,13 @@ public class PowerWidget extends SettingsPreferenceFragment implements
 
         mToggleIconOffColor = (ColorPickerPreference) findPreference(TOGGLE_ICON_OFF_COLOR);
         mToggleIconOffColor.setOnPreferenceChangeListener(this);
+	
+	mBrightnessLocation = (ListPreference) findPreference(PREF_BRIGHTNESS_LOC);
+            mBrightnessLocation.setOnPreferenceChangeListener(this);
+            mBrightnessLocation.setValue(Integer.toString(Settings.System.getInt(getActivity()
+                    .getContentResolver(), Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, 3)));
+            mBrightnessLocation.setSummary(mBrightnessLocation.getEntry());
+
         }
     }
 
@@ -145,6 +154,13 @@ public class PowerWidget extends SettingsPreferenceFragment implements
             int intHex = ColorPickerPreference.convertToColorInt(hex);
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.TOGGLE_ICON_OFF_COLOR, intHex);
+            return true;
+	} else if (preference == mBrightnessLocation) {
+            int val = Integer.parseInt((String) newValue);
+            int index = mBrightnessLocation.findIndexOfValue((String) newValue);
+            Settings.System.putInt(getActivity().getContentResolver(),
+            Settings.System.STATUSBAR_TOGGLES_BRIGHTNESS_LOC, val);
+            mBrightnessLocation.setSummary(mBrightnessLocation.getEntries()[index]);
             return true;
         }
         return false;

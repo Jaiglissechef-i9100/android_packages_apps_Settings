@@ -16,6 +16,8 @@
 
 package com.android.settings.beanstalk;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -68,6 +70,8 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
         addPreferencesFromResource(R.xml.notification_drawer_qs_settings);
 
         PreferenceScreen prefs = getPreferenceScreen();
+        ContentResolver resolver = getActivity().getContentResolver();
+        PreferenceScreen prefSet = getPreferenceScreen();
 
         mHideCarrier = (CheckBoxPreference) findPreference(PREF_NOTIFICATION_HIDE_CARRIER);
         boolean hideCarrier = Settings.System.getInt(getActivity().getContentResolver(),
