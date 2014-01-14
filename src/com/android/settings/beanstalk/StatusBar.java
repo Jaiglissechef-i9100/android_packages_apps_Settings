@@ -41,9 +41,11 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     private static final String KEY_STATUS_BAR_CLOCK = "clock_style_pref";
     private static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
+    private static final String STATUS_BAR_TRAFFIC_STYLE = "status_bar_traffic_style";
 
     private PreferenceScreen mClockStyle;
     private CheckBoxPreference mStatusBarBrightnessControl;
+    private ListPreference mStatusBarTraffic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,6 +71,14 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                             Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
         mStatusBarBrightnessControl.setOnPreferenceChangeListener(this);
 
+        // Statusbar Traffic
+        mStatusBarTraffic = (ListPreference) findPreference(STATUS_BAR_TRAFFIC_STYLE);
+        int trafficStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_TRAFFIC_STYLE, 0);
+        mStatusBarTraffic.setValue(String.valueOf(trafficStyle));
+        mStatusBarTraffic.setSummary(mStatusBarTraffic.getEntry());
+        mStatusBarTraffic.setOnPreferenceChangeListener(this);
+
+
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -76,6 +86,12 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             Settings.System.putInt(getContentResolver(),
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
                     (Boolean) newValue ? 1 : 0);
+            return true;
+        } else if (preference == mStatusBarTraffic) {
+            int trafficStyle = Integer.valueOf((String) newValue);
+            int index = mStatusBarTraffic.findIndexOfValue((String) newValue);
+            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_TRAFFIC_STYLE, trafficStyle);
+            mStatusBarTraffic.setSummary(mStatusBarTraffic.getEntries()[index]);
             return true;
         }
         return false;
