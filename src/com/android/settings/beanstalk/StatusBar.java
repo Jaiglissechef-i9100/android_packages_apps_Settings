@@ -55,6 +55,8 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
 	PreferenceScreen prefSet = getPreferenceScreen();
 
+        ContentResolver resolver = getActivity().getContentResolver();
+
 	// Start observing for changes on auto brightness
         StatusBarBrightnessChangedObserver statusBarBrightnessChangedObserver =
             new StatusBarBrightnessChangedObserver(new Handler());
@@ -82,6 +84,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        ContentResolver resolver = getActivity().getContentResolver();
 	if (preference == mStatusBarBrightnessControl) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
