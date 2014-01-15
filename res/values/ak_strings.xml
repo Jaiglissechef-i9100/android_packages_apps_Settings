@@ -149,11 +149,11 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="pie_trigger_big">Big</string>
     <string name="pie_trigger_huge">Huge</string>
 
-    <!-- show network speed -->
-    <string name="show_network_speed_title">Network speed</string>
-    <string name="show_network_speed_summary">Show network speed in status bar</string>
+    <!-- show network speed (Thinking Bridge) -->
+    <string name="show_network_speed_title">Network speed (Thinking Bridge)</string>
+    <string name="show_network_speed_summary">Show network speed in status bar (Thinking Bridge)</string>
     <string name="status_bar_traffic_style_hidden">Hide</string>
-    <string name="status_bar_traffic_style_rx">Display upload only</string>
+    <string name="status_bar_traffic_style_rx">Display download only</string>
     <string name="status_bar_traffic_style_rxtx">Display upload and download</string>
 
 </resources>
