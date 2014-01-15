@@ -217,6 +217,18 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
     }
 
     @Override
+	 public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        ContentResolver resolver = getContentResolver();
+        if (preference == mFlipQsTiles) {
+            Settings.System.putInt(resolver,
+                    Settings.System.QUICK_SETTINGS_TILES_FLIP,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
+        }
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
+    }
+
+    @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
 	ContentResolver resolver = getContentResolver();
         if (!mCheckPreferences) {
@@ -234,11 +246,6 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE,
                     (Boolean) newValue ? 1 : 0);
-            return true;
-	} else if (preference == mFlipQsTiles) {
-            Settings.System.putInt(resolver,
-                    Settings.System.QUICK_SETTINGS_TILES_FLIP,
-                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
             return true;
         } else if (preference == mQuickTilesBgColor) {
             String hex = ColorPickerPreference.convertToARGB(
