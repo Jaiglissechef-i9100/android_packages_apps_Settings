@@ -100,7 +100,6 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
         }
         mNotificationAlpha = (SeekBarPreference) findPreference(PREF_NOTIFICATION_ALPHA);
         mNotificationAlpha.setInitValue((int) (transparency * 100));
-        mNotificationAlpha.setProperty(Settings.System.NOTIFICATION_ALPHA);
         mNotificationAlpha.setOnPreferenceChangeListener(this);
 
 	mPhoneDrawer = (PreferenceScreen) findPreference(KEY_POWER_WIDGET);

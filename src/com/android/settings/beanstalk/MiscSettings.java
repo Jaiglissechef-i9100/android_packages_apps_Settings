@@ -27,6 +27,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
+import android.preference.CheckBoxPreference;
 import android.os.Bundle;
 import android.content.ContentResolver;
 import android.provider.Settings;
@@ -67,6 +68,7 @@ public class MiscSettings extends SettingsPreferenceFragment
     private static final String TAG = "MiscSettings";
     private static final String PREF_MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
+    private static final String PREF_VIBRATE_NOTIF_EXPAND = "vibrate_notif_expand";
 
     private static final String KEY_LCD_DENSITY = "lcd_density";
     private static final int DIALOG_CUSTOM_DENSITY = 101;
@@ -78,6 +80,7 @@ public class MiscSettings extends SettingsPreferenceFragment
     private ListPreference mMsob;
     private Preference mCustomLabel;
     private String mCustomLabelText = null;
+    CheckBoxPreference mVibrateOnExpand;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,6 +103,10 @@ public class MiscSettings extends SettingsPreferenceFragment
         mMsob.setOnPreferenceChangeListener(this);
 
 	updateCustomLabelTextSummary();
+
+	mVibrateOnExpand = (CheckBoxPreference) findPreference(PREF_VIBRATE_NOTIF_EXPAND);
+        mVibrateOnExpand.setChecked(Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.VIBRATE_NOTIF_EXPAND, true));
 
 	mLcdDensity = (ListPreference) findPreference(KEY_LCD_DENSITY);
         String current = SystemProperties.get(DENSITY_PROP,
@@ -142,8 +149,13 @@ public class MiscSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-
-        if (preference == mCustomLabel) {
+	if (preference == mVibrateOnExpand) {
+            Settings.System.putBoolean(mContext.getContentResolver(),
+                    Settings.System.VIBRATE_NOTIF_EXPAND,
+                    ((CheckBoxPreference) preference).isChecked());
+         //   Helpers.restartSystemUI();
+            return true;
+        } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
             alert.setTitle(R.string.custom_carrier_label_title);
