@@ -163,9 +163,11 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
             Settings.System.putFloat(getContentResolver(),
                     Settings.System.QUICK_TILES_BG_ALPHA, 0.0f);
         }
-        mQsTileAlpha = (SeekBarPreference) findPreference(PREF_QUICK_TILES_ALPHA);
-        mQsTileAlpha.setInitValue((int) (transparency * 100));
-        mQsTileAlpha.setOnPreferenceChangeListener(this);
+        if (mQsTileAlpha == null) {
+            mQsTileAlpha = (SeekBarPreference) findPreference(PREF_QUICK_TILES_ALPHA);
+            mQsTileAlpha.setInitValue((int) (transparency * 100));
+            mQsTileAlpha.setOnPreferenceChangeListener(this);
+        }
 
 	mFlipQsTiles = (CheckBoxPreference) findPreference(PREF_FLIP_QS_TILES);
         mFlipQsTiles.setChecked(Settings.System.getInt(resolver,
