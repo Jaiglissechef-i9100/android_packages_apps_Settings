@@ -163,7 +163,7 @@ public class QuickSettingsUtil {
                 "com.android.systemui:drawable/ic_qs_quickrecord"));
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_FCHARGE, R.string.title_tile_fcharge,
-                "com.android.systemui:drawable/ic_qs_fcharge_off"));
+                "com.android.systemui:drawable/ic_qs_fcharge_on"));
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_SCREENSHOT, R.string.title_tile_screenshot,
                 "com.android.systemui:drawable/ic_qs_screenshot"));
