@@ -100,6 +100,7 @@ public class QuickSettingsTiles extends Fragment implements View.OnClickListener
     private static final int DLG_DYNAMICTILES  = 8;
     private static final int DLG_CUSTOM_TILE = 9;
     private static final int DLG_CUSTOM_TILE_EXTRAS = 10;
+	private static final int DLG_SCREENSHOT_DELAY = 11;
 
     private static final int NUMBER_ACTIONS = 5;
 
@@ -275,6 +276,8 @@ public class QuickSettingsTiles extends Fragment implements View.OnClickListener
                             QSConstants.TILE_RINGER).getTitleResId()
                         && DeviceUtils.deviceSupportsVibrator(getActivity())
                 || titleId == QuickSettingsUtil.TILES.get(
+                            QSConstants.TILE_SCREENSHOT).getTitleResId()
+                || titleId == QuickSettingsUtil.TILES.get(
                             QSConstants.TILE_MUSIC).getTitleResId()
                 || titleId == QuickSettingsUtil.TILES.get(
                             QSConstants.TILE_CUSTOM).getTitleResId()
@@ -341,6 +344,9 @@ public class QuickSettingsTiles extends Fragment implements View.OnClickListener
                     if (tiles.get(arg2).equals(QSConstants.TILE_RINGER)
                             && DeviceUtils.deviceSupportsVibrator(getActivity())) {
                         showDialogInner(DLG_RINGER);
+                    }
+                    if (tiles.get(arg2).equals(QSConstants.TILE_SCREENSHOT)) {
+                        showDialogInner(DLG_SCREENSHOT_DELAY);
                     }
                     if (tiles.get(arg2).equals(QSConstants.TILE_MUSIC)) {
                         showDialogInner(DLG_MUSIC);
@@ -789,6 +795,30 @@ public class QuickSettingsTiles extends Fragment implements View.OnClickListener
                         public void onClick(DialogInterface dialog, int which) {
                             QuickSettingsUtil.resetTiles(getActivity());
                             getOwner().genTiles();
+                        }
+                    })
+                    .create();
+                case DLG_SCREENSHOT_DELAY:
+                    String[] dialogEntriesSS = getResources().getStringArray(
+                            getResources().getIdentifier("entries_screenshot_delay",
+                            "array", "com.android.settings"));
+                    final String[] dialogValuesSS = getResources().getStringArray(
+                            getResources().getIdentifier("values_screenshot_delay",
+                            "array", "com.android.settings"));
+                    int actualEntrySS = Settings.System.getInt(
+                            getActivity().getContentResolver(),
+                            Settings.System.SCREENSHOT_TOGGLE_DELAY, 5000);
+                    return new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.pref_screenshot_delay_title)
+                    .setNegativeButton(R.string.cancel, null)
+                    .setSingleChoiceItems(dialogEntriesSS, actualEntrySS,
+                        new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Settings.System.putInt(
+                                getActivity().getContentResolver(),
+                                Settings.System.SCREENSHOT_TOGGLE_DELAY,
+                                Integer.valueOf(dialogValuesSS[which]));
+                                dismiss();
                         }
                     })
                     .create();
