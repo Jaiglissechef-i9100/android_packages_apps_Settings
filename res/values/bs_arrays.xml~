@@ -1495,6 +1495,7 @@
         <item>2</item>
     </string-array>
 
+<<<<<<< HEAD
     <!-- aokp weather panel -->
     <string-array name="weather_interval_entries" translatable="false">
         <item>@string/off</item>
@@ -1548,9 +1549,10 @@
         <item>**nothing**</item>
         <item>**update**</item>
         <item>**app**</item>
-
+=======
     <string-array name="slimsizer_profile_array">
         <item >Load Profile</item>
         <item >Save Profile</item>
+>>>>>>> b4f4e5f... WIP: add a system app remover in to settings
     </string-array>
 </resources>
