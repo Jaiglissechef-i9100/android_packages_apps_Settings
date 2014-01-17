@@ -64,6 +64,48 @@ import static com.android.internal.util.beanstalk.QSConstants.TILE_INTERNALMEMOR
 import static com.android.internal.util.beanstalk.QSConstants.TILE_FCHARGE;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_ONTHEGO;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_REMOTEDISPLAY;
+=======
+package com.android.settings.ose.quicksettings;
+
+import static com.android.internal.util.ose.QSConstants.TILES_DEFAULT;
+import static com.android.internal.util.ose.QSConstants.DYNAMIC_TILES_DEFAULT;
+import static com.android.internal.util.ose.QSConstants.TILE_AIRPLANE;
+import static com.android.internal.util.ose.QSConstants.TILE_ALARM;
+import static com.android.internal.util.ose.QSConstants.TILE_AUTOROTATE;
+import static com.android.internal.util.ose.QSConstants.TILE_BATTERY;
+import static com.android.internal.util.ose.QSConstants.TILE_BLUETOOTH;
+import static com.android.internal.util.ose.QSConstants.TILE_BRIGHTNESS;
+import static com.android.internal.util.ose.QSConstants.TILE_BUGREPORT;
+import static com.android.internal.util.ose.QSConstants.TILE_CONTACT;
+import static com.android.internal.util.ose.QSConstants.TILE_CUSTOM;
+import static com.android.internal.util.ose.QSConstants.TILE_CUSTOM_KEY;
+import static com.android.internal.util.ose.QSConstants.TILE_CUSTOM_DELIMITER;
+import static com.android.internal.util.ose.QSConstants.TILE_DELIMITER;
+import static com.android.internal.util.ose.QSConstants.TILE_EXPANDEDDESKTOP;
+import static com.android.internal.util.ose.QSConstants.TILE_IMESWITCHER;
+import static com.android.internal.util.ose.QSConstants.TILE_LOCATION;
+import static com.android.internal.util.ose.QSConstants.TILE_LOCKSCREEN;
+import static com.android.internal.util.ose.QSConstants.TILE_LTE;
+import static com.android.internal.util.ose.QSConstants.TILE_MOBILEDATA;
+import static com.android.internal.util.ose.QSConstants.TILE_MUSIC;
+import static com.android.internal.util.ose.QSConstants.TILE_NETWORKMODE;
+import static com.android.internal.util.ose.QSConstants.TILE_NFC;
+import static com.android.internal.util.ose.QSConstants.TILE_QUICKRECORD;
+import static com.android.internal.util.ose.QSConstants.TILE_QUIETHOURS;
+import static com.android.internal.util.ose.QSConstants.TILE_RINGER;
+import static com.android.internal.util.ose.QSConstants.TILE_SCREENTIMEOUT;
+import static com.android.internal.util.ose.QSConstants.TILE_SETTINGS;
+import static com.android.internal.util.ose.QSConstants.TILE_SLEEP;
+import static com.android.internal.util.ose.QSConstants.TILE_SYNC;
+import static com.android.internal.util.ose.QSConstants.TILE_THEME;
+import static com.android.internal.util.ose.QSConstants.TILE_TORCH;
+import static com.android.internal.util.ose.QSConstants.TILE_USBTETHER;
+import static com.android.internal.util.ose.QSConstants.TILE_USER;
+import static com.android.internal.util.ose.QSConstants.TILE_VOLUME;
+import static com.android.internal.util.ose.QSConstants.TILE_WIFI;
+import static com.android.internal.util.ose.QSConstants.TILE_WIFIAP;
+import static com.android.internal.util.ose.QSConstants.TILE_REBOOT;
+import static com.android.internal.util.ose.QSConstants.TILE_WEATHER;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -206,6 +248,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_SHAKE, R.string.title_tile_shake,
                 "com.android.systemui:drawable/ic_qs_shake_events"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_WEATHER, R.string.tile_weather,
+                "com.android.systemui:drawable/weather_preferences"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {

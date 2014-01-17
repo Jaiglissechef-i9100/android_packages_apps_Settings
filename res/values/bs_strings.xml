@@ -2335,4 +2335,7 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
 
     <!-- Diable BootAnimation -->
     <string name="pref_disable_bootanimation_title">Disable Boot Animation</string>
+
+    <!-- QuickSettings Custom Tiles -->
+    <string name="tile_weather">Weather</string>
 </resources>
