@@ -257,6 +257,17 @@
     <header android:id="@+id/system_section"
         android:title="@string/header_category_system" />
 
+    <!-- SuperSU -->
+    <header
+        android:id="@+id/supersu_settings"
+        android:icon="@drawable/ic_settings_supersu"
+        android:title="@string/supersu_title">
+        <intent
+            android:action="android.intent.action.MAIN"
+            android:targetPackage="eu.chainfire.supersu"
+            android:targetClass="eu.chainfire.supersu.MainActivity" />
+    </header>
+
     <!-- Superuser -->
     <header
         android:id="@+id/superuser"
