@@ -422,6 +422,9 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
     <!-- Launches Dev Tools -->
     <string name="development_tools_title">Launch Tools</string>
 
+    <!-- Privacy Settings Header item -->
+    <string name="privacy_settings_cyanogenmod_title">Privacy</string>
+
     <!-- Blacklist preferences -->
     <string name="blacklist_title">Blacklist</string>
     <string name="blacklist_edit_dialog_title">Edit blacklist entry</string>
