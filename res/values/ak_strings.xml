@@ -160,4 +160,6 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="status_bar_notif_count_title">Show notification count</string>
     <string name="status_bar_notif_count_summary">Display the number of pending notifications</string>
 
+    <string name="title_tile_fcharge">Fast charge</string>
+
 </resources>

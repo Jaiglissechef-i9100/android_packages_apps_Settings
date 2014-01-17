@@ -31,6 +31,7 @@ import static com.android.internal.util.beanstalk.QSConstants.TILE_CUSTOM_KEY;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_CUSTOM_DELIMITER;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_DELIMITER;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_EXPANDEDDESKTOP;
+import static com.android.internal.util.beanstalk.QSConstants.TILE_FCHARGE;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_IMESWITCHER;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_LOCATION;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_LOCKSCREEN;
@@ -159,6 +160,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_QUICKRECORD, R.string.title_tile_quick_record,
                 "com.android.systemui:drawable/ic_qs_quickrecord"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_FCHARGE, R.string.title_tile_fcharge,
+                "com.android.systemui:drawable/ic_qs_fcharge_off"));
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_CUSTOM, R.string.title_tile_custom,
                 "com.android.systemui:drawable/ic_qs_settings"));
