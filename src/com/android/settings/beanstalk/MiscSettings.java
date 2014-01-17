@@ -73,6 +73,7 @@ public class MiscSettings extends SettingsPreferenceFragment
     private static final String KEY_LCD_DENSITY = "lcd_density";
     private static final int DIALOG_CUSTOM_DENSITY = 101;
     private static final String DENSITY_PROP = "persist.sys.lcd_density";
+    private static final String KEY_REVERSE_DEFAULT_APP_PICKER = "reverse_default_app_picker";
 
     private static ListPreference mLcdDensity;
     private static Activity mActivity;
@@ -81,11 +82,16 @@ public class MiscSettings extends SettingsPreferenceFragment
     private Preference mCustomLabel;
     private String mCustomLabelText = null;
     CheckBoxPreference mVibrateOnExpand;
+    private CheckBoxPreference mReverseDefaultAppPicker;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 	mActivity = getActivity();
+
+        mReverseDefaultAppPicker = (CheckBoxPreference) findPreference(KEY_REVERSE_DEFAULT_APP_PICKER);
+        mReverseDefaultAppPicker.setChecked(Settings.System.getInt(resolver,
+                    Settings.System.REVERSE_DEFAULT_APP_PICKER, 0) != 0);
 
         updateSettings();
     }
@@ -132,7 +138,6 @@ public class MiscSettings extends SettingsPreferenceFragment
 
             mMsob.setValue(String.valueOf(value));
             mMsob.setSummary(mMsob.getEntry());
-            return true;
 	} else if (preference == mLcdDensity) {
             String density = (String) newValue;
             if (SystemProperties.get(DENSITY_PROP) != density) {
@@ -154,7 +159,9 @@ public class MiscSettings extends SettingsPreferenceFragment
                     Settings.System.VIBRATE_NOTIF_EXPAND,
                     ((CheckBoxPreference) preference).isChecked());
          //   Helpers.restartSystemUI();
-            return true;
+        } else if (preference == mReverseDefaultAppPicker) {
+            Settings.System.putInt(resolver, Settings.System.REVERSE_DEFAULT_APP_PICKER,
+                    mReverseDefaultAppPicker.isChecked() ? 1 : 0);
         } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
 
@@ -183,8 +190,11 @@ public class MiscSettings extends SettingsPreferenceFragment
                 }
             });
             alert.show();
+        } else {
+            // If we didn't handle it, let preferences handle it.
+            return super.onPreferenceTreeClick(preferenceScreen, preference);
         }
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
+        return true;
     }
 
     private void updateCustomLabelTextSummary() {
