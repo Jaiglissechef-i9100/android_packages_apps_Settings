@@ -66,7 +66,7 @@
                 android:fragment="com.android.settings.tts.TextToSpeechSettings"
                 android:title="@string/tts_settings_title"/>
 
-        <com.android.settings.widget.SeekBarPreference
+        <com.android.settings.beanstalk.SeekBarPreference
                 android:key="select_long_press_timeout_preference"
                 android:title="@string/accessibility_long_press_timeout_preference_title" />
 
