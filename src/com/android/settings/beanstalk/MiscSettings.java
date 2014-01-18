@@ -89,10 +89,6 @@ public class MiscSettings extends SettingsPreferenceFragment
         super.onCreate(savedInstanceState);
 	mActivity = getActivity();
 
-        mReverseDefaultAppPicker = (CheckBoxPreference) findPreference(KEY_REVERSE_DEFAULT_APP_PICKER);
-        mReverseDefaultAppPicker.setChecked(Settings.System.getInt(resolver,
-                    Settings.System.REVERSE_DEFAULT_APP_PICKER, 0) != 0);
-
         updateSettings();
     }
 
@@ -126,6 +122,10 @@ public class MiscSettings extends SettingsPreferenceFragment
         }
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + current);
         mLcdDensity.setOnPreferenceChangeListener(this);
+
+        mReverseDefaultAppPicker = (CheckBoxPreference) findPreference(KEY_REVERSE_DEFAULT_APP_PICKER);
+        mReverseDefaultAppPicker.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.REVERSE_DEFAULT_APP_PICKER, 0) != 0);
     }
 
     @Override
@@ -160,7 +160,7 @@ public class MiscSettings extends SettingsPreferenceFragment
                     ((CheckBoxPreference) preference).isChecked());
          //   Helpers.restartSystemUI();
         } else if (preference == mReverseDefaultAppPicker) {
-            Settings.System.putInt(resolver, Settings.System.REVERSE_DEFAULT_APP_PICKER,
+            Settings.System.putInt(getContentResolver(), Settings.System.REVERSE_DEFAULT_APP_PICKER,
                     mReverseDefaultAppPicker.isChecked() ? 1 : 0);
         } else if (preference == mCustomLabel) {
             AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
