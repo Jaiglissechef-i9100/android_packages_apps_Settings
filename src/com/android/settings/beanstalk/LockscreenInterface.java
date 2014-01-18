@@ -30,7 +30,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.internal.util.slim.DeviceUtils;
+import com.android.internal.util.beanstalk.DeviceUtils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 
