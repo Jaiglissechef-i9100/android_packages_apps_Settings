@@ -26,6 +26,7 @@ import static com.android.internal.util.beanstalk.QSConstants.TILE_BATTERY;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_BLUETOOTH;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_BRIGHTNESS;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_BUGREPORT;
+import static com.android.internal.util.beanstalk.QSConstants.TILE_CAMERA;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_CUSTOM;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_CUSTOM_KEY;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_CUSTOM_DELIMITER;
@@ -168,6 +169,9 @@ public class QuickSettingsUtil {
                 TILE_SCREENSHOT, R.string.title_tile_screenshot,
                 "com.android.systemui:drawable/ic_qs_screenshot"));
         registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_CAMERA, R.string.title_tile_camera,
+                "com.android.systemui:drawable/ic_qs_camera"));
+        registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_CUSTOM, R.string.title_tile_custom,
                 "com.android.systemui:drawable/ic_qs_settings"));
     }
@@ -220,6 +224,11 @@ public class QuickSettingsUtil {
         // Don't show the Torch tile if not supported
         if (!DeviceUtils.deviceSupportsTorch(context)) {
             removeTile(TILE_TORCH);
+        }
+
+        // Don't show the Camera tile if the device has no cameras
+        if (!DeviceUtils.deviceSupportsCamera()) {
+            removeTile(TILE_CAMERA);
         }
 
     }

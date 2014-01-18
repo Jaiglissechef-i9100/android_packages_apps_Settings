@@ -183,4 +183,6 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="time_9_seconds">9 seconds</string>
     <string name="time_10_seconds">10 seconds</string>
 
+    <string name="title_tile_camera">Camera</string>
+
 </resources>
