@@ -1287,4 +1287,10 @@
     <string name="telo_radio_go_3g_unlock_title">3G Unlock</string>
     <string name="telo_radio_go_3g_unlock_summary">When device is unlocked network mode switches to 3G again.</string>
 
+    <string name="additional_options_title">Additional options</string>
+    <string name="unlock_menu_unlock_title">Menu unlock</string>
+    <string name="unlock_menu_unlock_summary">Pressing the menu button unlocks the device</string>
+    <string name="unlock_home_unlock_title">Home unlock</string>
+    <string name="unlock_home_unlock_summary">Pressing the home button unlocks the device</string>
+
 </resources>

@@ -101,6 +101,9 @@ public class SecuritySettings extends RestrictedSettingsFragment
     // Omni Additions
     private static final String BATTERY_AROUND_LOCKSCREEN_RING = "battery_around_lockscreen_ring";
 
+    private static final String HOME_UNLOCK_SCREEN = "home_unlock_screen";
+    private static final String MENU_UNLOCK_SCREEN = "menu_unlock_screen";
+
     private PackageManager mPM;
     private DevicePolicyManager mDPM;
 
@@ -141,6 +144,10 @@ public class SecuritySettings extends RestrictedSettingsFragment
 
     // Omni Additions
     private CheckBoxPreference mLockRingBattery;
+
+    private CheckBoxPreference mHomeUnlock;
+
+    private CheckBoxPreference mMenuUnlock;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -242,6 +249,22 @@ public class SecuritySettings extends RestrictedSettingsFragment
         if (mLockRingBattery != null) {
             mLockRingBattery.setChecked(Settings.System.getInt(getContentResolver(),
                     Settings.System.BATTERY_AROUND_LOCKSCREEN_RING, 0) == 1);
+        }
+
+        // Add the additional Omni settings
+        mHomeUnlock = (CheckBoxPreference) root
+                .findPreference(HOME_UNLOCK_SCREEN);
+        if (mHomeUnlock != null) {
+            mHomeUnlock.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.HOME_UNLOCK_SCREEN, 0) == 1);
+        }
+
+        // Add the additional Omni settings
+        mMenuUnlock = (CheckBoxPreference) root
+                .findPreference(MENU_UNLOCK_SCREEN);
+        if (mMenuUnlock != null) {
+            mMenuUnlock.setChecked(Settings.System.getInt(getContentResolver(),
+                    Settings.System.MENU_UNLOCK_SCREEN, 0) == 1);
         }
 
         // biometric weak liveliness
@@ -672,6 +695,12 @@ public class SecuritySettings extends RestrictedSettingsFragment
         } else if (preference == mLockRingBattery) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.BATTERY_AROUND_LOCKSCREEN_RING, isToggled(preference) ? 1 : 0);
+        } else if (preference == mHomeUnlock) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.HOME_UNLOCK_SCREEN, isToggled(preference) ? 1 : 0);
+        } else if (preference == mMenuUnlock) {
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
+                    Settings.System.MENU_UNLOCK_SCREEN, isToggled(preference) ? 1 : 0);
         } else if (preference == mShowPassword) {
             Settings.System.putInt(getContentResolver(), Settings.System.TEXT_SHOW_PASSWORD,
                     mShowPassword.isChecked() ? 1 : 0);
