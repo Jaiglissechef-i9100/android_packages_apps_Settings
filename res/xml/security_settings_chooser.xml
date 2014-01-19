@@ -43,21 +43,6 @@
             android:summary="@string/lockscreen_target_summary"
             android:title="@string/lockscreen_target_title" />
 
-        <CheckBoxPreference
-            android:key="battery_around_lockscreen_ring"
-            android:title="@string/battery_around_lockscreen_ring"
-            android:defaultValue="true" />
-
-        <CheckBoxPreference
-            android:key="home_unlock_screen"
-            android:title="@string/unlock_home_unlock_title"
-            android:summary="@string/unlock_home_unlock_summary" />
-
-        <CheckBoxPreference
-            android:key="menu_unlock_screen"
-            android:title="@string/unlock_menu_unlock_title"
-            android:summary="@string/unlock_menu_unlock_summary" />
-
         <ListPreference
             android:key="lock_after_timeout"
             android:title="@string/lock_after_timeout"

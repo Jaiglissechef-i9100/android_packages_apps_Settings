@@ -94,10 +94,10 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
             prefs.removePreference(mGlowpadTorch);
         }
 
-	/* // Remove lockscreen button actions if device doesn't have hardware keys
+	// Remove lockscreen button actions if device doesn't have hardware keys
         if (!hasButtons()) {
             generalCategory.removePreference(findPreference(KEY_LOCKSCREEN_BUTTONS));
-        } */
+        }
 
         mShortcuts = (Preference) findPreference(PREF_LOCKSCREEN_SHORTCUTS);
         mShortcuts.setEnabled(!mLockscreenEightTargets.isChecked());

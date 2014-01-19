@@ -23,6 +23,8 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.content.ContentResolver;
+import android.preference.PreferenceGroup;
+import android.content.res.Resources;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -31,6 +33,7 @@ import android.preference.PreferenceScreen;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.SeekBarPreference;
 import android.provider.Settings;
+import com.android.settings.cyanogenmod.ButtonSettings;
 
 import com.android.internal.widget.LockPatternUtils;
 import com.android.settings.R;
@@ -44,12 +47,19 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
     private static final String KEY_BLUR_BEHIND = "blur_behind";
     private static final String KEY_BLUR_RADIUS = "blur_radius";
     private static final String KEY_BATTERY_STATUS = "lockscreen_battery_status";
+    private static final String BATTERY_AROUND_LOCKSCREEN_RING = "battery_around_lockscreen_ring";
+    private static final String HOME_UNLOCK_SCREEN = "home_unlock_screen";
+    private static final String MENU_UNLOCK_SCREEN = "menu_unlock_screen";
 
     private CheckBoxPreference mSeeThrough;
     private ListPreference mBatteryStatus;
     private CheckBoxPreference mAllowRotation;
     private CheckBoxPreference mBlurBehind;
     private SeekBarPreference mBlurRadius;
+
+    private CheckBoxPreference mLockRingBattery;
+    private CheckBoxPreference mHomeUnlock;
+    private CheckBoxPreference mMenuUnlock;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,6 +77,18 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         if (mBatteryStatus != null) {
             mBatteryStatus.setOnPreferenceChangeListener(this);
         }
+
+        mLockRingBattery = (CheckBoxPreference) findPreference(BATTERY_AROUND_LOCKSCREEN_RING);
+        mLockRingBattery.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.BATTERY_AROUND_LOCKSCREEN_RING, 0) == 1); 
+
+        mHomeUnlock = (CheckBoxPreference) findPreference(HOME_UNLOCK_SCREEN);
+        mHomeUnlock.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.HOME_UNLOCK_SCREEN, 0) == 1); 
+
+        mMenuUnlock = (CheckBoxPreference) findPreference(MENU_UNLOCK_SCREEN);
+        mMenuUnlock.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.MENU_UNLOCK_SCREEN, 0) == 1); 
 
         mBlurBehind = (CheckBoxPreference) findPreference(KEY_BLUR_BEHIND);
         mBlurBehind.setChecked(Settings.System.getInt(getContentResolver(), 
@@ -104,6 +126,24 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         } else if (preference == mAllowRotation) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.LOCKSCREEN_ROTATION, mAllowRotation.isChecked()
+                    ? 1 : 0);
+            return true;
+
+        } else if (preference == mLockRingBattery) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.BATTERY_AROUND_LOCKSCREEN_RING, mLockRingBattery.isChecked()
+                    ? 1 : 0);
+            return true;
+
+        } else if (preference == mHomeUnlock) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HOME_UNLOCK_SCREEN, mHomeUnlock.isChecked()
+                    ? 1 : 0);
+            return true;
+
+        } else if (preference == mMenuUnlock) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.MENU_UNLOCK_SCREEN, mMenuUnlock.isChecked()
                     ? 1 : 0);
             return true;
 
