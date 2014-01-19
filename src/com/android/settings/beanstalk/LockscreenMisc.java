@@ -117,10 +117,11 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
     }
 
     @Override
-    public boolean onPreferenceChange(Preference preference, Object value) {
+    public boolean onPreferenceChange(Preference preference, Object objValue) {
+	ContentResolver cr = getActivity().getContentResolver();
         if (preference == mBlurRadius) {
             Settings.System.putInt(getContentResolver(),
-                    Settings.System.LOCKSCREEN_BLUR_RADIUS, (Integer)value);
+                    Settings.System.LOCKSCREEN_BLUR_RADIUS, (Integer)objValue);
             return true;
 	} else if (preference == mBatteryStatus) {
             int value = Integer.valueOf((String) objValue);
