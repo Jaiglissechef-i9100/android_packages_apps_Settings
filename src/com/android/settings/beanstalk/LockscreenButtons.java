@@ -28,7 +28,7 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.text.TextUtils;
 
-import com.android.internal.util.beanstalk.QSUtils;
+import com.android.internal.util.beanstalk.DeviceUtils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.android.settings.Utils;
@@ -95,7 +95,7 @@ public class LockscreenButtons extends SettingsPreferenceFragment
             mLongBackAction, mLongHomeAction, mLongMenuAction
         };
         for (ListPreference pref : mActions) {
-            if (QSUtils.deviceSupportsTorch(getActivity())) {
+            if (DeviceUtils.deviceSupportsTorch(getActivity())) {
                 final CharSequence[] oldEntries = pref.getEntries();
                 final CharSequence[] oldValues = pref.getEntryValues();
                 ArrayList<CharSequence> newEntries = new ArrayList<CharSequence>();
