@@ -1272,6 +1272,8 @@
             </intent-filter>
         </activity>
 
+	<activity android:name=".beanstalk.LockscreenButtons" />
+
         <activity android:name=".quicklaunch.QuickLaunchSettings"
                 android:label="@string/quick_launch_title">
             <intent-filter>

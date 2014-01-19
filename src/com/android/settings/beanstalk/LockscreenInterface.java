@@ -44,6 +44,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private static final int DLG_ENABLE_EIGHT_TARGETS = 0;
 
     private static final String PREF_LOCKSCREEN_EIGHT_TARGETS = "lockscreen_eight_targets";
+    private static final String KEY_LOCKSCREEN_BUTTONS = "lockscreen_buttons";
     private static final String PREF_LOCKSCREEN_SHORTCUTS = "lockscreen_shortcuts";
     private static final String PREF_LOCKSCREEN_TORCH = "lockscreen_torch";
 
@@ -88,9 +89,15 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
                 Settings.System.LOCKSCREEN_GLOWPAD_TORCH, 0) == 1);
         mGlowpadTorch.setOnPreferenceChangeListener(this);
 
+	// remove glowpad torch is torch not supported
         if (!DeviceUtils.deviceSupportsTorch(getActivity())) {
             prefs.removePreference(mGlowpadTorch);
         }
+
+	/* // Remove lockscreen button actions if device doesn't have hardware keys
+        if (!hasButtons()) {
+            generalCategory.removePreference(findPreference(KEY_LOCKSCREEN_BUTTONS));
+        } */
 
         mShortcuts = (Preference) findPreference(PREF_LOCKSCREEN_SHORTCUTS);
         mShortcuts.setEnabled(!mLockscreenEightTargets.isChecked());
@@ -126,7 +133,6 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         }
         return false;
     }
-
 
     private void showDialogInner(int id, boolean state) {
         DialogFragment newFragment = MyAlertDialogFragment.newInstance(id, state);
