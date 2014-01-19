@@ -51,6 +51,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
     private CheckBoxPreference mLockscreenEightTargets;
     private CheckBoxPreference mGlowpadTorch;
     private Preference mShortcuts;
+    private Preference mButtons;
 
     private boolean mCheckPreferences;
 
@@ -89,6 +90,8 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
                 Settings.System.LOCKSCREEN_GLOWPAD_TORCH, 0) == 1);
         mGlowpadTorch.setOnPreferenceChangeListener(this);
 
+        mButtons = (Preference) findPreference(KEY_LOCKSCREEN_BUTTONS);
+
 	// remove glowpad torch is torch not supported
         if (!DeviceUtils.deviceSupportsTorch(getActivity())) {
             prefs.removePreference(mGlowpadTorch);
@@ -96,7 +99,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
 
 	// Remove lockscreen button actions if device doesn't have hardware keys
         if (!hasButtons()) {
-            generalCategory.removePreference(findPreference(KEY_LOCKSCREEN_BUTTONS));
+            prefs.removePreference(mButtons);
         }
 
         mShortcuts = (Preference) findPreference(PREF_LOCKSCREEN_SHORTCUTS);
