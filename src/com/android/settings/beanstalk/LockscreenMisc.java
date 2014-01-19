@@ -22,7 +22,9 @@ import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
+import android.content.ContentResolver;
 import android.preference.CheckBoxPreference;
+import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceScreen;
@@ -41,8 +43,10 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
     private static final String KEY_SEE_TRHOUGH = "see_through";
     private static final String KEY_BLUR_BEHIND = "blur_behind";
     private static final String KEY_BLUR_RADIUS = "blur_radius";
+    private static final String KEY_BATTERY_STATUS = "lockscreen_battery_status";
 
     private CheckBoxPreference mSeeThrough;
+    private ListPreference mBatteryStatus;
     private CheckBoxPreference mAllowRotation;
     private CheckBoxPreference mBlurBehind;
     private SeekBarPreference mBlurRadius;
@@ -59,6 +63,11 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         mAllowRotation.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.LOCKSCREEN_ROTATION, 0) == 1); 
 
+	mBatteryStatus = (ListPreference) findPreference(KEY_BATTERY_STATUS);
+        if (mBatteryStatus != null) {
+            mBatteryStatus.setOnPreferenceChangeListener(this);
+        }
+
         mBlurBehind = (CheckBoxPreference) findPreference(KEY_BLUR_BEHIND);
         mBlurBehind.setChecked(Settings.System.getInt(getContentResolver(), 
             Settings.System.LOCKSCREEN_BLUR_BEHIND, 0) == 1);
@@ -73,6 +82,15 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
     @Override
     public void onResume() {
         super.onResume();
+
+	// Update battery status
+        if (mBatteryStatus != null) {
+            ContentResolver cr = getActivity().getContentResolver();
+            int batteryStatus = Settings.System.getInt(cr,
+                    Settings.System.LOCKSCREEN_BATTERY_VISIBILITY, 0);
+            mBatteryStatus.setValueIndex(batteryStatus);
+            mBatteryStatus.setSummary(mBatteryStatus.getEntries()[batteryStatus]);
+        }
     }
 
     @Override
@@ -98,13 +116,21 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
+    @Override
     public boolean onPreferenceChange(Preference preference, Object value) {
         if (preference == mBlurRadius) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.LOCKSCREEN_BLUR_RADIUS, (Integer)value);
+            return true;
+	} else if (preference == mBatteryStatus) {
+            int value = Integer.valueOf((String) objValue);
+            int index = mBatteryStatus.findIndexOfValue((String) objValue);
+            Settings.System.putInt(cr, Settings.System.LOCKSCREEN_BATTERY_VISIBILITY, value);
+            mBatteryStatus.setSummary(mBatteryStatus.getEntries()[index]);
+            return true;
         }
 
-         return true;
+         return false;
     }
 
     public void updateBlurPrefs() {
