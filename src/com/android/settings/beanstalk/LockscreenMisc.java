@@ -61,11 +61,19 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
     private CheckBoxPreference mHomeUnlock;
     private CheckBoxPreference mMenuUnlock;
 
+    public boolean hasButtons() {
+        return !getResources().getBoolean(com.android.internal.R.bool.config_showNavigationBar);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.lockscreen_interface_misc);
+
+        final Resources res = getResources();
+        final ContentResolver resolver = getActivity().getContentResolver();
+        final PreferenceScreen prefScreen = getPreferenceScreen();
 
         mSeeThrough = (CheckBoxPreference) findPreference(KEY_SEE_TRHOUGH);
 
@@ -97,6 +105,16 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         mBlurRadius.setProgress(Settings.System.getInt(getContentResolver(), 
             Settings.System.LOCKSCREEN_BLUR_RADIUS, 12));
         mBlurRadius.setOnPreferenceChangeListener(this);
+
+	// remove glowpad torch is torch not supported
+        if (!hasButtons()) {
+            prefScreen.removePreference(mHomeUnlock);
+        }
+
+	// Remove lockscreen button actions if device doesn't have hardware keys
+        if (!hasButtons()) {
+            prefScreen.removePreference(mMenuUnlock);
+        }
 
         updateBlurPrefs();
     }
