@@ -93,7 +93,7 @@ public class LockscreenInterface extends SettingsPreferenceFragment implements
         mButtons = (Preference) findPreference(KEY_LOCKSCREEN_BUTTONS);
 
 	// remove glowpad torch is torch not supported
-        if (!DeviceUtils.deviceSupportsTorch(getActivity())) {
+        if (!DeviceUtils.deviceSupportsTorch(getActivity().getApplicationContext())) {
             prefs.removePreference(mGlowpadTorch);
         }
 
