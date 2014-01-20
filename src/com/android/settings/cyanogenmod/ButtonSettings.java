@@ -50,6 +50,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private static final String BUTTON_HEADSETHOOK_LAUNCH_VOICE = "button_headsethook_launch_voice";
     private static final String KEY_VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
     private static final String KEY_BLUETOOTH_INPUT_SETTINGS = "bluetooth_input_settings";
+    private static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
 
     private static final String CATEGORY_HOME = "home_key";
     private static final String CATEGORY_MENU = "menu_key";
@@ -89,6 +90,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
     private ListPreference mVolumeKeyCursorControl;
     private CheckBoxPreference mSwapVolumeButtons;
     private CheckBoxPreference mHeadsetHookLaunchVoice;
+    private CheckBoxPreference mKillAppLongpressBack;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -106,6 +108,7 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         final boolean hasMenuKey = (deviceKeys & KEY_MASK_MENU) != 0;
         final boolean hasAssistKey = (deviceKeys & KEY_MASK_ASSIST) != 0;
         final boolean hasAppSwitchKey = (deviceKeys & KEY_MASK_APP_SWITCH) != 0;
+        mKillAppLongpressBack = findAndInitCheckboxPref(KILL_APP_LONGPRESS_BACK);
 
         boolean hasAnyBindableKey = false;
         final PreferenceCategory homeCategory =
@@ -248,6 +251,18 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
         if (!hasAnyPowerButtonOptions) {
             prefScreen.removePreference(powerButtonCategory);
         }
+        updateKillAppLongpressBackOptions();
+    }
+
+    private void writeKillAppLongpressBackOptions() {
+            Settings.Secure.putInt(getActivity().getContentResolver(),
+            Settings.Secure.KILL_APP_LONGPRESS_BACK,
+            mKillAppLongpressBack.isChecked() ? 1 : 0);
+    }
+
+    private void updateKillAppLongpressBackOptions() {
+            mKillAppLongpressBack.setChecked(Settings.Secure.getInt(
+            getActivity().getContentResolver(), Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
     }
 
     private ListPreference initActionList(String key, int value) {
@@ -328,6 +343,8 @@ public class ButtonSettings extends SettingsPreferenceFragment implements
                     ? (Utils.isTablet(getActivity()) ? 2 : 1) : 0;
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.SWAP_VOLUME_KEYS_ON_ROTATION, value);
+        } else if (preference == mKillAppLongpressBack) {
+            writeKillAppLongpressBackOptions();
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
