@@ -55,6 +55,11 @@
             android:key="clock_style_pref"
             android:title="@string/status_bar_clock" />
 
+	<PreferenceScreen
+            android:key="status_style_pref"
+            android:fragment="com.android.settings.beanstalk.StatusBarColor"
+            android:title="@string/custom_status_bar_header_title" />
+
 	<!-- Network usage stats -->
         <PreferenceScreen
             android:key="network_usage_stats"
