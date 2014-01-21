@@ -185,4 +185,7 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
 
     <string name="title_tile_camera">Camera</string>
 
+    <string name="battery_percentage_indicator_title">Show battery percentage indicator</string>
+    <string name="battery_percentage_indicator_summary">Show battery percentage indicator front of battery icon</string>
+
 </resources>
