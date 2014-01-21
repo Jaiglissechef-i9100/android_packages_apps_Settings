@@ -91,6 +91,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     ListPreference mDbmStyletyle;
     CheckBoxPreference mHideSignal;
+    CheckBoxPreference mBatteryIndicator, mBatteryIndicatorPlugged;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -140,6 +141,16 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                 .getContentResolver(), Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
                 0) != 0);
 
+        mBatteryIndicator = (CheckBoxPreference) findPreference("battery_percentage_indicator");
+        mBatteryIndicator.setChecked(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.BATTERY_PERCENTAGE_INDICATOR,
+                0) != 0);
+
+        mBatteryIndicatorPlugged = (CheckBoxPreference) findPreference("battery_percentage_indicator_plugged");
+        mBatteryIndicatorPlugged.setChecked(Settings.System.getInt(getActivity()
+                .getContentResolver(), Settings.System.BATTERY_PERCENTAGE_INDICATOR_PLUGGED,
+                0) != 0);
+
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
@@ -178,6 +189,18 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         if (preference == mHideSignal) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
+        }
+        else if (preference == mBatteryIndicator) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.BATTERY_PERCENTAGE_INDICATOR,
+                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
+            return true;
+        }
+        else if (preference == mBatteryIndicatorPlugged) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.BATTERY_PERCENTAGE_INDICATOR_PLUGGED,
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
             return true;
         }
