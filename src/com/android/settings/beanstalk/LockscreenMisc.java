@@ -140,31 +140,26 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
                     Settings.System.LOCKSCREEN_SEE_THROUGH, mSeeThrough.isChecked()
                     ? 1 : 0);
             return true;
-
         } else if (preference == mAllowRotation) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.LOCKSCREEN_ROTATION, mAllowRotation.isChecked()
                     ? 1 : 0);
             return true;
-
         } else if (preference == mLockRingBattery) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.BATTERY_AROUND_LOCKSCREEN_RING, mLockRingBattery.isChecked()
                     ? 1 : 0);
             return true;
-
         } else if (preference == mHomeUnlock) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.HOME_UNLOCK_SCREEN, mHomeUnlock.isChecked()
                     ? 1 : 0);
             return true;
-
         } else if (preference == mMenuUnlock) {
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.MENU_UNLOCK_SCREEN, mMenuUnlock.isChecked()
                     ? 1 : 0);
             return true;
-
         } else if (preference == mBlurBehind) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_BLUR_BEHIND,
                     mBlurBehind.isChecked() ? 1 : 0);
@@ -188,8 +183,7 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
             mBatteryStatus.setSummary(mBatteryStatus.getEntries()[index]);
             return true;
         }
-
-         return false;
+        return false;
     }
 
     public void updateBlurPrefs() {

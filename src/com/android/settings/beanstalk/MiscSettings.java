@@ -128,9 +128,6 @@ public class MiscSettings extends SettingsPreferenceFragment
         mLcdDensity.setSummary(getResources().getString(R.string.current_lcd_density) + current);
         mLcdDensity.setOnPreferenceChangeListener(this);
 
-        mReverseDefaultAppPicker = (CheckBoxPreference) findPreference(KEY_REVERSE_DEFAULT_APP_PICKER);
-        mReverseDefaultAppPicker.setChecked(Settings.System.getInt(getContentResolver(),
-                    Settings.System.REVERSE_DEFAULT_APP_PICKER, 0) != 0);
     }
 
     @Override

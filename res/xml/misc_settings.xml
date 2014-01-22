@@ -41,9 +41,9 @@
         android:entryValues="@array/media_scanner_on_boot_values" />
 
     <CheckBoxPreference
-            android:key="vibrate_notif_expand"
-            android:title="@string/vibrate_notif_expand_title"
-            android:summary="@string/vibrate_notif_expand_summary" />
+        android:key="vibrate_notif_expand"
+        android:title="@string/vibrate_notif_expand_title"
+        android:summary="@string/vibrate_notif_expand_summary" />
 
     <ListPreference
         android:key="lcd_density"
