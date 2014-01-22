@@ -42,6 +42,7 @@ import static com.android.internal.util.beanstalk.QSConstants.TILE_MOBILEDATA;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_MUSIC;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_NETWORKMODE;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_NFC;
+import static com.android.internal.util.beanstalk.QSConstants.TILE_PAPIE;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_QUICKRECORD;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_QUIETHOURS;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_RINGER;
@@ -178,6 +179,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_CONTACT, R.string.title_tile_contact,
                 "com.android.systemui:drawable/ic_qs_default_user"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_PAPIE, R.string.title_tile_pa_pie,
+                "com.android.systemui:drawable/ic_qs_pie_on"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {
