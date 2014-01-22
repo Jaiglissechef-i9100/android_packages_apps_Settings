@@ -1266,10 +1266,6 @@
     <string name="battery_bar_animate_title">Charging animation</string>
     <string name="battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
 
-    <!-- Default app picker -->
-    <string name="reverse_default_app_picker">Reverse default app picker</string>
-    <string name="reverse_default_app_picker_summary">Mark the last used option instead of the last used app</string>
-
     <!-- Telo Radio -->
     <string name="telo_radio_settings_title">Connection manager</string>
     <string name="telo_radio_options_category">Screen on configuration</string>
@@ -1455,4 +1451,5 @@
     <string name="weather_47">Isolated Thundershowers</string>
     <!-- Forecase unavailable -->
     <string name="weather_3200"></string>
+
 </resources>
