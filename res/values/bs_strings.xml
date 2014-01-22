@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2012-2013 BeanStalk Builds
+<!-- Copyright (C) 2012-2013 7comp Builds
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@
     <!-- Settings main menu category heading. Rom (Launcher, Themes, System). [CHAR LIMIT=40] -->
     <string name="header_category_rom_settings">Advanced</string>
 
-    <!-- BeanStalk settings screens -->
-    <string name="interface_settings_title">BeanStalk options</string>
+    <!-- 7comp settings screens -->
+    <string name="interface_settings_title">7comp options</string>
 
     <!-- Color Picker -->
     <string name="dialog_color_picker">Color picker</string>
@@ -430,7 +430,7 @@
     <!-- Buttons settings header -->
     <string name="button_settings">Buttons</string>
 
-    <!-- Misc BeanStalk Settings -->
+    <!-- Misc 7comp Settings -->
     <string name="misc_settings_title">Misc options</string>
 
     <!-- MediaScanner behavior on boot -->
@@ -442,16 +442,16 @@
     <!-- TRDS Settings -->
     <string name="trds_settings_title">Dark stalk</string>
 
-    <!-- Donate to BeanStalk Builds -->
-    <string name="donate_beanstalk_title">Support BeanStalk</string>
-    <string name="donate_beanstalk_summary">Donate to BeanStalk builds</string>
+    <!-- Donate to 7comp Builds -->
+    <string name="donate_beanstalk_title">Support 7comp</string>
+    <string name="donate_beanstalk_summary">Donate to 7comp builds</string>
     <string name="donate_link" formatted="false">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HUUHRXDXNMZPU</string>
 
-    <!-- About BeanStalk -->
-    <string name="about_beanstalk_settings_title">About BeanStalk</string>
-    <string name="about_beanstalk">About BeanStalk</string>
+    <!-- About 7comp -->
+    <string name="about_beanstalk_settings_title">About 7comp</string>
+    <string name="about_beanstalk">About 7comp</string>
     <string name="about_beanstalk_summary">@null</string>
-    <string name="app_name">BeanStalk</string>
+    <string name="app_name">7comp</string>
     <string name="devs">Developer</string>
     <string name="github_scotthartbti">https://github.com/scotthartbti</string>
     <string name="github_cyanogenmod">https://github.com/CyanogenMod</string>
@@ -463,16 +463,16 @@
     <string name="donate_aokp">http://aokp.co/</string>
     <string name="google_scotthartbti">https://plus.google.com/u/0/communities/115833651542488654391</string>
     <string name="facebook_beanstalk">http://www.facebook.com/pages/Beanstalk/421499131276932</string>
-    <string name="beanstalk">BeanStalk Build</string>
-    <string name="beanstalk_website_title">BeanStalk Blog</string>
-    <string name="beanstalk_website_summary">Find latest news and updates about BeanStalk.</string>
-    <string name="beanstalk_source_title">BeanStalk Sources</string>
-    <string name="beanstalk_source_summary">BeanStalk source can be found at www.github.com/scotthartbti</string>
+    <string name="beanstalk">7comp Build</string>
+    <string name="beanstalk_website_title">7comp Blog</string>
+    <string name="beanstalk_website_summary">Find latest news and updates about 7comp.</string>
+    <string name="beanstalk_source_title">7comp Sources</string>
+    <string name="beanstalk_source_summary">7comp source can be found at www.github.com/scotthartbti</string>
     <string name="beanstalk_irc_title">Join me on IRC</string>
     <string name="beanstalk_irc_summary">#aokp-sgs2 @ irc.freenode.net</string>
     <string name="beanstalk_facebook_title">Facebook Page</string>
     <string name="beanstalk_facebook_summary">Subscribe to BeanStalk Facebook page for updates.</string>
-    <string name="title_about">About BeanStalk</string>
+    <string name="title_about">About 7comp</string>
 
     <!-- Wi-Fi region code settings-->
     <string name="wifi_setting_countrycode_title">Wi-Fi region code</string>
@@ -510,8 +510,8 @@
 
     <!-- Init.d -->
     <string name="header_summary_init_d">@null</string>
-    <string name="init_d_title">BeanStalk Init.d scripts</string>
-    <string name="app_name">BeanStalk Init.d Conf</string>
+    <string name="init_d_title">7comp Init.d scripts</string>
+    <string name="app_name">7comp Init.d Conf</string>
     <string name="pt_general">General</string>
     <string name="pt_zipalign_apks">Zipalign apps</string>
     <string name="ps_zipalign_apks">Zipalign any unaligned apps on each boot</string>
@@ -812,7 +812,7 @@
     <string name="lockscreen_style_reset_message">Reset all lockscreen colors?</string>
     <string name="lockscreen_icon_title">Lock handle icon</string>
     <string name="lockscreen_lock_icon_custom">Custom icon</string>
-    <string name="lockscreen_lock_icon_beanstalk">BeanStalk icon</string>
+    <string name="lockscreen_lock_icon_beanstalk">7comp icon</string>
     <string name="lockscreen_lock_icon_default">Default icon</string>
     <string name="lockscreen_colorize_handle_title">Colorize custom handle</string>
     <string name="lockscreen_colorize_handle_summary">Lock color will be set to the lock handle</string>
@@ -837,7 +837,7 @@
 
     <!-- Init.d Settings : Warning dialog -->
     <string name="init_warning_title">Please Read First</string>
-    <string name="init_warning">The BeanStalk Init.d scripts have been added to this build for experimental purposes only.  While some people may see improved performance on certain phones, there is always the possibility that some phones may not benefit from the scripts and you may actually see a negative impact.  The ideal situation is to find the right combination of scripts that provides the best bang for your buck while keeping a certain level of stability.</string>
+    <string name="init_warning">The 7comp Init.d scripts have been added to this build for experimental purposes only.  While some people may see improved performance on certain phones, there is always the possibility that some phones may not benefit from the scripts and you may actually see a negative impact.  The ideal situation is to find the right combination of scripts that provides the best bang for your buck while keeping a certain level of stability.</string>
 
     <!-- Basic Numbers -->
     <string name="two">Two</string>

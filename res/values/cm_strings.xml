@@ -378,7 +378,7 @@ two in order to insert additional control points. \'Remove\' deletes the selecte
 
 
     <!-- About phone screen,  setting option name -->
-    <string name="mod_version">Beanstalk version</string>
+    <string name="mod_version">7comp version</string>
     <string name="mod_version_default">Unknown</string>
     <!-- About phone screen, build date of ROM -->
     <string name="build_date">Build date</string>
