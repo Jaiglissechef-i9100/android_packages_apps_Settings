@@ -48,7 +48,7 @@ import com.android.settings.beanstalk.DisplayRotation;
 import com.android.settings.Utils;
 
 import org.cyanogenmod.hardware.AdaptiveBacklight;
-+import org.cyanogenmod.hardware.TapToWake;
+import org.cyanogenmod.hardware.TapToWake;
 
 import java.util.ArrayList;
 
