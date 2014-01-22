@@ -68,7 +68,6 @@ public class MiscSettings extends SettingsPreferenceFragment
     private static final String TAG = "MiscSettings";
     private static final String PREF_MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
     private static final String PREF_CUSTOM_CARRIER_LABEL = "custom_carrier_label";
-    private static final String STATUS_BAR_CARRIER = "status_bar_carrier";
     private static final String PREF_VIBRATE_NOTIF_EXPAND = "vibrate_notif_expand";
 
     private static final String KEY_LCD_DENSITY = "lcd_density";
@@ -82,7 +81,6 @@ public class MiscSettings extends SettingsPreferenceFragment
     private Preference mCustomLabel;
     private String mCustomLabelText = null;
     CheckBoxPreference mVibrateOnExpand;
-    private CheckBoxPreference mStatusBarCarrier;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -96,11 +94,6 @@ public class MiscSettings extends SettingsPreferenceFragment
         setPreferenceScreen(null);
         addPreferencesFromResource(R.xml.misc_settings);
 	PreferenceScreen prefScreen = getPreferenceScreen();
-        ContentResolver resolver = getActivity().getContentResolver();
-
-	mStatusBarCarrier = (CheckBoxPreference) findPreference(STATUS_BAR_CARRIER);
-	mStatusBarCarrier.setChecked((Settings.System.getInt(resolver, Settings.System.STATUS_BAR_CARRIER, 0) == 1));
-	mStatusBarCarrier.setOnPreferenceChangeListener(this);
 
 	mCustomLabel = findPreference(PREF_CUSTOM_CARRIER_LABEL);
         mMsob = (ListPreference) findPreference(PREF_MEDIA_SCANNER_ON_BOOT);
@@ -132,20 +125,14 @@ public class MiscSettings extends SettingsPreferenceFragment
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-//        String value = (String) newValue;
-        ContentResolver resolver = getActivity().getContentResolver();
+        String value = (String) newValue;
         if (preference == mMsob) {
-            String value = (String) newValue;
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.MEDIA_SCANNER_ON_BOOT,
                     Integer.valueOf(value));
 
             mMsob.setValue(String.valueOf(value));
             mMsob.setSummary(mMsob.getEntry());
-            return true;
-        } else if (preference == mStatusBarCarrier) {
-            boolean value = (Boolean) newValue;
-            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_CARRIER, value ? 1 : 0);
             return true;
 	} else if (preference == mLcdDensity) {
             String density = (String) newValue;
