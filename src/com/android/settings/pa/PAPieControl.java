@@ -2,13 +2,11 @@ package com.android.settings.pa;
 
 import android.app.AlertDialog;
 import android.content.ContentResolver;
-import android.database.ContentObserver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
 import android.os.Bundle;
-import android.os.Handler;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -74,19 +72,13 @@ public class PAPieControl extends SettingsPreferenceFragment
     private Context mContext;
     private int mAllowedLocations;
 
-    protected Handler mHandler;
-    private SettingsObserver mSettingsObserver;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.pa_pie_controls);
         PreferenceScreen prefSet = getPreferenceScreen();
-        mContext = getActivity().getApplicationContext();
-        ContentResolver resolver = mContext.getContentResolver();
-
-        mSettingsObserver = new SettingsObserver(new Handler());
+        mContext = getActivity();
 
         mPaPieControls = (SwitchPreference) findPreference(PA_PIE_CONTROLS);
         mPaPieControls.setChecked(Settings.System.getInt(mContext.getContentResolver(),
@@ -185,12 +177,35 @@ public class PAPieControl extends SettingsPreferenceFragment
         mPieRestart = (CheckBoxPreference) prefSet.findPreference(PA_PIE_RESTART);
         mPieRestart.setChecked(Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.EXPANDED_DESKTOP_RESTART_LAUNCHER, 1) == 1);
-        
+
+        updateNavbar();
+    }
+
+    private void updateNavbar() {
+        boolean hasNavBarByDefault = getResources().getBoolean(
+            com.android.internal.R.bool.config_showNavigationBar);
+
+        boolean pieOn = Settings.System.getBoolean(getActivity().getContentResolver(),
+            Settings.System.PIE_CONTROLS, true);
+
+        int pieGravity = Settings.System.getInt(getActivity().getContentResolver(),
+            Settings.System.PIE_GRAVITY, 2);
+
+        if (hasNavBarByDefault) {
+            if (pieOn && pieGravity == 3) {
+                Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_SHOW, 0);
+            } else {
+                Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.NAVIGATION_BAR_SHOW, 1);
+            }
+        }   
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        updateNavbar();
     }
 
     @Override
@@ -249,6 +264,8 @@ public class PAPieControl extends SettingsPreferenceFragment
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.PIE_CONTROLS,
                     (Boolean) newValue ? 1 : 0);
+            updateNavbar();
+            Helpers.restartSystemUI();
             return true;
         } else if (preference == mPieMode) {
             int pieMode = Integer.valueOf((String) newValue);
@@ -284,54 +301,4 @@ public class PAPieControl extends SettingsPreferenceFragment
         return false;
     }
 
-    class SettingsObserver extends ContentObserver {
-        SettingsObserver(Handler handler) {
-            super(handler);
-            observe();
-        }
-
-        void observe() {
-            ContentResolver resolver = mContext.getContentResolver();
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.PIE_CONTROLS), false,
-                    this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.PIE_GRAVITY), false,
-                    this);
-            resolver.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_SHOW), false,
-                    this);
-        }
-
-        @Override
-        public void onChange(boolean selfChange) {
-            update();
-            Helpers.restartSystemUI();
-        }
-
-        void update() {
-            ContentResolver resolver = mContext.getContentResolver();
-            boolean hasNavBarByDefault = getResources().getBoolean(
-                com.android.internal.R.bool.config_showNavigationBar);
-
-            boolean pieOn = Settings.System.getBoolean(resolver,
-                Settings.System.PIE_CONTROLS, true);
-            int navbarOn = Settings.System.getInt(resolver,
-                Settings.System.NAVIGATION_BAR_SHOW, 1);
-            int pieGravity = Settings.System.getInt(resolver,
-                Settings.System.PIE_GRAVITY, 2);
-
-            if (hasNavBarByDefault && navbarOn == 1) {
-                if (pieOn && pieGravity == 3) {
-                    Settings.System.putInt(resolver,
-                        Settings.System.NAVIGATION_BAR_SHOW, 0);
-                }
-            }
-            
-            if (hasNavBarByDefault && !pieOn) {
-                Settings.System.putInt(resolver,
-                    Settings.System.NAVIGATION_BAR_SHOW, 1);
-            }
-        }
-    }
 }

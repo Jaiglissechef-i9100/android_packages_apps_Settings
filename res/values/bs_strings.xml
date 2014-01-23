@@ -457,8 +457,8 @@
     <string name="github_cyanogenmod">https://github.com/CyanogenMod</string>
     <string name="github_aokp">https://github.com/AOKP</string> 
     <string name="donate_scotthartbti">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HUUHRXDXNMZPU</string>
-     <string name="beanstalk_site_title">Scott.hart.bti website</string>
-     <string name="beanstalk_site_summary">Visit the scott.hart.bti website for latest news about the ROM.</string>
+    <string name="beanstalk_site_title">Scott.hart.bti website</string>
+    <string name="beanstalk_site_summary">Visit the scott.hart.bti website for latest news about the ROM.</string>
     <string name="donate_cyanogenmod">http://forum.cyanogenmod.com/donate</string>
     <string name="donate_aokp">http://aokp.co/</string>
     <string name="google_scotthartbti">https://plus.google.com/u/0/communities/115833651542488654391</string>
@@ -812,7 +812,7 @@
     <string name="lockscreen_style_reset_message">Reset all lockscreen colors?</string>
     <string name="lockscreen_icon_title">Lock handle icon</string>
     <string name="lockscreen_lock_icon_custom">Custom icon</string>
-    <string name="lockscreen_lock_icon_beanstalk">7comp icon</string>
+    <string name="lockscreen_lock_icon_comp">7comp icon</string>
     <string name="lockscreen_lock_icon_default">Default icon</string>
     <string name="lockscreen_colorize_handle_title">Colorize custom handle</string>
     <string name="lockscreen_colorize_handle_summary">Lock color will be set to the lock handle</string>

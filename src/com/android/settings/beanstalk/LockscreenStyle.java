@@ -25,7 +25,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -228,10 +227,8 @@ public class LockscreenStyle extends SettingsPreferenceFragment
             int indexOf = mLockIcon.findIndexOfValue(newValue.toString());
             if (indexOf == 0) {
                 requestLockImage();
-            } else  if (indexOf == 2) {
+            } else if (indexOf == 2) {
                 deleteLockIcon();
-            } else {
-                resizebsLock();
             }
             return true;
         } else if (preference == mColorizeCustom) {
@@ -281,8 +278,8 @@ public class LockscreenStyle extends SettingsPreferenceFragment
         if (value == null) {
             resId = R.string.lockscreen_lock_icon_default;
             mLockIcon.setValueIndex(2);
-        } else if (value.contains("bs_lock")) {
-            resId = R.string.lockscreen_lock_icon_beanstalk;
+        } else if (value.contains("comp_lock")) {
+            resId = R.string.lockscreen_lock_icon_comp;
             mLockIcon.setValueIndex(1);
         } else {
             resId = R.string.lockscreen_lock_icon_custom;
@@ -333,43 +330,6 @@ public class LockscreenStyle extends SettingsPreferenceFragment
 
         mColorizeCustom.setEnabled(false);
         updateLockSummary();
-    }
-
-    private void resizebsLock() {
-        Bitmap bsLock = BitmapFactory.decodeResource(getResources(), R.drawable.bs_lock);
-        if (bsLock != null) {
-            String path = null;
-            int px = requestImageSize();
-            bsLock = Bitmap.createScaledBitmap(bsLock, px, px, true);
-            try {
-                mLockImage.createNewFile();
-                mLockImage.setWritable(true, false);
-                File image = new File(getActivity().getFilesDir() + File.separator
-                            + "bs_lock" + System.currentTimeMillis() + ".png");
-                path = image.getAbsolutePath();
-                mLockImage.renameTo(image);
-                FileOutputStream outPut = new FileOutputStream(image);
-                bsLock.compress(Bitmap.CompressFormat.PNG, 100, outPut);
-                image.setReadable(true, false);
-                outPut.flush();
-                outPut.close();
-            } catch (Exception e) {
-                // Uh-oh Nothing we can do here.
-                Log.e(TAG, e.getMessage(), e);
-                return;
-            }
-
-            deleteLockIcon();  // Delete current icon if it exists before saving new.
-            Settings.Secure.putString(getContentResolver(),
-                    Settings.Secure.LOCKSCREEN_LOCK_ICON, path);
-            mColorizeCustom.setEnabled(path != null);
-            updateLockSummary();
-        }
-    }
-
-    private int requestImageSize() {
-        return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 68, getResources().getDisplayMetrics());
     }
 
     private void showDialogInner(int id) {
