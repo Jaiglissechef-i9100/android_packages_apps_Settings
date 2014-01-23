@@ -45,12 +45,6 @@
         android:title="@string/vibrate_notif_expand_title"
         android:summary="@string/vibrate_notif_expand_summary" />
 
-    <ListPreference
-        android:key="lcd_density"
-        android:title="@string/custom_density_title"
-        android:entries="@array/lcd_density_entries"
-        android:entryValues="@array/lcd_density_entries" />
-
     <Preference
         android:key="custom_carrier_label"
         android:title="@string/custom_carrier_label_title" />
