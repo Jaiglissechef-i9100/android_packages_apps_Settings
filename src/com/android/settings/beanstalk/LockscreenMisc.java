@@ -76,6 +76,8 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         final Resources res = getResources();
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefScreen = getPreferenceScreen();
+	final int deviceKeys = res.getInteger(
+                    com.android.internal.R.integer.config_deviceHardwareKeys);
 
         mSeeThrough = (CheckBoxPreference) findPreference(KEY_SEE_TRHOUGH);
 
@@ -123,8 +125,8 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         }
 
 	// Hide the CameraUnlock setting if no camera button is available
-        if ((ButtonSettings.KEY_MASK_CAMERA) == 0) {
-            additionalPrefs.removePreference(cameraUnlock);
+        if ((deviceKeys & ButtonSettings.KEY_MASK_CAMERA) == 0) {
+            prefScreen.removePreference(mCameraUnlock);
         }
 
         updateBlurPrefs();
