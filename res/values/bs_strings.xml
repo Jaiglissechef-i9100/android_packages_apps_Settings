@@ -1344,6 +1344,7 @@
     <string name="time_4_hours">4 hours</string>
     <string name="time_6_hours">6 hours</string>
     <string name="time_8_hours">8 hours</string>
+    <string name="above_carrier_text">Above carrier text</string>
     <string name="weather_panel">Weather panel</string>
     <string name="title_weather">Weather</string>
     <string name="text">Text</string>
