@@ -1548,6 +1548,7 @@
         <item>**nothing**</item>
         <item>**update**</item>
         <item>**app**</item>
+    </string-array>
 
     <string-array name="slimsizer_profile_array">
         <item >Load Profile</item>

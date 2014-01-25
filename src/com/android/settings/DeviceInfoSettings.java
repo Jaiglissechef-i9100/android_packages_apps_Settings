@@ -19,6 +19,7 @@ package com.android.settings;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SELinux;
@@ -50,6 +51,7 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
 
     private static final String KEY_CONTAINER = "container";
     private static final String KEY_TEAM = "team";
+    private static final String KEY_COMP_DONATE= "donate";
     private static final String KEY_CONTRIBUTORS = "contributors";
     private static final String KEY_REGULATORY_INFO = "regulatory_info";
     private static final String KEY_TERMS = "terms";
@@ -68,7 +70,7 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
     private static final String KEY_EQUIPMENT_ID = "fcc_equipment_id";
     private static final String PROPERTY_EQUIPMENT_ID = "ro.ril.fccid";
     private static final String KEY_MOD_VERSION = "mod_version";
-//    private static final String KEY_MOD_BUILD_DATE = "build_date";
+    private static final String KEY_MOD_BUILD_DATE = "build_date";
     private static final String KEY_DEVICE_CPU = "device_cpu";
     private static final String KEY_DEVICE_GPU = "device_gpu";
     private static final String KEY_DEVICE_MEMORY = "device_memory";
@@ -107,6 +109,7 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
         findPreference(KEY_KERNEL_VERSION).setSummary(getFormattedKernelVersion());
         setValueSummary(KEY_MOD_VERSION, "ro.cm.version");
         findPreference(KEY_MOD_VERSION).setEnabled(true);
+        setValueSummary(KEY_MOD_BUILD_DATE, "ro.build.date");
 
         if (!SELinux.isSELinuxEnabled()) {
             String status = getResources().getString(R.string.selinux_status_disabled);
@@ -196,6 +199,7 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
         removePreferenceIfBoolFalse(KEY_REGULATORY_INFO,
                 R.bool.config_show_regulatory_info);
 
+        getPreferenceScreen().findPreference(KEY_COMP_DONATE).setWidgetLayoutResource(R.layout.donate);
     }
 
     @Override
@@ -273,6 +277,10 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
                 mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_already,
                         Toast.LENGTH_LONG);
                 mDevHitToast.show();
+            } else if (preference.getKey().equals(KEY_COMP_DONATE)) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(getActivity().getString(R.string.donate_link)));
+                startActivity(browserIntent);
             }
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
