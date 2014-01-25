@@ -160,7 +160,7 @@
     <!-- Lockscreen lock icon values -->
     <string-array name="lock_icon_entries">
         <item>@string/lockscreen_lock_icon_custom</item>
-        <item>@string/lockscreen_lock_icon_beanstalk</item>
+        <item>@string/lockscreen_lock_icon_comp</item>
         <item>@string/lockscreen_lock_icon_default</item>
     </string-array>
 
