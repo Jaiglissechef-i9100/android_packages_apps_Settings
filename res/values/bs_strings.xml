@@ -1102,6 +1102,7 @@
     <string name="fast_torch_summary">Enable holding the power button with the screen off to control Torch</string>
     <string name="performance_settings">Performance control</string>
     <string name="status_bar_double_tap_to_sleep_title">Double-tap to sleep</string>
+    <string name="lockscreen_double_tap_sleep_title">Double-tap to sleep</string>
 
     <!-- UI debug setting: show CPU info? [CHAR LIMIT=25] -->
     <string name="show_cpu_info">Show CPU info</string>
