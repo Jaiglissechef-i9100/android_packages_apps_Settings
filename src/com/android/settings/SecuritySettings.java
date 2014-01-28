@@ -98,6 +98,8 @@ public class SecuritySettings extends RestrictedSettingsFragment
     private static final String KEY_APP_SECURITY_CATEGORY = "app_security";
     private static final String KEY_SMS_SECURITY_CHECK_PREF = "sms_security_check_limit";
 
+    private static final String KEY_QUICK_INSTALL = "quickinstall";
+
     private PackageManager mPM;
     private DevicePolicyManager mDPM;
 
@@ -126,6 +128,8 @@ public class SecuritySettings extends RestrictedSettingsFragment
     private CheckBoxPreference mLockBeforeUnlock;
 
     private Preference mNotificationAccess;
+
+    private CheckBoxPreference mQuickInstall;
 
     private boolean mIsPrimary;
 
@@ -383,6 +387,11 @@ public class SecuritySettings extends RestrictedSettingsFragment
                 mToggleVerifyApps.setEnabled(false);
             }
         }
+
+        // APP quick install
+        mQuickInstall = (CheckBoxPreference) root.findPreference(KEY_QUICK_INSTALL);
+        mQuickInstall.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.PACKAGE_INSTALLER_QUICK_MODE_ENABLED, 0) == 1);
 
         // App security settings
         addPreferencesFromResource(R.xml.security_settings_app_cyanogenmod);
@@ -670,6 +679,10 @@ public class SecuritySettings extends RestrictedSettingsFragment
         } else if (KEY_TOGGLE_VERIFY_APPLICATIONS.equals(key)) {
             Settings.Global.putInt(getContentResolver(), Settings.Global.PACKAGE_VERIFIER_ENABLE,
                     mToggleVerifyApps.isChecked() ? 1 : 0);
+        } else if (preference == mQuickInstall) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.PACKAGE_INSTALLER_QUICK_MODE_ENABLED,
+                    mQuickInstall.isChecked() ? 1 : 0);
 	} else if (preference == mQuickUnlockScreen) {
             Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
                     Settings.System.LOCKSCREEN_QUICK_UNLOCK_CONTROL,
