@@ -17,6 +17,12 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
     android:title="@string/themes_settings_title" >
     
+        <PreferenceScreen
+            android:key="screen_security"
+            android:fragment="com.android.settings.SecuritySettings"
+            android:title="@string/screen_security_category"
+            android:summary="@string/screen_security_summary" />
+
     <CheckBoxPreference
         android:key="lockscreen_eight_targets"
         android:title="@string/lockscreen_eight_targets_title"
