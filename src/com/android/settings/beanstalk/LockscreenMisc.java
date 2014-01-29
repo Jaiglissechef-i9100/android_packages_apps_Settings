@@ -108,11 +108,9 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         mCameraUnlock.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.CAMERA_UNLOCK_SCREEN, 0) == 1);
 
-	// Enable / disable power menu on lockscreen
         mEnablePowerMenu = (CheckBoxPreference) findPreference(KEY_ENABLE_POWER_MENU);
-        mEnablePowerMenu.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.LOCKSCREEN_ENABLE_POWER_MENU, 1) == 1);
-        mEnablePowerMenu.setOnPreferenceChangeListener(this);
+        mEnablePowerMenu.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.LOCKSCREEN_ENABLE_POWER_MENU, 0) == 1);
 
         mBlurBehind = (CheckBoxPreference) findPreference(KEY_BLUR_BEHIND);
         mBlurBehind.setChecked(Settings.System.getInt(getContentResolver(), 
