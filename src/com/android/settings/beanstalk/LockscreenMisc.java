@@ -82,6 +82,8 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
                     com.android.internal.R.integer.config_deviceHardwareKeys);
 
         mSeeThrough = (CheckBoxPreference) findPreference(KEY_SEE_TRHOUGH);
+	mSeeThrough.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.LOCKSCREEN_SEE_THROUGH, 0) == 1);
 
         mAllowRotation = (CheckBoxPreference) findPreference(KEY_ALLOW_ROTATION);
         mAllowRotation.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
@@ -135,7 +137,6 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
             prefScreen.removePreference(mCameraUnlock);
         }
 
-        updateBlurPrefs();
     }
 
     @Override
@@ -196,7 +197,6 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
         } else if (preference == mBlurBehind) {
             Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_BLUR_BEHIND,
                     mBlurBehind.isChecked() ? 1 : 0);
-            updateBlurPrefs();
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
@@ -217,22 +217,6 @@ public class LockscreenMisc extends SettingsPreferenceFragment implements OnPref
             return true;
         }
         return false;
-    }
-
-    public void updateBlurPrefs() {
-        // until i get around to digging through the frameworks to find where transparent lockscreen
-        // is breaking the animation for blur lets just be a little dirty dirty dirty...
-        if (mBlurBehind.isChecked()) {
-            mSeeThrough.setEnabled(false);
-            Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH, 1);
-        } else {
-            mSeeThrough.setEnabled(true);
-            if (mSeeThrough.isChecked()) {
-                Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH, 1);
-            } else {
-                Settings.System.putInt(getContentResolver(), Settings.System.LOCKSCREEN_SEE_THROUGH, 0);
-            }
-        }
     }
 
     public static class DeviceAdminLockscreenReceiver extends DeviceAdminReceiver {}
