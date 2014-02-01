@@ -1499,14 +1499,15 @@
     <string name="excluded_apps_summary">Excluded applications will not show up as lockscreen notifications</string>
 
     <!-- Status bar color -->
-    <string name="custom_status_bar_color_title">Custom status bar color</string>
     <string name="status_bar_color">Status and navbar color</string>
-    <string name="status_bar_color_summary">this option restarts systemUI</string>
-    <string name="status_bar_transparent_color">Dimmed color</string>
-    <string name="status_bar_color_reset">Reset status bar color</string>
-    <string name="restart_status_bar_menu_title">Restart status bar</string>
-    <string name="restart_status_bar_title">Restart?</string>
-    <string name="restart_status_bar_message">Restarting the System UI will significally change the values you modify.</string>
-    <string name="category_status_bar_style">Status bar style</string>
-    <string name="custom_color_summary">Override the system color of the systemui</string>
+    <string name="status_bar_color_summary">This option restarts systemUI</string>
+
+    <!-- Breathing Notifications -->
+    <string name="breathing_notifications_title">Breathing Notifications</string>
+    <string name="sms_breath">Breathing SMS</string>
+    <string name="sms_breath_summary">Will give your sms notifications a breathing effect in the statusbar</string>
+    <string name="title_missed_call_breath">Breathing Missed Call</string>
+    <string name="missed_call_breath_summary">Will give your missed call notifications a breathing effect in the statusbar</string>
+    <string name="title_voicemail_breath">Breathing Voicemail</string>
+    <string name="voicemail_breath_summary">Will give your voicemail notifications a breathing effect in the statusbar</string>
 </resources>

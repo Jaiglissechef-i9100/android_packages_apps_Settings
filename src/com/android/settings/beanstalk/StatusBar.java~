@@ -159,6 +159,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                 .getContentResolver(), Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
                 0) != 0);
 
+<<<<<<< HEAD
         mBatteryIndicator = (CheckBoxPreference) findPreference("battery_percentage_indicator");
         mBatteryIndicator.setChecked(Settings.System.getInt(getActivity()
                 .getContentResolver(), Settings.System.BATTERY_PERCENTAGE_INDICATOR,
@@ -168,10 +169,11 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mBatteryIndicatorPlugged.setChecked(Settings.System.getInt(getActivity()
                 .getContentResolver(), Settings.System.BATTERY_PERCENTAGE_INDICATOR_PLUGGED,
                 0) != 0);
-
+=======
         mSMSBreath = (CheckBoxPreference) prefSet.findPreference(KEY_SMS_BREATH);
         mMissedCallBreath = (CheckBoxPreference) prefSet.findPreference(KEY_MISSED_CALL_BREATH);
         mVoicemailBreath = (CheckBoxPreference) prefSet.findPreference(KEY_VOICEMAIL_BREATH);
+>>>>>>> bc11935... add breathing icon options to status bar settings
 
     }
 
@@ -234,8 +236,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             return true;
         } else if (preference == mSMSBreath) {
             value = mSMSBreath.isChecked();
-            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(),
-                    Settings.System.KEY_SMS_BREATH, value ? 1 : 0);
+            Settings.System.putInt(getActivity().getApplicationContext().getContentResolver(), 			    Settings.System.KEY_SMS_BREATH, value ? 1 : 0);
             return true;
         }
         else if (preference == mBatteryIndicator) {
