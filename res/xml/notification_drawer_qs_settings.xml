@@ -47,6 +47,12 @@ limitations under the License.
          <extra android:name="fragment" android:value="com.android.settings.beanstalk.fragments.NotificationsShortcutFragment" />
      </PreferenceScreen>
 
+     <CheckBoxPreference
+            android:key="custom_status_bar_header"
+            android:title="@string/custom_statusbar_header_title"
+            android:summary="@string/custom_statusbar_header_summary"
+            android:defaultValue="false" />
+
     <PreferenceScreen
         android:key="power_widget"
         android:fragment="com.android.settings.cyanogenmod.PowerWidget"

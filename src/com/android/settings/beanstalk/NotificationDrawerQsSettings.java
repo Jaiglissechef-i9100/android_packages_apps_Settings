@@ -59,6 +59,7 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
 
     private static final String KEY_POWER_WIDGET = "power_widget";
     private static final String KEY_NOTIFICATION_DRAWER_TABLET = "notification_drawer_tablet";
+    private static final String STATUS_BAR_CUSTOM_HEADER = "custom_status_bar_header";
 
     private PreferenceScreen mPhoneDrawer;
     private PreferenceScreen mTabletDrawer;
@@ -66,6 +67,7 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
     ListPreference mHideLabels;
     SeekBarPreference mNotificationAlpha;
     ListPreference mQuickPulldown;
+    private CheckBoxPreference mStatusBarCustomHeader;
     ListPreference mSmartPulldown;
     CheckBoxPreference mCollapsePanel;
 
@@ -85,6 +87,11 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
         mHideLabels.setValue(String.valueOf(hideCarrier));
         mHideLabels.setOnPreferenceChangeListener(this);
         updateHideNotificationLabelsSummary(hideCarrier);
+
+        mStatusBarCustomHeader = (CheckBoxPreference) findPreference(STATUS_BAR_CUSTOM_HEADER);
+        mStatusBarCustomHeader.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.STATUS_BAR_CUSTOM_HEADER, 0) == 1);
+        mStatusBarCustomHeader.setOnPreferenceChangeListener(this);
 
         PackageManager pm = getPackageManager();
         boolean isMobileData = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
@@ -185,6 +192,11 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
             float valNav = Float.parseFloat((String) newValue);
             Settings.System.putFloat(getContentResolver(),
                     Settings.System.NOTIFICATION_ALPHA, valNav / 100);
+            return true;
+        } else if (preference == mStatusBarCustomHeader) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putInt(getContentResolver(),
+                Settings.System.STATUS_BAR_CUSTOM_HEADER, value ? 1 : 0);
             return true;
         } else if (preference == mQuickPulldown) {
             int statusQuickPulldown = Integer.valueOf((String) newValue);
