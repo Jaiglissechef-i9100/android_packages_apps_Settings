@@ -30,6 +30,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.content.DialogInterface;
 import android.content.res.Configuration;
@@ -84,8 +85,13 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
     private static final String STATUS_BAR_TRAFFIC_STYLE = "status_bar_traffic_style";
 
+    private static final String PREF_STATUS_BAR_OPAQUE_COLOR = "status_bar_opaque_color";
+
     private ColorPickerPreference mColorPicker;
+    private ColorPickerPreference mColorPickerz;
     private PreferenceScreen mClockStyle;
+    private CheckBoxPreference mCustomBarColor;
+    private ColorPickerPreference mBarOpaqueColor;
     private CheckBoxPreference mStatusBarBrightnessControl;
     private ListPreference mStatusBarTraffic;
 
@@ -136,6 +142,9 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         mColorPicker = (ColorPickerPreference) findPreference("signal_color");
         mColorPicker.setOnPreferenceChangeListener(this);
 
+        mColorPickerz = (ColorPickerPreference) findPreference("status_bar_color");
+        mColorPickerz.setOnPreferenceChangeListener(this);
+
         mHideSignal = (CheckBoxPreference) findPreference("hide_signal");
         mHideSignal.setChecked(Settings.System.getInt(getActivity()
                 .getContentResolver(), Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
@@ -179,6 +188,15 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_SIGNAL_TEXT_COLOR, intHex);
             return true;
+        } else if (preference == mColorPickerz) {
+            String hex = ColorPickerPreference.convertToARGB(Integer.valueOf(String
+                    .valueOf(newValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.STATUS_BAR_OPAQUE_COLOR, intHex);
+            Helpers.restartSystemUI();
+            return true;
         }
         return false;
     }
@@ -205,6 +223,8 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
             return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
+
+        return false;
     }
 
     @Override
