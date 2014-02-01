@@ -1603,4 +1603,8 @@
     <string name="volume_steps_summary">Fine grained control of volume for specified sound streams</string>
     <string name="volume_panel_timeout_title">Timeout</string>
     <string name="volume_panel_timeout_summary">Time until the panel will be hidden</string>
+
+    <!-- ADB Paranoia settings -->
+    <string name="adb_paranoid">ADB paranoia mode</string>
+    <string name="adb_paranoid_summary">Immediately reboot if an unknown computer is connected while device is locked</string>
 </resources>
