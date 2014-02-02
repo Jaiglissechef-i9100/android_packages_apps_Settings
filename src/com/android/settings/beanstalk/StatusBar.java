@@ -96,13 +96,10 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private CheckBoxPreference mCustomBarColor;
     private ColorPickerPreference mBarOpaqueColor;
     private CheckBoxPreference mStatusBarBrightnessControl;
-<<<<<<< HEAD
     private ListPreference mStatusBarTraffic;
-=======
     private CheckBoxPreference mSMSBreath;
     private CheckBoxPreference mMissedCallBreath;
     private CheckBoxPreference mVoicemailBreath;
->>>>>>> bc11935... add breathing icon options to status bar settings
 
     ListPreference mDbmStyletyle;
     CheckBoxPreference mHideSignal;
@@ -250,9 +247,8 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                     ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
             return true;
         }
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
 
-        return false;
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     @Override
