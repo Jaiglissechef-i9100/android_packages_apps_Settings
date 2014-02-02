@@ -1500,10 +1500,6 @@
     <string name="excluded_apps_title">Excluded applications</string>
     <string name="excluded_apps_summary">Excluded applications will not show up as lockscreen notifications</string>
 
-    <!-- Status bar color -->
-    <string name="status_bar_color">Status and navbar color</string>
-    <string name="status_bar_color_summary">This option restarts systemUI</string>
-
     <!-- Breathing Notifications -->
     <string name="breathing_notifications_title">Breathing Notifications</string>
     <string name="sms_breath">Breathing SMS</string>
