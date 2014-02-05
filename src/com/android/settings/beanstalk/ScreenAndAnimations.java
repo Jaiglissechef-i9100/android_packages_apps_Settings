@@ -48,24 +48,30 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
             mCrtMode.setValue(String.valueOf(crtMode));
             mCrtMode.setSummary(mCrtMode.getEntry());
             mCrtMode.setOnPreferenceChangeListener(this);
-        } else if (animationOptions != null) {
+        } else if (animationOptions == null) {
             prefSet.removePreference(animationOptions);
         }
 
 	mListViewAnimation = (ListPreference) prefSet.findPreference(KEY_LISTVIEW_ANIMATION);
         int listviewanimation = Settings.System.getInt(getContentResolver(),
                 Settings.System.LISTVIEW_ANIMATION, 0);
-        mListViewAnimation.setValue(String.valueOf(listviewanimation));
-        mListViewAnimation.setSummary(mListViewAnimation.getEntry());
-        mListViewAnimation.setOnPreferenceChangeListener(this);
+	if(mListViewAnimation != null){
+
+        	mListViewAnimation.setValue(String.valueOf(listviewanimation));
+        	mListViewAnimation.setSummary(mListViewAnimation.getEntry());
+        	mListViewAnimation.setOnPreferenceChangeListener(this);
+	}
 
         mListViewInterpolator = (ListPreference) prefSet.findPreference(KEY_LISTVIEW_INTERPOLATOR);
         int listviewinterpolator = Settings.System.getInt(getContentResolver(),
                 Settings.System.LISTVIEW_INTERPOLATOR, 0);
-        mListViewInterpolator.setValue(String.valueOf(listviewinterpolator));
-        mListViewInterpolator.setSummary(mListViewInterpolator.getEntry());
-        mListViewInterpolator.setOnPreferenceChangeListener(this);
-        mListViewInterpolator.setEnabled(listviewanimation > 0);
+	if(mListViewInterpolator != null)
+	{
+        	mListViewInterpolator.setValue(String.valueOf(listviewinterpolator));
+        	mListViewInterpolator.setSummary(mListViewInterpolator.getEntry());
+        	mListViewInterpolator.setOnPreferenceChangeListener(this);
+        	mListViewInterpolator.setEnabled(listviewanimation > 0);
+	}
 
     }
 
