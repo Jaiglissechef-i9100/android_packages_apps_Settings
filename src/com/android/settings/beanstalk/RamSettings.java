@@ -15,6 +15,10 @@ import android.preference.PreferenceScreen;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.util.Log;
+import android.graphics.Color;
+import com.android.settings.Utils;
+import net.margaritov.preference.colorpicker.ColorPickerPreference;
+import com.android.settings.util.Helpers;
 
 public class RamSettings extends SettingsPreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -27,12 +31,18 @@ public class RamSettings extends SettingsPreferenceFragment implements
             "recents_memory_indicator_location";
     private static final String SHOW_RAMBAR_GB =
             "show_rambar_gb";
+    private static final String LARGE_RECENT_THUMBS = "large_recent_thumbs";
 
+    private CheckBoxPreference mLargeRecentThumbs;
+    private ColorPickerPreference mRecentsColor;
     private CheckBoxPreference mRecentClearAll;
     private CheckBoxPreference mRambarGB;
     private ListPreference mRecentClearAllPosition;
     private CheckBoxPreference mShowRecentsMemoryIndicator;
     private ListPreference mRecentsMemoryIndicatorPosition;
+
+    private ContentResolver mContentResolver;
+    private Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +51,8 @@ public class RamSettings extends SettingsPreferenceFragment implements
 
         PreferenceScreen prefSet = getPreferenceScreen();
         ContentResolver resolver = getActivity().getContentResolver();
+
+	mContentResolver = getContentResolver();
 
         mRecentClearAll = (CheckBoxPreference) prefSet.findPreference(RECENT_MENU_CLEAR_ALL);
         mRecentClearAll.setChecked(Settings.System.getInt(resolver,
@@ -58,6 +70,14 @@ public class RamSettings extends SettingsPreferenceFragment implements
                 Settings.System.SHOW_GB_RAMBAR, 0) == 1);
         mRambarGB.setOnPreferenceChangeListener(this);
 
+        mLargeRecentThumbs = (CheckBoxPreference) prefSet.findPreference(LARGE_RECENT_THUMBS);
+
+        mLargeRecentThumbs.setChecked((Settings.System.getInt(mContentResolver,
+                Settings.System.LARGE_RECENT_THUMBS, 0) == 1));
+
+	mRecentsColor = (ColorPickerPreference) findPreference("recents_panel_color");
+        mRecentsColor.setOnPreferenceChangeListener(this);
+
         mShowRecentsMemoryIndicator = (CheckBoxPreference)
                 prefSet.findPreference(SHOW_RECENTS_MEMORY_INDICATOR);
         mShowRecentsMemoryIndicator.setChecked(Settings.System.getInt(resolver,
@@ -73,11 +93,6 @@ public class RamSettings extends SettingsPreferenceFragment implements
         mRecentsMemoryIndicatorPosition.setOnPreferenceChangeListener(this);
     }
 
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
-        return true;
-    }
-
     public boolean onPreferenceChange(Preference preference, Object objValue) {
         ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mRecentClearAll) {
@@ -89,6 +104,14 @@ public class RamSettings extends SettingsPreferenceFragment implements
         } else if (preference == mRecentClearAllPosition) {
             String value = (String) objValue;
             Settings.System.putString(resolver, Settings.System.CLEAR_RECENTS_BUTTON_LOCATION, value);
+	} else if (preference == mRecentsColor) {
+            String hex = ColorPickerPreference.convertToARGB(
+                    Integer.valueOf(String.valueOf(objValue)));
+            preference.setSummary(hex);
+            int intHex = ColorPickerPreference.convertToColorInt(hex);
+            Settings.System.putInt(mContentResolver,
+                    Settings.System.RECENTS_PANEL_COLOR, intHex);
+	    Helpers.restartSystemUI();
         } else if (preference == mShowRecentsMemoryIndicator) {
             boolean value = (Boolean) objValue;
             Settings.System.putInt(
@@ -102,5 +125,16 @@ public class RamSettings extends SettingsPreferenceFragment implements
         }
 
         return true;
+    }
+
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+        boolean value;
+        if (preference == mLargeRecentThumbs) {
+            value = mLargeRecentThumbs.isChecked();
+            Settings.System.putInt(mContentResolver,
+                    Settings.System.LARGE_RECENT_THUMBS, value ? 1 : 0);
+            return true;
+        }
+        return false;
     }
 }
