@@ -87,14 +87,10 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         mEnableNavigationBar.setOnPreferenceChangeListener(this);
 
         mNavigationBarCanMove = (CheckBoxPreference) findPreference(PREF_NAVIGATION_BAR_CAN_MOVE);
-        if (DeviceUtils.isPhone(getActivity())) {
-            mNavigationBarCanMove.setChecked(Settings.System.getInt(getContentResolver(),
-                    Settings.System.NAVIGATION_BAR_CAN_MOVE, 1) == 0);
-            mNavigationBarCanMove.setOnPreferenceChangeListener(this);
-        } else {
-            prefs.removePreference(mNavigationBarCanMove);
-            mNavigationBarCanMove = null;
-        }
+        mNavigationBarCanMove.setChecked(Settings.System.getInt(getContentResolver(),
+                Settings.System.NAVIGATION_BAR_CAN_MOVE,
+                DeviceUtils.isPhone(getActivity()) ? 1 : 0) == 0);
+        mNavigationBarCanMove.setOnPreferenceChangeListener(this);
 
         updateNavbarPreferences(enableNavigationBar);
     }
@@ -104,9 +100,7 @@ public class NavbarSettings extends SettingsPreferenceFragment implements
         mButtonPreference.setEnabled(show);
         mRingPreference.setEnabled(show);
         mStyleDimenPreference.setEnabled(show);
-        if (mNavigationBarCanMove != null) {
-            mNavigationBarCanMove.setEnabled(show);
-        }
+        mNavigationBarCanMove.setEnabled(show);
         mMenuDisplayLocation.setEnabled(show
             && mNavBarMenuDisplayValue != 1);
     }
