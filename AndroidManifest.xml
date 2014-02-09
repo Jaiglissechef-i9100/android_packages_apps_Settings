@@ -2211,29 +2211,5 @@
             android:name=".cyanogenmod.LtoService">
         </service>
 
-        <activity android:name=".beanstalk.PlatLogoActivity"
-                android:theme="@android:style/Theme.Wallpaper.NoTitleBar.Fullscreen"
-                android:process=":ui">
-        </activity>
-        <activity
-            android:name=".beanstalk.Nyandroid"
-            android:exported="true"
-            android:label="Nyandroid"
-            android:icon="@drawable/nyandroid04"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
-            android:hardwareAccelerated="true"
-            android:launchMode="singleInstance"
-            android:excludeFromRecents="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-         <activity
-            android:name=".beanstalk.LockscreenNotifications"
-            android:label="@string/Lockscreen_notifications_header" >
-        </activity>
-
     </application>
 </manifest>
