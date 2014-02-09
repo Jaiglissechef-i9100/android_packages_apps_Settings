@@ -139,6 +139,11 @@ limitations under the License.
             android:summary="@string/tile_picker_summary"
             android:fragment="com.android.settings.beanstalk.quicksettings.QuickSettingsTiles" />
 
+        <PreferenceScreen
+            android:key="pref_weather"
+            android:title="@string/pref_weather_tile"
+            android:fragment="com.android.settings.beanstalk.PrefWeatherTile" />
+
         <ListPreference
             android:key="quick_pulldown"
             android:title="@string/title_quick_pulldown"
