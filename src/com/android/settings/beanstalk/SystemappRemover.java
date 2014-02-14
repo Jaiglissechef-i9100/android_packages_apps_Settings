@@ -4,12 +4,17 @@
  *            Team Slimroms (http://www.slimroms.net)
  *
  *  COPYRIGHT Copyright (C) 2013 Slimroms http://www.slimroms.net
+ *            Copyright (C) 2014 Dirty Unicorns
  *            All rights reserved
  *
  *  LICENSE   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
  *
  *  AUTHORS:     fronti90
  *  DESCRIPTION: SlimSizer: manage your apps
+ *
+ *  MODS: Dirty Unicorns
+ *        Team D.I.R.T.
+ *        Added priv-app and odex files support
  *
  *=========================================================================
  */
