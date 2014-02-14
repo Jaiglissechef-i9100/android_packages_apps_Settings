@@ -1594,4 +1594,10 @@
     <string name="progressbar_color_3_title">Color3</string>
     <string name="progressbar_color_4_title">Color4</string>
     <string name="sample_progressbar_text">ProgressBar : Preview</string>
+
+    <!-- 7comp Shortcuts -->
+    <string name="slim_shortcut_picker">7comp Actions</string>
+
+    <string name="volume_steps_title">Volume steps</string>
+    <string name="volume_steps_summary">Fine grained control of volume for specified sound streams</string>
 </resources>
