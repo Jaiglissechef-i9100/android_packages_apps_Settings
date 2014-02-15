@@ -2332,4 +2332,7 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
 
     <!-- Wireless controls, item title to go into the network settings -->
     <string name="network_settings_title">Mobile networks</string>
+
+    <!-- Diable BootAnimation -->
+    <string name="pref_disable_bootanimation_title">Disable Boot Animation</string>
 </resources>
