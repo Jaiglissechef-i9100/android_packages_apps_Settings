@@ -1614,4 +1614,7 @@
     <!-- ADB Paranoia settings -->
     <string name="adb_paranoid">ADB paranoia mode</string>
     <string name="adb_paranoid_summary">Immediately reboot if an unknown computer is connected while device is locked</string>
+
+    <!-- allow multiuser -->
+    <string name="multiuser_preference_title">Multiuser support</string>
 </resources>
