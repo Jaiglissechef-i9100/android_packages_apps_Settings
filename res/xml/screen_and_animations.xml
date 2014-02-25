@@ -57,7 +57,13 @@
             android:entryValues="@array/listview_interpolator_values"
             android:defaultValue="0" />
 
-	<!-- custom progressbar animations -->
+	<ListPreference
+            android:key="toast_animation"
+            android:title="@string/toast_animation_title"
+            android:entries="@array/toast_animation_entries"
+            android:entryValues="@array/toast_animation_values"
+            android:persistent="false" />
+
 	<PreferenceScreen
             android:key="progressbar_settings"
             android:fragment="com.android.settings.cyanogenmod.ProgressBar"
