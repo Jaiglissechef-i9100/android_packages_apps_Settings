@@ -21,6 +21,12 @@
         android:summary="@string/wakelock_blocker_header_summary" />
 
     <PreferenceScreen
+        android:key="interface_animation_scroll"
+        android:fragment="com.android.settings.beanstalk.ScrollAnimationInterfaceSettings"
+        android:title="@string/scrolling_title"
+        android:summary="@string/scrolling_summary" />
+
+    <PreferenceScreen
         android:id="@+id/system_app_remover"
         android:fragment="com.android.settings.beanstalk.SystemappRemover"
         android:title="@string/system_app_remover" />

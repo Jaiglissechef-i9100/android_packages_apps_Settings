@@ -148,4 +148,10 @@
         <attr name="pickerTitle3" format="string" />
         <attr name="pickerTitle4" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="NEWSeekBarPreference">
+        <attr name="maximum" format="integer" />
+        <attr name="minimum" format="integer" />
+        <attr name="interval" format="integer" />
+    </declare-styleable>
 </resources>
