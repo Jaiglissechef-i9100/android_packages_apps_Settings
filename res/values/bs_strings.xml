@@ -1162,7 +1162,7 @@
     <string name="button_power_key_title">Power button</string>
     <string name="fast_torch_title">Fast torch</string>
     <string name="fast_torch_summary">Enable holding the power button with the screen off to control Torch</string>
-    <string name="performance_settings">Performance control</string>
+    <string name="kernel_tweaker_title">Performance control</string>
     <string name="status_bar_double_tap_to_sleep_title">Double-tap to sleep</string>
     <string name="lockscreen_double_tap_sleep_title">Double-tap to sleep</string>
 
@@ -2326,9 +2326,6 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <!-- GPS Settings -->
     <string name="aosb_gps_settings_title">GPS Optimizer</string>
     <string name="aosb_gps_settings_summary">Modify gps.conf to specific country</string>
-
-    <!-- Kernel Tweaker -->
-    <string name="kernel_tweaker_title">Kernel Tweaker</string>
 
     <!-- Wireless controls, item title to go into the network settings -->
     <string name="network_settings_title">Mobile networks</string>
