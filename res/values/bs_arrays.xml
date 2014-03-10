@@ -313,6 +313,7 @@
         <item>@string/shortcut_action_ime</item>
         <item>@string/shortcut_action_power_menu</item>
         <item>@string/shortcut_action_qs</item>
+	<item>@string/shortcut_action_smart</item>
         <item>@string/shortcut_action_recent</item>
         <item>@string/shortcut_action_power</item>
         <item>@string/shortcut_action_screenshot</item>
@@ -333,6 +334,7 @@
         <item>**ime**</item>
         <item>**power_menu**</item>
         <item>**quicksettings**</item>
+	<item>**smart_pulldown**</item>
         <item>**recents**</item>
         <item>**power**</item>
         <item>**screenshot**</item>
@@ -365,6 +367,35 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+    </string-array>
+
+    <!-- Slim Actions For Shortcuts -->
+    <string-array name="shortcut_action_launcher_entries">
+        <item>@string/shortcut_action_kill</item>
+        <item>@string/shortcut_action_lastapp</item>
+        <item>@string/shortcut_action_notifications</item>
+        <item>@string/shortcut_action_ime</item>
+        <item>@string/shortcut_action_power_menu</item>
+        <item>@string/shortcut_action_qs</item>
+	<item>@string/shortcut_action_smart</item>
+        <item>@string/shortcut_action_ring_silent</item>
+        <item>@string/shortcut_action_ring_vib</item>
+        <item>@string/shortcut_action_ring_vib_silent</item>
+        <item>@string/shortcut_action_power</item>
+    </string-array>
+
+    <string-array name="shortcut_action_launcher_values" translatable="false">
+        <item>**kill**</item>
+        <item>**lastapp**</item>
+        <item>**notifications**</item>
+        <item>**ime**</item>
+        <item>**power_menu**</item>
+        <item>**quicksettings**</item>
+	<item>**smart_pulldown**</item>
+        <item>**ring_silent**</item>
+        <item>**ring_vib**</item>
+        <item>**ring_vib_silent**</item>
+        <item>**power**</item>
     </string-array>
 
     <!-- Wi-Fi settings. Presented as a list dialog to the user to choose the Wi-Fi region code. -->
@@ -468,6 +499,7 @@
         <item>@string/shortcut_action_ime</item>
         <item>@string/shortcut_action_power_menu</item>
         <item>@string/shortcut_action_qs</item>
+	<item>@string/shortcut_action_smart</item>
         <item>@string/shortcut_action_ring_silent</item>
         <item>@string/shortcut_action_ring_vib</item>
         <item>@string/shortcut_action_ring_vib_silent</item>
@@ -487,6 +519,7 @@
         <item>**ime**</item>
         <item>**power_menu**</item>
         <item>**quicksettings**</item>
+	<item>**smart_pulldown**</item>
         <item>**ring_silent**</item>
         <item>**ring_vib**</item>
         <item>**ring_vib_silent**</item>
