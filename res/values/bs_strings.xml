@@ -1700,4 +1700,8 @@
     <string name="noti_reminder_interval_3s">3 seconds</string>
     <string name="noti_reminder_interval_3dot5s">3.5 second</string>
     <string name="noti_reminder_interval_4s">4 seconds</string>
+
+    <!-- Custom Recent Settings -->
+    <string name="custom_recent_title">Enable Slim Recents</string>
+    <string name="custom_recent_summary">Tick this box to switch between Slim/Stock RecentApps</string>
 </resources>
