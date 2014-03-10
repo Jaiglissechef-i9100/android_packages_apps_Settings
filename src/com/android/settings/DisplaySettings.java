@@ -83,12 +83,25 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
+<<<<<<< HEAD
     private CheckBoxPreference mAccelerometer;
     private FontDialogPreference mFontSizePref;
     private CheckBoxPreference mWakeWhenPluggedOrUnplugged;
     private CheckBoxPreference mStatusbarSliderPreference;
 
     private PreferenceScreen mNotificationPulse;
+=======
+    private static final String ROTATION_ANGLE_0 = "0";
+    private static final String ROTATION_ANGLE_90 = "90";
+    private static final String ROTATION_ANGLE_180 = "180";
+    private static final String ROTATION_ANGLE_270 = "270";
+
+    private PreferenceScreen mDisplayRotationPreference;
+    private WarnedListPreference mFontSizePref;
+    private CheckBoxPreference mNotificationPulse;
+    private PreferenceCategory mLightOptions;
+    private PreferenceScreen mNotificationLight;
+>>>>>>> 60d2f48... Fix font size not changing
     private PreferenceScreen mBatteryPulse;
     private PreferenceScreen mDisplayRotationPreference;
     private PreferenceScreen mScreenColorSettings;
@@ -145,7 +158,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
 
         PreferenceCategory advancedPrefs = (PreferenceCategory) findPreference(CATEGORY_ADVANCED);
 
-        mFontSizePref = (FontDialogPreference) findPreference(KEY_FONT_SIZE);
+        mFontSizePref = (WarnedListPreference) findPreference(KEY_FONT_SIZE);
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
 
@@ -324,6 +337,37 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         screenTimeoutPreference.setEnabled(revisedEntries.size() > 0);
     }
 
+    int floatToIndex(float val) {
+        String[] indices = getResources().getStringArray(R.array.entryvalues_font_size);
+        float lastVal = Float.parseFloat(indices[0]);
+        for (int i=1; i<indices.length; i++) {
+            float thisVal = Float.parseFloat(indices[i]);
+            if (val < (lastVal + (thisVal-lastVal)*.5f)) {
+                return i-1;
+            }
+            lastVal = thisVal;
+        }
+        return indices.length-1;
+    }
+
+    public void readFontSizePreference(ListPreference pref) {
+        try {
+            mCurConfig.updateFrom(ActivityManagerNative.getDefault().getConfiguration());
+        } catch (RemoteException e) {
+            Log.w(TAG, "Unable to retrieve font size");
+        }
+
+        // mark the appropriate item in the preferences list
+        int index = floatToIndex(mCurConfig.fontScale);
+        pref.setValueIndex(index);
+
+        // report the current size in the summary text
+        final Resources res = getResources();
+        String[] fontSizeNames = res.getStringArray(R.array.entries_font_size);
+        pref.setSummary(String.format(res.getString(R.string.summary_font_size),
+                fontSizeNames[index]));
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -419,22 +463,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
     }
 
-    /**
-     * Reads the current font size and sets the value in the summary text
-     */
-    public void readFontSizePreference(Preference pref) {
-        try {
-            mCurConfig.updateFrom(ActivityManagerNative.getDefault().getConfiguration());
-        } catch (RemoteException e) {
-            Log.w(TAG, "Unable to retrieve font size");
-        }
-
-        // report the current size in the summary text
-        final Resources res = getResources();
-        String fontDesc = FontDialogPreference.getFontSizeDescription(res, mCurConfig.fontScale);
-        pref.setSummary(getString(R.string.summary_font_size, fontDesc));
-    }
-
     public void writeFontSizePreference(Object objValue) {
         try {
             mCurConfig.fontScale = Float.parseFloat(objValue.toString());
@@ -494,6 +522,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
         return false;
     }
+<<<<<<< HEAD
 
     /**
      * Restore the properties associated with this preference on boot
@@ -549,3 +578,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
     }
 }
+=======
+}
+>>>>>>> 60d2f48... Fix font size not changing
