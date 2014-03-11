@@ -43,13 +43,13 @@ import com.android.settings.R;
 import java.io.File;
 
 public class IconPicker {
-    private static final String ICON_ACTION = "com.slim.ACTION_PICK_ICON";
+    private static final String ICON_ACTION = "android.intent.action.PICK";
     public static final String RESOURCE_NAME = "resource_name";
     public static final String PACKAGE_NAME = "package_name";
 
     public static final int REQUEST_PICK_SYSTEM = 0;
-    public static final int REQUEST_PICK_ICON_PACK = 1;
-    public static final int REQUEST_PICK_GALLERY = 2;
+    public static final int REQUEST_PICK_ICON_PACK = 2;
+    public static final int REQUEST_PICK_GALLERY = 1;
 
     private Activity mParent;
     private Resources mResources;
