@@ -98,7 +98,6 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
         addPreferencesFromResource(R.xml.quicksettings_tiles_style);
 
         prefs = getPreferenceScreen();
-	ContentResolver resolver = getActivity().getContentResolver();
 
         PackageManager pm = getPackageManager();
         Resources systemUiResources;
@@ -168,10 +167,11 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
             mQsTileAlpha.setInitValue((int) (transparency * 100));
             mQsTileAlpha.setOnPreferenceChangeListener(this);
         }
-
-	mFlipQsTiles = (CheckBoxPreference) findPreference(PREF_FLIP_QS_TILES);
-        mFlipQsTiles.setChecked(Settings.System.getInt(resolver,
-                Settings.System.QUICK_SETTINGS_TILES_FLIP, 0) == 1);
+        
+		mFlipQsTiles = (CheckBoxPreference) findPreference(PREF_FLIP_QS_TILES);
+        mFlipQsTiles.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
+                Settings.System.QUICK_SETTINGS_TILES_FLIP, 1) == 1);
+		mFlipQsTiles.setOnPreferenceChangeListener(this);
 
         mTilesPerRow = (ListPreference) prefs.findPreference(PREF_TILES_PER_ROW);
         int tilesPerRow = Settings.System.getInt(getActivity().getContentResolver(),
@@ -231,7 +231,6 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-	ContentResolver resolver = getContentResolver();
         if (!mCheckPreferences) {
             return false;
         }
@@ -248,12 +247,17 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
                     Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE,
                     (Boolean) newValue ? 1 : 0);
             return true;
+        } else if (preference == mFlipQsTiles) {
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.QUICK_SETTINGS_TILES_FLIP,
+                    (Boolean) newValue ? 1 : 0);
+            return true;
         } else if (preference == mQuickTilesBgColor) {
             String hex = ColorPickerPreference.convertToARGB(
                     Integer.valueOf(String.valueOf(newValue)));
             preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getContentResolver(),
+            Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.QUICK_TILES_BG_COLOR,
                     intHex);
             return true;
@@ -262,7 +266,7 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
                     Integer.valueOf(String.valueOf(newValue)));
             preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getContentResolver(),
+            Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.QUICK_TILES_BG_PRESSED_COLOR,
                     intHex);
             return true;
@@ -271,13 +275,13 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
                     Integer.valueOf(String.valueOf(newValue)));
             preference.setSummary(hex);
             int intHex = ColorPickerPreference.convertToColorInt(hex);
-            Settings.System.putInt(getContentResolver(),
+            Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.QUICK_TILES_TEXT_COLOR,
                     intHex);
             return true;
         } else if (preference == mQsTileAlpha) {
             float valNav = Float.parseFloat((String) newValue);
-            Settings.System.putFloat(getContentResolver(),
+            Settings.System.putFloat(getActivity().getContentResolver(),
                     Settings.System.QUICK_TILES_BG_ALPHA, valNav / 100);
             return true;
         }
