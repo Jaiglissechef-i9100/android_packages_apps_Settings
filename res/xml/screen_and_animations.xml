@@ -65,6 +65,12 @@
             android:persistent="false" />
 
 	<PreferenceScreen
+            android:key="interface_animation_scroll"
+            android:fragment="com.android.settings.beanstalk.KeyboardAnimationInterfaceSettings"
+            android:title="@string/ime_animation_title"
+            android:summary="@string/ime_animation_summary" />
+
+	<PreferenceScreen
             android:key="progressbar_settings"
             android:fragment="com.android.settings.cyanogenmod.ProgressBar"
             android:title="@string/progressbar_title" >
