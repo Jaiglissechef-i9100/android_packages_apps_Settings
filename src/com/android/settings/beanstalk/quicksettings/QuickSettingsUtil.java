@@ -58,6 +58,7 @@ import static com.android.internal.util.beanstalk.QSConstants.TILE_VOLUME;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_WIFI;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_WIFIAP;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_REBOOT;
+import static com.android.internal.util.beanstalk.QSConstants.TILE_INTERNALMEMORY;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -179,9 +180,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_CONTACT, R.string.title_tile_contact,
                 "com.android.systemui:drawable/ic_qs_default_user"));
-        registerTile(new QuickSettingsUtil.TileInfo(
-                TILE_PAPIE, R.string.title_tile_pa_pie,
-                "com.android.systemui:drawable/ic_qs_pie_on"));
+	registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_INTERNALMEMORY, R.string.internal_memory_tile,
+                "com.android.systemui:drawable/ic_qs_internalmemory"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {
