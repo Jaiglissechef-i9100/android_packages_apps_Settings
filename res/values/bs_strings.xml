@@ -877,6 +877,9 @@
     <string name="quiet_hours_haptic_on">Haptic feedback will be disabled</string>
     <string name="quiet_hours_haptic_off">Haptic feedback will function as normal</string>
     <string name="quiet_hours_active_from">Active from</string>
+    <string name="quiet_hours_auto_title">Follow ringer mode</string>
+    <string name="quiet_hours_auto_silent">Quiet hours will enable when ringer is set to silent</string>
+    <string name="quiet_hours_auto_vibrate">Quiet hours will enable when ringer is set to vibrate or silent</string>
     <string name="quiet_hours_active_to">to</string>
     <string name="quiet_hours_auto_sms_group">Automatic response</string>
     <string name="quiet_hours_auto_sms_title">Incoming text messages</string>
