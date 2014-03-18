@@ -883,6 +883,7 @@
     <string name="quiet_hours_active_to">to</string>
     <string name="quiet_hours_auto_sms_group">Automatic response</string>
     <string name="quiet_hours_auto_sms_title">Incoming text messages</string>
+    <string name="quiet_hours_auto_starred">Starred contacts only</string>
     <string name="quiet_hours_auto_sms_call_title">Incoming phone calls</string>
     <string name="quiet_hours_auto_string_title">Response to send</string>
     <string name="quiet_hours_auto_string_explain">This message will be sent to anyone who contacts you while
