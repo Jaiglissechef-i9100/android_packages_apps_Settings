@@ -51,10 +51,14 @@
         android:title="@string/vibrate_notif_expand_title"
         android:summary="@string/vibrate_notif_expand_summary" />
 
+    <CheckBoxPreference
+        android:key="disable_fc_notifications"
+        android:title="@string/disable_fc_notifications_title"
+        android:summary="@string/disable_fc_notifications_summary" />
+
     <Preference
         android:key="custom_carrier_label"
         android:title="@string/custom_carrier_label_title" />
-
     </PreferenceCategory>
 
 </PreferenceScreen>
