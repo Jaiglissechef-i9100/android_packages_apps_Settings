@@ -1726,19 +1726,6 @@
     <string name="clock_font_light_italic">Light italic</string>
     <string name="clock_font_normal">Normal</string>
 
-    <!-- Status bar color -->
-    <string name="custom_status_bar_header_title">Status Bar Color</string>
-    <string name="custom_status_bar_color_title">Custom status bar color</string>
-    <string name="status_bar_opaque_color">Opaque color</string>
-    <string name="status_bar_transparent_color">Dimmed color</string>
-    <string name="status_bar_color_reset">Reset status bar color</string>
-    <string name="restart_status_bar_menu_title">Restart status bar</string>
-    <string name="restart_status_bar_title">Restart?</string>
-    <string name="restart_status_bar_message">Restarting the System UI will significally change the values you modify.</string>
-    <string name="custom_system_icon_color_title">Custom system icon color</string>
-    <string name="system_icon_color">Icon color</string>
-    <string name="custom_color_summary">Override the system color of the System UI</string>
-
     <!-- IME animations -->
     <string name="animation_settings_reset_message">Reset all animation settings to default?</string>
     <string name="animation_duration_summary">Set duration</string>
@@ -1780,4 +1767,5 @@
     <!-- Text for forcing expanded notifications -->
     <string name="disable_fc_notifications_title">Diable FC Notifications</string>
     <string name="disable_fc_notifications_summary">This will hide all force close notificaitons</string>
+
 </resources>
