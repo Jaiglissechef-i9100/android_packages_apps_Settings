@@ -30,7 +30,7 @@
         android:key="pref_battery_saver_timerange"
         android:dependency="pref_battery_saver_enable" />
 
-    <com.android.settings.beanstalk.SeekBarPreference
+    <com.android.settings.cyanogenmod.NEWSeekBarPreference
         android:key="pref_battery_saver_mode_change_delay"
         android:persistent="false"
         android:title="@string/pref_battery_saver_mode_change_delay_title"
@@ -73,7 +73,7 @@
         android:summary="@string/pref_battery_saver_battery_summary"
         android:dependency="pref_battery_saver_enable"/>
 
-    <com.android.settings.beanstalk.SeekBarPreference
+    <com.android.settings.cyanogenmod.NEWSeekBarPreference
         android:key="pref_battery_saver_mode_battery_level"
         android:persistent="false"
         android:title="@string/pref_battery_saver_mode_battery_level_title"
@@ -229,7 +229,7 @@
         android:summary="@string/pref_battery_saver_brightness_summary"
         android:dependency="pref_battery_saver_enable"/>
 
-    <com.android.settings.beanstalk.SeekBarPreference
+    <com.android.settings.cyanogenmod.NEWSeekBarPreference
         android:key="pref_battery_saver_mode_brightness_level"
         android:persistent="false"
         android:title="@string/pref_battery_saver_mode_brightness_level_title"
