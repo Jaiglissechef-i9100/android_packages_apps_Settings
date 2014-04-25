@@ -695,6 +695,14 @@
     <string name="ime_switcher_notify">Selector notification</string>
     <string name="ime_switcher_notify_summary">Display input method selector notification</string>
 
+    <!-- Shake Events -->
+    <string name="shake_events_title">Shake events</string>
+    <string name="shake_events_enabled_title">Enable shake listener</string>
+    <string name="shake_events_normal_title">Active shake events</string>
+    <string name="shake_event_x_title">Activity to launch when shaken horizontally</string>
+    <string name="shake_event_y_title">Activity to launch when shaken vertically</string>
+    <string name="shake_event_z_title">Activity to launch when shaken back-and-forth</string>
+
     <!-- Wakeup options -->
     <string name="display_category_wakeup_options_title">Wakeup options</string>
     <string name="pref_volume_wake_title">Volume rocker wake</string>
@@ -1026,6 +1034,7 @@
     <string name="title_tile_music">Music</string>
     <string name="title_tile_reboot">Reboot</string>
     <string name="internal_memory_tile">internal memory</string>
+    <string name="title_tile_shake">Shake events</string>
     <string name="dynamic_tile_ime_switcher">IME switcher</string>
     <string name="dynamic_tile_usb_tether">USB tether</string>
     <string name="dynamic_tile_alarm">Alarm</string>

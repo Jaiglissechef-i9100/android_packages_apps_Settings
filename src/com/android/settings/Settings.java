@@ -103,6 +103,7 @@ import com.android.settings.profiles.AppGroupConfig;
 import com.android.settings.profiles.ProfileConfig;
 import com.android.settings.profiles.ProfileEnabler;
 import com.android.settings.profiles.ProfilesSettings;
+import com.android.settings.beanstalk.ShakeEvents;
 import com.android.settings.tts.TextToSpeechSettings;
 import com.android.settings.users.UserSettings;
 import com.android.settings.vpn2.VpnSettings;
@@ -394,7 +395,8 @@ public class Settings extends PreferenceActivity
         ButtonSettings.class.getName(),
         MoreDeviceSettings.class.getName(),
         ProfilesSettings.class.getName(),
-        PolicyNativeFragment.class.getName()
+        PolicyNativeFragment.class.getName(),
+        ShakeEvents.class.getName()
     };
 
     @Override
@@ -1274,5 +1276,9 @@ public class Settings extends PreferenceActivity
     public static class BatteryIconStyleSettingsActivity extends Settings { /* empty */ }
     public static class DisplayRotationSettingsActivity extends Settings { /* empty */ }
     public static class PerformanceSettingsActivity extends Settings { /* empty */ }
+<<<<<<< HEAD
     public static class PAPieSettingsActivity extends Settings { /* empty */ }
+=======
+    public static class ShakeEventsSettingsActivity extends Settings { /* empty */ }
+>>>>>>> c763417... Settings: Shake To Perform Event (2/2)
 }
