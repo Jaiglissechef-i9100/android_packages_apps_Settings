@@ -700,6 +700,8 @@
     <string name="shake_events_title">Shake events</string>
     <string name="shake_events_enabled_title">Enable shake listener</string>
     <string name="shake_events_normal_title">Active shake events</string>
+    <string name="shake_events_disabled_title">Disabled apps</string>
+    <string name="shake_events_disabled_summary">Shake will be disabled while in these apps</string>
     <string name="shake_event_x_title">Activity to launch when shaken horizontally</string>
     <string name="shake_event_y_title">Activity to launch when shaken vertically</string>
     <string name="shake_event_z_title">Activity to launch when shaken back-and-forth</string>
@@ -742,6 +744,8 @@
     <string name="lockscreen_shortcuts_summary">View or change custom lock screen shortcuts</string>
     <string name="lockscreen_shorcuts_longpress_title">Shortcuts longpress</string>
     <string name="lockscreen_shorcuts_longpress_summary">Open custom lock screen shortcuts on longpress</string>
+
+    <string name="shortcut_action_help_app">app</string>
 
     <!-- Lock screen targets and shortcuts -->
     <string name="picker_activities">Activities</string>
