@@ -24,6 +24,7 @@
     <string name="additional_options_title">Additional options</string>
     <string name="reset_message">Reset all entries to default?</string>
     <string name="style_title">Style</string>
+    <string name="note">NOTE</string>
     <string name="add">Add</string>
 
     <!-- Settings main menu category heading. Rom (Launcher, Themes, System). [CHAR LIMIT=40] -->
@@ -1564,6 +1565,14 @@
     <string name="excluded_apps_title">Excluded applications</string>
     <string name="excluded_apps_summary">Excluded applications will not show up as lockscreen notifications</string>
     <string name="notification_color">Notification background color</string>
+
+    <string name="notifications_on_lockscreen">Notifications on lockscreen</string>
+    <string name="notifications_on_lockscreen_summary">Choose between manners to show pending notifications on lockscreen</string>
+    <string name="notifications_on_lockscreen_warning_summary">Each one of notifications on lockscreen services under (PEEK or/and LOCKSCREEN NOTIFICATIONS) will auto disable the other. Make sure to check when disable one of them if you want to use one of those features again. </string>
+
+    <!--Notification peek-->
+    <string name="notification_peek_title">Notification peek</string>
+    <string name="notification_peek_summary">Show latest notification after picking up your device</string>
 
     <!-- Breathing Notifications -->
     <string name="breathing_notifications_title">Breathing Notifications</string>

@@ -10,8 +10,11 @@
             android:selectable="false" />
 
     <PreferenceCategory
+<<<<<<< HEAD
+        android:key="category_general"
+        android:title="@string/general" >
+=======
         android:title="@string/notification_peek_title" >
-
          <CheckBoxPreference
             android:key="notification_peek"
             android:title="@string/notification_peek_title"
@@ -22,6 +25,7 @@
         android:key="category_general"
         android:title="@string/notifications_on_lockscreen" >
 
+>>>>>>> d1820b9... Settings: PEEK (2/2)
         <CheckBoxPreference
             android:key="lockscreen_notifications"
             android:title="@string/lockscreen_notifications"
