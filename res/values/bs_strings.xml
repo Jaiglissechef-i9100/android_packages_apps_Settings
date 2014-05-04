@@ -1061,6 +1061,9 @@
     <string name="title_tile_reboot">Reboot</string>
     <string name="internal_memory_tile">internal memory</string>
     <string name="title_tile_shake">Shake events</string>
+    <string name="title_tile_fcharge">Fast charge</string>
+    <string name="title_tile_onthego">On-The-Go</string>
+    <string name="dynamic_tile_equalizer">Equalizer</string>
     <string name="dynamic_tile_ime_switcher">IME switcher</string>
     <string name="dynamic_tile_usb_tether">USB tether</string>
     <string name="dynamic_tile_alarm">Alarm</string>

@@ -106,6 +106,12 @@ import static com.android.internal.util.ose.QSConstants.TILE_WIFI;
 import static com.android.internal.util.ose.QSConstants.TILE_WIFIAP;
 import static com.android.internal.util.ose.QSConstants.TILE_REBOOT;
 import static com.android.internal.util.ose.QSConstants.TILE_WEATHER;
+import static com.android.internal.util.ose.QSConstants.TILE_INTERNALMEMORY;
+import static com.android.internal.util.ose.QSConstants.TILE_FCHARGE;
+import static com.android.internal.util.ose.QSConstants.TILE_ONTHEGO;
+import static com.android.internal.util.ose.QSConstants.TILE_SHAKE;
+import static com.android.internal.util.ose.QSConstants.TILE_BATTERYSAVER;
+import static com.android.internal.util.ose.QSConstants.TILE_EQUALIZER;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -347,6 +353,8 @@ public class QuickSettingsUtil {
             return context.getResources().getString(R.string.dynamic_tile_bugreport);
 	} else if (tile.equals(TILE_REMOTEDISPLAY)) {
 	    return context.getResources().getString(R.string.dynamic_tile_remote_display);
+        } else if (tile.equals(TILE_EQUALIZER)) {
+            return context.getResources().getString(R.string.dynamic_tile_equalizer);
         }
         return null;
     }
