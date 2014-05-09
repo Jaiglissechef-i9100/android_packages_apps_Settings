@@ -1986,4 +1986,8 @@
     <string name="gyroscope_sensor_summary">Listen to gyroscope sensor changes</string>
     <string name="proximity_sensor_title">Proximity/Light Sensor</string>
     <string name="proximity_sensor_summary">listening to proximity/light sensor changes</string>
+
+    <!-- Statusbar Second Clock -->
+    <string name="clock_use_second">Use second clock</string>
+    <string name="clock_use_second_summary">Show second in clock</string>
 </resources>
