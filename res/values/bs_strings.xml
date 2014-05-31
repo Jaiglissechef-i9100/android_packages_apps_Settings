@@ -1639,6 +1639,8 @@
     <!-- More recents options -->
     <string name="recents_panel_color_title">Recents panel color</string>
     <string name="recents_panel_color_summary">Select panel color.  Restarts SystemUI</string>
+    <string name="recent_panel_show_topmost_title">Show topmost task</string>
+    <string name="recent_panel_show_topmost_summary">Don\'t exclude the topmost task in recents view</string>
     <string name="large_recent_thumbs_title">Large recent thumbnails</string>
     <string name="large_recent_thumbs_summary">Larger recent thumbnails. Restarts SystemUI</string>
 
