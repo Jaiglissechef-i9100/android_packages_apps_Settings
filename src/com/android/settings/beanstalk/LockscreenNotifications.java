@@ -95,7 +95,7 @@ public class LockscreenNotifications extends SettingsPreferenceFragment implemen
         return isPackageInstalled(PEEK_APPLICATION);
     }
 
-    private boolean isPackageInstalled(String packagename) {
+    public boolean isPackageInstalled(String packagename) {
         PackageManager pm = getActivity().getPackageManager();
         try {
             pm.getPackageInfo(packagename, PackageManager.GET_ACTIVITIES);
