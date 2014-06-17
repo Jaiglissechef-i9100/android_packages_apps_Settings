@@ -64,6 +64,7 @@ import static com.android.internal.util.beanstalk.QSConstants.TILE_REBOOT;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_INTERNALMEMORY;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_FCHARGE;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_ONTHEGO;
+import static com.android.internal.util.beanstalk.QSConstants.TILE_HOVER;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -206,6 +207,9 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_SHAKE, R.string.title_tile_shake,
                 "com.android.systemui:drawable/ic_qs_shake_events"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_HOVER, R.string.title_tile_hover,
+                "com.android.systemui:drawable/ic_qs_hover_on"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {
