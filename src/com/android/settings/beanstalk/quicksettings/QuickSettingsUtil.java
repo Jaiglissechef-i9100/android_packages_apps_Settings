@@ -112,6 +112,7 @@ import static com.android.internal.util.ose.QSConstants.TILE_ONTHEGO;
 import static com.android.internal.util.ose.QSConstants.TILE_SHAKE;
 import static com.android.internal.util.ose.QSConstants.TILE_BATTERYSAVER;
 import static com.android.internal.util.ose.QSConstants.TILE_EQUALIZER;
+import static com.android.internal.util.ose.QSConstants.TILE_HOVER;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -257,6 +258,12 @@ public class QuickSettingsUtil {
         registerTile(new QuickSettingsUtil.TileInfo(
                 TILE_WEATHER, R.string.tile_weather,
                 "com.android.systemui:drawable/weather_preferences"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_BATTERYSAVER, R.string.title_tile_batterysaver,
+                "com.android.systemui:drawable/ic_qs_battery_saver_on"));
+        registerTile(new QuickSettingsUtil.TileInfo(
+                TILE_HOVER, R.string.title_tile_hover,
+                "com.android.systemui:drawable/ic_qs_hover_on"));
     }
 
     private static void registerTile(QuickSettingsUtil.TileInfo info) {
