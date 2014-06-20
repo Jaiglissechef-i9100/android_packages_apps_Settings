@@ -78,7 +78,6 @@
     <uses-permission android:name="android.permission.CHANGE_PHONE_BLACKLIST" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SYSTEM_NOTIFICATION_LISTENER" />
-    <uses-permission android:name="android.permission.CHANGE_HEADS_UP_STATE" />
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
 
     <permission
@@ -2321,6 +2320,8 @@
         <service android:name=".aokp.weather.WeatherService" />
 
         <service android:name=".search.SearchPopulator"/>
+
+        <activity android:name=".ose.headsup.HeadsUpSettings" />
 
     </application>
 </manifest>

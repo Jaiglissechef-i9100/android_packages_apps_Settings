@@ -121,6 +121,8 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
     private AppSelectListPreference mClockShortcut;
     private AppSelectListPreference mCalendarShortcut;
 
+    private Preference mHeadsUp;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -150,6 +152,8 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
         mCalendarShortcut.setOnPreferenceChangeListener(this);
 
         updateClockCalendarSummary();
+
+        mHeadsUp = findPreference(Settings.System.HEADS_UP_NOTIFICATION);
 
         PackageManager pm = getPackageManager();
         boolean isMobileData = pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY);
@@ -308,6 +312,10 @@ public class NotificationDrawerQsSettings extends SettingsPreferenceFragment
     @Override
     public void onResume() {
         super.onResume();
+        boolean headsUpEnabled = Settings.System.getInt(
+                   getContentResolver(), Settings.System.HEADS_UP_NOTIFICATION, 0) == 1;
+        mHeadsUp.setSummary(headsUpEnabled
+                   ? R.string.summary_heads_up_enabled : R.string.summary_heads_up_disabled);
         QuickSettingsUtil.updateAvailableTiles(getActivity());
         updateQuickSettingsOptions();
     }

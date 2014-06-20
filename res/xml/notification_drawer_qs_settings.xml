@@ -19,58 +19,10 @@ limitations under the License.
     <PreferenceCategory
         android:title="@string/heads_up_title" />
 
-    <CheckBoxPreference
-        android:key="heads_up_expanded"
-        android:title="@string/heads_up_expanded_title"
-        android:summary="@string/heads_up_expanded_summary"
-        android:persistent="false"
-        android:defaultValue="false" />
-
-    <CheckBoxPreference
-	android:key="heads_up_floating_window"
-	android:title="@string/heads_up_floating_window_title"
-	android:summary="@string/heads_up_floating_window_summary"
-	android:persistent="false"
-	android:defaultValue="true" />
-
-    <PreferenceCategory
-            android:key="shortcuts"
-            android:title="@string/notification_bar_shortcuts">
-
-        <com.android.settings.beanstalk.AppSelectListPreference
-                android:key="clock_shortcut"
-                android:title="@string/clock_shortcut_title"
-                android:positiveButtonText="@string/default_shortcut"
-                android:persistent="false"/>
-
-        <com.android.settings.beanstalk.AppSelectListPreference
-                android:key="calendar_shortcut"
-                android:title="@string/calendar_shortcut_title"
-                android:positiveButtonText="@string/default_shortcut"
-                android:persistent="false"/>
-
-    </PreferenceCategory>
-
-    <CheckBoxPreference
-        android:key="heads_up_show_update"
-        android:title="@string/heads_up_show_updates_title"
-        android:summary="@string/heads_up_show_updates_summary"
-        android:persistent="false"
-        android:defaultValue="false" />
-
-    <ListPreference
-        android:key="heads_up_snooze_time"
-        android:title="@string/heads_up_snooze_title"
-        android:entries="@array/heads_up_snooze_entries"
-        android:entryValues="@array/heads_up_snooze_values"
-        android:persistent="false" />
-
-    <ListPreference
-        android:key="heads_up_time_out"
-        android:title="@string/heads_up_time_out_title"
-        android:entries="@array/heads_up_time_out_entries"
-        android:entryValues="@array/heads_up_time_out_values"
-        android:persistent="false" />
+    <Preference
+        android:key="heads_up_enabled"
+        android:fragment="com.android.settings.beanstalk.headsup.HeadsUpSettings"
+        android:title="@string/category_heads_up" />
 
     <PreferenceCategory
         android:title="@string/notification_drawer_title" />
@@ -83,6 +35,7 @@ limitations under the License.
         android:persistent="false" />
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/prefs_weather"
         android:key="weather"
         android:fragment="com.android.settings.aokp.Weather"
         android:title="@string/title_weather"/>
