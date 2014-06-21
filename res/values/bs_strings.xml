@@ -2362,5 +2362,9 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
 
     <!-- Add application dialog box title -->
     <string name="profile_choose_app">Choose app</string>
+	
+    <!-- Text for disabling immersive mode messages -->
+    <string name="disable_immersive_message_title">Diable Immersive Mode Messages</string>
+    <string name="disable_immersive_message_summary">This will hide all Immersive Mode Messages</string>
 
 </resources>

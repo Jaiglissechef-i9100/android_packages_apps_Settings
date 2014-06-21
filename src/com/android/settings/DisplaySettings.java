@@ -80,31 +80,20 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_SCREEN_COLOR_SETTINGS = "screencolor_settings";
     private static final String KEY_DISPLAY_COLOR = "color_calibration";
     private static final String KEY_DISPLAY_GAMMA = "gamma_tuning";
+    private static final String DISABLE_IMMERSIVE_MESSAGE = "disable_immersive_message";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
-<<<<<<< HEAD
     private CheckBoxPreference mAccelerometer;
     private FontDialogPreference mFontSizePref;
     private CheckBoxPreference mWakeWhenPluggedOrUnplugged;
     private CheckBoxPreference mStatusbarSliderPreference;
 
     private PreferenceScreen mNotificationPulse;
-=======
-    private static final String ROTATION_ANGLE_0 = "0";
-    private static final String ROTATION_ANGLE_90 = "90";
-    private static final String ROTATION_ANGLE_180 = "180";
-    private static final String ROTATION_ANGLE_270 = "270";
-
-    private PreferenceScreen mDisplayRotationPreference;
-    private WarnedListPreference mFontSizePref;
-    private CheckBoxPreference mNotificationPulse;
-    private PreferenceCategory mLightOptions;
-    private PreferenceScreen mNotificationLight;
->>>>>>> 60d2f48... Fix font size not changing
     private PreferenceScreen mBatteryPulse;
     private PreferenceScreen mDisplayRotationPreference;
     private PreferenceScreen mScreenColorSettings;
+    private CheckBoxPreference mDisableIM;
 
     private final Configuration mCurConfig = new Configuration();
 
@@ -268,6 +257,10 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
         summary.append(" " + getString(R.string.display_rotation_unit));
         mDisplayRotationPreference.setSummary(summary);
+
+        mDisableIM = (CheckBoxPreference) findPreference(DISABLE_IMMERSIVE_MESSAGE);
+        mDisableIM.setChecked((Settings.System.getInt(resolver,
+                Settings.System.DISABLE_IMMERSIVE_MESSAGE, 0) == 1));
     }
 
     private void updateTimeoutPreferenceDescription(long currentTimeout) {
@@ -487,6 +480,12 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
             return true;
         } else if (preference == mTapToWake) {
             return TapToWake.setEnabled(mTapToWake.isChecked());
+            return true;
+        } else if  (preference == mDisableIM) {
+            boolean checked = ((CheckBoxPreference)preference).isChecked();
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.DISABLE_IMMERSIVE_MESSAGE, checked ? 1:0);
+            return true;
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
@@ -522,7 +521,6 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
         return false;
     }
-<<<<<<< HEAD
 
     /**
      * Restore the properties associated with this preference on boot
@@ -578,6 +576,3 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         }
     }
 }
-=======
-}
->>>>>>> 60d2f48... Fix font size not changing
