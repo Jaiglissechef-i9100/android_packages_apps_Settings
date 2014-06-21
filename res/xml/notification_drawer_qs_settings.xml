@@ -121,6 +121,12 @@ limitations under the License.
             android:summary="@string/summary_collapse_panel"
             android:defaultValue="false" />
 
+	<com.android.settings.beanstalk.SystemCheckBoxPreference
+            android:key="quick_settings_tiles_vibrate"
+            android:title="@string/haptic_qs_tiles_title"
+            android:summary="@string/haptic_qs_tiles_summary"
+            android:defaultValue="false" />
+
         <PreferenceScreen
             android:key="quicksettings_tiles_style"
             android:fragment="com.android.settings.beanstalk.quicksettings.QuickSettingsTilesStyle"
