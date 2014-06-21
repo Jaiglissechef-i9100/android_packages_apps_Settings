@@ -51,6 +51,7 @@ public class Halo extends SettingsPreferenceFragment
     private static final String KEY_HALO_HIDE = "halo_hide";
     private static final String KEY_HALO_REVERSED = "halo_reversed";
     private static final String KEY_HALO_SIZE = "halo_size";
+    private static final String KEY_HALO_COLOR = "halo_color";
     private static final String KEY_HALO_PAUSE = "halo_pause";
     private static final String KEY_HALO_NINJA = "halo_ninja";
     private static final String KEY_HALO_MSGBOX = "halo_msgbox";
@@ -68,6 +69,7 @@ public class Halo extends SettingsPreferenceFragment
     private CheckBoxPreference mHaloEnabled;
     private ListPreference mHaloState;
     private ListPreference mHaloSize;
+    private ColorPickerPreference mHaloColor;
     private CheckBoxPreference mHaloHide;
     private CheckBoxPreference mHaloReversed;
     private CheckBoxPreference mHaloPause;
@@ -97,6 +99,9 @@ public class Halo extends SettingsPreferenceFragment
 
         mNotificationManager = INotificationManager.Stub.asInterface(
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
+
+	mHaloColor = (ColorPickerPreference) prefSet.findPreference(KEY_HALO_COLOR);
+        mHaloColor.setOnPreferenceChangeListener(this);
 
         mHaloEnabled = (CheckBoxPreference) findPreference(KEY_HALO_ENABLED);
         mHaloEnabled.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
@@ -274,6 +279,11 @@ public class Halo extends SettingsPreferenceFragment
             } catch (android.os.RemoteException ex) {
                 // System dead
             }
+            return true;
+	} else if (preference == mHaloColor) {
+            int haloColor = Integer.valueOf(String.valueOf(newValue));
+            Settings.System.putInt(getActivity().getContentResolver(),
+                    Settings.System.HALO_COLOR, haloColor);
             return true;
         } else if (preference == mHaloMsgAnimate) {
             int haloMsgAnimation = Integer.valueOf((String) newValue);
