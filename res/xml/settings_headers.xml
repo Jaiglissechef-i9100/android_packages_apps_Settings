@@ -74,6 +74,13 @@
         android:icon="@drawable/ic_settings_halo" 
         android:title="@string/halo_settings_title" />
 
+    <!-- Hover -->
+    <header
+        android:id="@+id/hover_settings"
+        android:icon="@drawable/ic_settings_hover"
+        android:fragment="com.android.settings.beanstalk.HoverSettings"
+        android:title="@string/hover_settings_title" />
+
     <!-- TRDS -->
     <header
         android:id="@+id/trds_settings"
