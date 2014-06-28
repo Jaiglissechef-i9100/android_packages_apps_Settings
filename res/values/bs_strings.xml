@@ -2362,4 +2362,8 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="ime_navigation_up_down">up / down</string>
     <string name="ime_navigation_home_end">home / end</string>
 
+    <!-- Search -->
+    <string name="settings_search_action_bar_button">Search</string>
+    <string name="settings_search_autocompleteview_hint">Search settings</string>
+
 </resources>

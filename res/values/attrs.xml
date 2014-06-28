@@ -133,5 +133,9 @@
         <attr name="maximum" format="integer" />
         <attr name="minimum" format="integer" />
         <attr name="interval" format="integer" />
+
+    <declare-styleable name="SearchableInfo">
+        <attr name="includeXmlForSearch" format="reference" />
+        <attr name="excludeFromSearch" format="boolean" />
     </declare-styleable>
 </resources>

@@ -15,8 +15,8 @@
 -->
 
 <preference-headers
-        xmlns:android="http://schemas.android.com/apk/res/android">
-
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <!-- WIRELESS and NETWORKS -->
     <header android:id="@+id/wireless_section"
@@ -24,6 +24,7 @@
 
     <!-- Wifi -->
     <header
+        settings:includeXmlForSearch="@xml/wifi_settings"
         android:id="@+id/wifi_settings"
         android:fragment="com.android.settings.wifi.WifiSettings"
         android:title="@string/wifi_settings_title"
@@ -31,6 +32,7 @@
 
     <!-- Bluetooth -->
     <header
+        settings:includeXmlForSearch="@xml/bluetooth_settings"
         android:id="@+id/bluetooth_settings"
         android:fragment="com.android.settings.bluetooth.BluetoothSettings"
         android:title="@string/bluetooth_settings_title"
@@ -38,6 +40,7 @@
 
     <!-- Mobile networks -->
     <header
+        settings:includeXmlForSearch="@xml/mobile_network_settings"
         android:id="@+id/mobile_network_settings"
         android:icon="@drawable/ic_settings_mobilenetworks"
         android:title="@string/network_settings_title"
@@ -62,6 +65,7 @@
 
     <!-- Other wireless and network controls -->
     <header
+        settings:includeXmlForSearch="@xml/wireless_settings"
         android:id="@+id/wireless_settings"
         android:title="@string/radio_controls_title"
         android:breadCrumbTitle="@string/wireless_networks_settings_title"
@@ -72,6 +76,7 @@
 
     <!--User Interface -->
     <header
+        settings:includeXmlForSearch="@xml/beanstalk_interface_settings"
         android:id="@+id/interface_settings"
         android:icon="@drawable/ic_settings_about_beanstalk"
         android:fragment="com.android.settings.beanstalk.InterfaceSettings"
@@ -102,6 +107,7 @@
 
     <!-- Home -->
     <header
+        settings:includeXmlForSearch="@xml/home_selection"
         android:id="@+id/home_settings"
         android:icon="@drawable/ic_settings_home"
         android:fragment="com.android.settings.HomeSettings"
@@ -116,14 +122,19 @@
 
     <!-- Themes -->
     <header
+        settings:includeXmlForSearch="@xml/theme_settings"
         android:id="@+id/theme_settings"
+        android:fragment="com.android.settings.beanstalk.themes.ThemeSettings"
+        android:icon="@drawable/ic_settings_theme"
+        android:title="@string/theme_settings_title" />
+
+    <header
+        settings:includeXmlForSearch="@xml/themes_settings"
+        android:id="@+id/themes_settings"
         android:title="@string/themes_settings_title"
         android:breadCrumbTitle="@string/themes_settings_title"
-        <intent
-            android:action="com.android.action.MAIN"
-            android:targetPackage="com.tmobile.themechooser"
-            android:targetClass="com.tmobile.themechooser.ThemeChooser" />
-    </header>
+        android:fragment="com.android.settings.ThemeSettings"
+        android:icon="@drawable/prd_ic_themepacks" />
 
     <!-- DEVICE -->
     <header android:id="@+id/device_section"
@@ -131,6 +142,7 @@
 
     <!-- Sound -->
     <header
+        settings:includeXmlForSearch="@xml/sound_settings"
         android:id="@+id/sound_settings"
         android:icon="@drawable/ic_settings_sound"
         android:fragment="com.android.settings.SoundSettings"
@@ -138,11 +150,11 @@
 
     <!-- Display -->
     <header
+        settings:includeXmlForSearch="@xml/display_settings"
         android:id="@+id/display_settings"
         android:icon="@drawable/ic_settings_display"
         android:fragment="com.android.settings.DisplaySettings"
         android:title="@string/display_settings" />
-
 
     <!-- Buttons -->
     <header
@@ -153,6 +165,7 @@
 
     <!-- Storage -->
     <header
+        settings:includeXmlForSearch="@xml/device_info_memory"
         android:id="@+id/storage_settings"
         android:fragment="com.android.settings.deviceinfo.Memory"
         android:icon="@drawable/ic_settings_storage"
@@ -170,6 +183,7 @@
 
     <!-- Battery -->
     <header
+        settings:includeXmlForSearch="@xml/battery_settings"
         android:id="@+id/battery_settings"
         android:fragment="com.android.settings.fuelgauge.PowerUsageSummary"
         android:icon="@drawable/ic_settings_battery"
@@ -177,6 +191,7 @@
 
     <!-- Application Settings -->
     <header
+        settings:includeXmlForSearch="@xml/application_settings"
         android:fragment="com.android.settings.applications.ManageApplications"
         android:icon="@drawable/ic_settings_applications"
         android:title="@string/applications_settings"
@@ -184,6 +199,7 @@
 
     <!-- Manage users -->
     <header
+        settings:includeXmlForSearch="@xml/user_settings"
         android:fragment="com.android.settings.users.UserSettings"
         android:icon="@drawable/ic_settings_multiuser"
         android:title="@string/user_settings_title"
@@ -245,6 +261,7 @@
 
     <!-- Language -->
     <header
+        settings:includeXmlForSearch="@xml/language_settings"
         android:id="@+id/language_settings"
         android:fragment="com.android.settings.inputmethod.InputMethodAndLanguageSettings"
         android:icon="@drawable/ic_settings_language"
@@ -255,6 +272,7 @@
          we are leaving it as-is in order to not complicate future merges but rather adding a new
          PrivacySettings class under .cyanogenmod above to handle the 'real' privacy items -->
     <header
+        settings:includeXmlForSearch="@xml/privacy_settings"
         android:fragment="com.android.settings.PrivacySettings"
         android:icon="@drawable/ic_settings_backup"
         android:title="@string/privacy_settings"
@@ -262,13 +280,13 @@
 
     <!--  ACCOUNTS section -->
     <header
-            android:id="@+id/account_settings"
-            android:title="@string/account_settings" />
+        android:id="@+id/account_settings"
+        android:title="@string/account_settings" />
 
     <header
-            android:id="@+id/account_add"
-            android:title="@string/add_account_label"
-            android:icon="@drawable/ic_menu_add_dark">
+        android:id="@+id/account_add"
+        android:title="@string/add_account_label"
+        android:icon="@drawable/ic_menu_add_dark">
         <intent
             android:action="android.settings.ADD_ACCOUNT_SETTINGS"/>
     </header>
@@ -297,13 +315,39 @@
 
     <!-- Date & Time -->
     <header
+        settings:includeXmlForSearch="@xml/date_time_prefs"
         android:id="@+id/date_time_settings"
         android:fragment="com.android.settings.DateTimeSettings"
         android:icon="@drawable/ic_settings_date_time"
         android:title="@string/date_and_time_settings_title" />
 
+    <!-- Location -->
+    <header
+        settings:includeXmlForSearch="@xml/location_settings"
+        android:fragment="com.android.settings.location.LocationSettings"
+        android:icon="@drawable/ic_settings_location"
+        android:title="@string/location_settings_title"
+        android:id="@+id/location_settings" />
+
+    <!-- Language -->
+    <header
+        settings:includeXmlForSearch="@xml/language_settings"
+        android:id="@+id/language_settings"
+        android:fragment="com.android.settings.inputmethod.InputMethodAndLanguageSettings"
+        android:icon="@drawable/ic_settings_language"
+        android:title="@string/language_settings" />
+
+    <!-- Security -->
+    <header
+        settings:includeXmlForSearch="@xml/security_settings"
+        android:fragment="com.android.settings.SecuritySettings"
+        android:icon="@drawable/ic_settings_security"
+        android:title="@string/security_settings_title"
+        android:id="@+id/security_settings" />
+
     <!-- Accessibility feedback -->
     <header
+        settings:includeXmlForSearch="@xml/accessibility_settings"
         android:id="@+id/accessibility_settings"
         android:fragment="com.android.settings.accessibility.AccessibilitySettings"
         android:icon="@drawable/ic_settings_accessibility"
@@ -329,6 +373,7 @@
 
     <!-- Development -->
     <header
+        settings:includeXmlForSearch="@xml/development_prefs"
         android:id="@+id/development_settings"
         android:fragment="com.android.settings.DevelopmentSettings"
         android:icon="@drawable/ic_settings_development"
@@ -336,6 +381,7 @@
 
     <!-- About Device -->
     <header
+        settings:includeXmlForSearch="@xml/device_info_settings"
         android:id="@+id/about_settings"
         android:fragment="com.android.settings.DeviceInfoSettings"
         android:icon="@drawable/ic_settings_about"
