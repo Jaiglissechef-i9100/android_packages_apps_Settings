@@ -2261,6 +2261,16 @@
         <item>color</item>
         <item>mono</item>
         <item>vclouds</item>
+
+    <!-- NavBar IME Cursor Longpress -->
+    <string-array name="ime_cursor_longpress_action_entries">
+        <item>@string/ime_navigation_up_down</item>
+        <item>@string/ime_navigation_home_end</item>
+    </string-array>
+
+   <string-array name="ime_cursor_longpress_action_values">
+        <item>0</item>
+        <item>1</item>
     </string-array>
 
 </resources>
