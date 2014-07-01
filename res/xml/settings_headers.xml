@@ -40,7 +40,6 @@
 
     <!-- Mobile networks -->
     <header
-        settings:includeXmlForSearch="@xml/mobile_network_settings"
         android:id="@+id/mobile_network_settings"
         android:icon="@drawable/ic_settings_mobilenetworks"
         android:title="@string/network_settings_title"
@@ -183,7 +182,7 @@
 
     <!-- Battery -->
     <header
-        settings:includeXmlForSearch="@xml/battery_settings"
+        settings:includeXmlForSearch="@xml/power_usage_summary"
         android:id="@+id/battery_settings"
         android:fragment="com.android.settings.fuelgauge.PowerUsageSummary"
         android:icon="@drawable/ic_settings_battery"

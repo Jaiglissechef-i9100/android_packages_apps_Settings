@@ -31,7 +31,6 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.IntentService;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -54,10 +53,24 @@ import android.util.Xml;
 
 import com.android.internal.util.XmlUtils;
 
+import com.android.settings.R;
+import com.android.settings.search.SettingsSearchFilterAdapter.SearchInfo;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
 public class SearchPopulator extends IntentService {
 
     private static final String TAG = SearchPopulator.class.getSimpleName();
-    private static final String LAST_PACKAGE_HASH = "last_package_hash";
+    protected static final String LAST_PACKAGE_HASH = "last_package_hash";
+
     private ResultReceiver mNotifier;
 
     public SearchPopulator() {
