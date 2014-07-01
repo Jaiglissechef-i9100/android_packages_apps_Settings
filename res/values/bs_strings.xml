@@ -586,6 +586,7 @@
     <string name="ad_hide_low_priority_summary">Hide low priority notifications such as those from Google Now.</string>
     <string name="ad_pocket_mode_title">Pocket mode</string>
     <string name="ad_pocket_mode_summary">Show active display notifications when you take the device out of your pocket.</string>
+    <string name="ad_disabled_summary">Active Display is currently disabled, to re-enable turn off Peek and Lockscreen notification pocket mode</string>
     <string name="ad_redisplay_title">Redisplay notifications</string>
     <string name="ad_timeout_title">Display timeout</string>
     <string name="ad_threshold_title">Threshold to proximity</string>
@@ -1495,30 +1496,30 @@
     <!-- Lockscreen Notifications -->
     <string name="lockscreen_notifications">Lockscreen notifications</string>
     <string name="Lockscreen_notifications_header">Lockscreen Notifications</string>
-    <string name="lockscreen_notifications_summary">Show pending notifications on lockscreen</string>
+    <string name="lockscreen_notifications_summary">Show current pending notifications</string>
     <string name="pocket_mode">Pocket mode</string>
-    <string name="pocket_mode_summary">Turn screen on and show all notifications when device is pulled out of pocket. Turn screen off when device gets back into pocket.</string>
+    <string name="pocket_mode_summary">Screen on and show notifications</string>
     <string name="show_always">Show always</string>
-    <string name="show_always_summary">Always turn screen on when pulled out of pocket, even when there are no notifications pending</string>
+    <string name="show_always_summary">Screen on when removed from pocket</string>
     <string name="hide_low_priority">Hide low priority</string>
-    <string name="hide_low_priority_summary">Hide low priority notifications such as Google Now weather notifications</string>
+    <string name="hide_low_priority_summary">Hides low priority notifications</string>
     <string name="hide_non_clearable">Hide non clearable</string>
     <string name="hide_non_clearable_summary">Hide all non clearable notifications</string>
-    <string name="dismiss_all">Allow dismissing all notifications</string>
-    <string name="dismiss_all_summary">Allow dismissing even non clearable notifications. Of course, they\'re just hidden from lockscreen and not from the notification panel.</string>
+    <string name="dismiss_all">Allow dismissing all</string>
+    <string name="dismiss_all_summary">Ability to dismiss notifications</string>
     <string name="expanded_view">Expanded notification view</string>
-    <string name="expanded_view_summary">Add possibility to toggle between normal and expanded viewby longpress. The expanded view sometimes shows more private information so you might want to disable it.</string>
+    <string name="expanded_view_summary">Switch between normal and expanded</string>
     <string name="force_expanded_view">Force expanded view</string>
-    <string name="force_expanded_view_summary">Show notifications expanded by default. You still will be able to toggle between expanded and normal view.</string>
+    <string name="force_expanded_view_summary">Show notification view as expanded</string>
     <string name="wake_on_notification">Wake on notification</string>
-    <string name="wake_on_notification_summary">Wake device when a new notification is received</string>
+    <string name="wake_on_notification_summary">Wake when notification is received</string>
     <string name="notifications_height">Notification count</string>
-    <string name="notifications_height_summary">Number of notifications displayed at once</string>
-    <string name="offset_top">Offset to the top of the screen:</string>
+    <string name="notifications_height_summary">Number of notifications displayed</string>
+    <string name="offset_top">Offset value to top of screen</string>
     <string name="privacy_mode">Privacy Mode</string>
-    <string name="privacy_mode_summary">Disables notifications from beeing shown and dismissed. This way, you just see the icons of your notifications.</string>
+    <string name="privacy_mode_summary">Only shows icons for notifications</string>
     <string name="excluded_apps_title">Excluded applications</string>
-    <string name="excluded_apps_summary">Excluded applications will not show up as lockscreen notifications</string>
+    <string name="excluded_apps_summary">Excluded applications will not show</string>
     <string name="notification_color">Notification background color</string>
 
     <string name="dynamic_width">Dynamic width</string>
@@ -1531,6 +1532,7 @@
     <!--Notification peek-->
     <string name="notification_peek_title">Notification peek</string>
     <string name="notification_peek_summary">Show latest notification after picking up your device</string>
+    <string name="notification_peek_disabled_summary">Peek is currently disabled, to re-enable turn off Active Display and Lockscreen Notification pocket mode</string>
     <string name="peek_wake_timeout_title">Peek wake timeout</string>
     <string name="peek_pickup_timeout_title">Peek pickup timeout</string>
     <string name="peek_pickup_10seconds">10 seconds (default)</string>

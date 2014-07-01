@@ -16,6 +16,8 @@
 
 package com.android.settings.beanstalk;
 
+import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.hardware.SensorManager;
 import android.os.Bundle;
@@ -26,9 +28,13 @@ import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
 import android.provider.Settings;
+import android.provider.Settings.SettingNotFoundException;
+import android.text.format.DateFormat;
 import android.text.TextUtils;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
+
+import com.android.internal.util.beanstalk.DeviceUtils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -81,6 +87,8 @@ public class ActiveDisplaySettings extends SettingsPreferenceFragment implements
         mEnabledPref.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.ENABLE_ACTIVE_DISPLAY, 0) == 1));
         mEnabledPref.setOnPreferenceChangeListener(this);
+
+        disablePref();
 
         mShowTextPref = (CheckBoxPreference) findPreference(KEY_SHOW_TEXT);
         mShowTextPref.setChecked((Settings.System.getInt(getContentResolver(),
@@ -296,5 +304,19 @@ public class ActiveDisplaySettings extends SettingsPreferenceFragment implements
         }
         Settings.System.putString(getContentResolver(),
                 Settings.System.ACTIVE_DISPLAY_EXCLUDED_APPS, builder.toString());
+    }
+
+    private void disablePref() {
+        ContentResolver resolver = getActivity().getContentResolver();
+        boolean enabled = Settings.System.getInt(resolver,
+                Settings.System.PEEK_STATE, 0) == 1||
+                  (Settings.System.getInt(resolver,
+                  Settings.System.LOCKSCREEN_NOTIFICATIONS_POCKET_MODE, 0) == 1);
+        if (enabled) {
+            Settings.System.putInt(resolver,
+                Settings.System.ENABLE_ACTIVE_DISPLAY, 0);
+            mEnabledPref.setEnabled(false);;
+            mEnabledPref.setSummaryOff(R.string.ad_disabled_summary);
+        }
     }
 }
