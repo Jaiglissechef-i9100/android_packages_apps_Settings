@@ -313,8 +313,8 @@ public class Settings extends PreferenceActivity
         Intent i = new Intent(this, SearchPopulator.class);
         i.putExtra(NOTIFIER_EXTRA, new SearchNotifier(new Handler()));
         startService(i);
-        mActionBar = getActionBar();
-        mActionBar.setDisplayShowCustomEnabled(true);
+
+        startPopulatingSearchData();
 
         mAuthenticatorHelper = new AuthenticatorHelper();
         mAuthenticatorHelper.updateAuthDescriptions(this);
@@ -361,6 +361,9 @@ public class Settings extends PreferenceActivity
             getActionBar().setDisplayHomeAsUpEnabled(false);
             getActionBar().setHomeButtonEnabled(false);
         }
+
+        mActionBar = getActionBar();
+        mActionBar.setDisplayShowCustomEnabled(true);
     }
 
     @Override
