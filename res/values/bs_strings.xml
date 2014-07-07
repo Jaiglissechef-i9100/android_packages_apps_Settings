@@ -887,6 +887,7 @@
     <string name="quiet_hours_title">Quiet hours</string>
     <string name="quiet_hours_summary">Configure the hours the device should be quiet</string>
     <string name="quiet_hours_start">Start of quiet hours</string>
+    <string name="quiet_hours_reset_times">Reset all times to default?</string>
     <string name="quiet_hours_start_summary">When to start enforcing quiet hours</string>
     <string name="quiet_hours_end">End of quiet hours</string>
     <string name="quiet_hours_end_summary">When to stop enforcing quiet hours</string>
