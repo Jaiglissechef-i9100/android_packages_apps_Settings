@@ -2451,4 +2451,8 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="block_notifications_title">Filter notifications</string>
     <string name="no_filters_title">No filters set</string>
 
+    <!-- Proximity wake -->
+    <string name="proximity_wake_title">Proximity wake-up</string>
+    <string name="proximity_wake_summary">Use proximity sensor to help decide whether to wake device up</string>
+
 </resources>
