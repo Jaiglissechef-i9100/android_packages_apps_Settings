@@ -1095,7 +1095,6 @@
     <string name="custom_tile_null_warning">An action must be set first</string>
     <string name="custom_tile_dialog_extra_text">Advanced tile detected. Your tile will now change states when adjusted from anywhere. You may optionally input an icon and label for the toggle to switch to if it doesn\'t recognize the state it\'s in.</string>
     <string name="custom_tile_resolve_name">Unknown</string>
-    <string name="title_tile_hover">Hover</string>
 
     <!-- QuickSettings style options -->
     <string name="quicksettings_tiles_style">Style</string>
@@ -2021,7 +2020,6 @@
 
     <!-- Hover settings -->
     <string name="hover_settings_title">Hover</string>
-    <string name="hover_active_title">Activate Hover</string>
     <string name="hover_require_fullscreen_mode_title">Require Fullscreen-Mode</string>
     <string name="hover_require_fullscreen_mode_summary">Only show up when StatusBar is hidden</string>
     <string name="hover_exclude_low_priority_title">Exclude low priority</string>
