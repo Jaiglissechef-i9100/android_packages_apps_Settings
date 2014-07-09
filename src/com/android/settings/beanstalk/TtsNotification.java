@@ -75,7 +75,7 @@ public class TtsNotification extends SettingsPreferenceFragment implements
     private static final int MENU_RESET = Menu.FIRST;
 
     private SwitchPreference mEnableVoiceTTS;
-    private SeekBarPreferenceCham mVoiceVolume;
+    private SeekBarPreferenceChOS mVoiceVolume;
     private CheckBoxPreference mEnableVoiceTTScall;
     private CheckBoxPreference mEnableVoiceTTSsms;
     private CheckBoxPreference mEnableVoiceTTSsmsRead;
@@ -107,7 +107,7 @@ public class TtsNotification extends SettingsPreferenceFragment implements
         mEnableVoiceTTS.setChecked(mShareprefs.getBoolean(IntentReceiver.ENABLED, false));
         mEnableVoiceTTS.setOnPreferenceChangeListener(this);
 
-        mVoiceVolume = (SeekBarPreferenceCham) prefSet.findPreference(KEY_VOICE_TTS_VOLUME);
+        mVoiceVolume = (SeekBarPreferenceChOS) prefSet.findPreference(KEY_VOICE_TTS_VOLUME);
         mVoiceVolume.setValue((mShareprefs.getInt(IntentReceiver.VOICE_VOLUME, 8) * MULTIPLIER_VOLUME));
         mVoiceVolume.setOnPreferenceChangeListener(this);
 
