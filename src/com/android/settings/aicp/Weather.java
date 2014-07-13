@@ -93,7 +93,7 @@ public class Weather extends SettingsPreferenceFragment implements
         mWeatherNotification.setChecked(enableWeatherNotification);
         mWeatherNotification.setOnPreferenceChangeListener(this);
 
-        boolean enableWeatherIcon = Settings.AOKP.getBoolean(getContentResolver(),
+        boolean enableWeatherIcon = Settings.System.getBoolean(getContentResolver(),
                 Settings.System.SYSTEMUI_WEATHER_ICON, false);
         mWeatherIcon = (CheckBoxPreference) prefSet.findPreference(PREF_SYSTEMUI_WEATHER_ICON);
         mWeatherIcon.setChecked(enableWeatherIcon);
@@ -140,7 +140,7 @@ public class Weather extends SettingsPreferenceFragment implements
                     ((Boolean) objValue) ? true : false);
             openWeatherWarning();
         } else if (preference == mWeatherIcon) {
-            Settings.AOKP.putBoolean(resolver,
+            Settings.System.putBoolean(resolver,
                     Settings.System.SYSTEMUI_WEATHER_ICON,
                     ((Boolean) objValue) ? true : false);
             openWeatherWarning();
