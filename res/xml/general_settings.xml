@@ -31,6 +31,11 @@
         android:fragment="com.android.settings.beanstalk.SystemappRemover"
         android:title="@string/system_app_remover" />
 
+    <PreferenceScreen
+	android:key="hfm_settings"
+	android:title="@string/hfm_pref_screen_title"
+	android:fragment="com.android.settings.hfm.HfmSettings" />
+
         <CheckBoxPreference
             android:key="use_alt_resolver"
             android:title="@string/alt_resolver"
