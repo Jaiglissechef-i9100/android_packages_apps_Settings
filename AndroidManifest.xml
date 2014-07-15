@@ -1948,6 +1948,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ose.SpamList" />
+
         <activity
             android:name=".aokp.Weather"
             android:label="@string/title_weather" >
