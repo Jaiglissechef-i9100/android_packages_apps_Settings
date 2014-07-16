@@ -10,9 +10,17 @@ import android.content.ContentResolver;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.text.TextUtils;
 import android.preference.PreferenceScreen;
 import android.preference.PreferenceCategory;
 import android.preference.Preference.OnPreferenceChangeListener;
+import com.android.settings.beanstalk.AppMultiSelectListPreference;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.lang.Thread;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
@@ -25,9 +33,13 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
     private static final String KEY_LISTVIEW_INTERPOLATOR = "listview_interpolator";
     private static final String KEY_POWER_CRT_MODE = "system_power_crt_mode";
     private static final String KEY_TOAST_ANIMATION = "toast_animation";
+    private static final String PREF_ENABLE_APP_CIRCLE_BAR = "enable_app_circle_bar";
+    private static final String PREF_INCLUDE_APP_CIRCLE_BAR_KEY = "app_circle_bar_included_apps";
 
+    private AppMultiSelectListPreference mIncludedAppCircleBar;
     private ListPreference mToastAnimation;
     private ListPreference mCrtMode;
+    private CheckBoxPreference mEnableAppCircleBar;
     private ListPreference mListViewAnimation;
     private ListPreference mListViewInterpolator;
 
@@ -85,6 +97,16 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
 	mToastAnimation.setSummary(mToastAnimation.getEntries()[CurrentToastAnimation]);
 	mToastAnimation.setOnPreferenceChangeListener(this);
 
+	// App circle bar
+	mEnableAppCircleBar = (CheckBoxPreference) prefScreen.findPreference(PREF_ENABLE_APP_CIRCLE_BAR);
+	mEnableAppCircleBar.setChecked((Settings.System.getInt(getContentResolver(),
+	Settings.System.ENABLE_APP_CIRCLE_BAR, 0) == 1));
+
+	mIncludedAppCircleBar = (AppMultiSelectListPreference) prefScreen.findPreference		(PREF_INCLUDE_APP_CIRCLE_BAR_KEY);
+	Set<String> includedApps = getIncludedApps();
+	if (includedApps != null) mIncludedAppCircleBar.setValues(includedApps);
+	mIncludedAppCircleBar.setOnPreferenceChangeListener(this);
+
     }
 
     @Override
@@ -92,6 +114,22 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
         super.onResume();
     }
 
+    @Override
+    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
+	ContentResolver resolver = getActivity().getContentResolver();
+	boolean value;
+	if (preference == mEnableAppCircleBar) {
+	    boolean checked = ((CheckBoxPreference)preference).isChecked();
+	    Settings.System.putInt(resolver,
+		Settings.System.ENABLE_APP_CIRCLE_BAR, checked ? 1:0);
+	} else {
+	    return super.onPreferenceTreeClick(preferenceScreen, preference);
+	}
+
+	return true;
+    }
+
+    @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
 	final String key = preference.getKey();
 
@@ -129,6 +167,30 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
                     value);
             mListViewInterpolator.setSummary(mListViewInterpolator.getEntries()[index]);
         }
+	if (preference == mIncludedAppCircleBar) {
+	    storeIncludedApps((Set<String>) newValue);
+	}
         return false;
+    }
+
+    private Set<String> getIncludedApps() {
+	String included = Settings.System.getString(getActivity().getContentResolver(),
+			Settings.System.WHITELIST_APP_CIRCLE_BAR);
+	if (TextUtils.isEmpty(included)) {
+		return null;
+	}
+	return new HashSet<String>(Arrays.asList(included.split("\\|")));
+    }
+
+    private void storeIncludedApps(Set<String> values) {
+	StringBuilder builder = new StringBuilder();
+	String delimiter = "";
+	for (String value : values) {
+		builder.append(delimiter);
+		builder.append(value);
+		delimiter = "|";
+	}
+	Settings.System.putString(getActivity().getContentResolver(),
+		Settings.System.WHITELIST_APP_CIRCLE_BAR, builder.toString());
     }
 }

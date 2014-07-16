@@ -2180,4 +2180,11 @@
     <string name="hfm_dialog_failed">Updating hosts file failed. Please try again.</string>
     <string name="hfm_dialog_success">/4 hosts sources successfully applied!</string>
     <string name="hfm_dialog_conn_error">Error: No network connectivity</string>
+
+    <!-- App circle bar -->
+    <string name="category_app_circle_bar_title">App launcher</string>
+    <string name="app_circle_bar_title">App circle bar</string>
+    <string name="app_circle_bar_summary">Show circle app launcher after touching right side of screen</string>
+    <string name="app_circle_bar_included_apps_title">Included apps</string>
+    <string name="app_circle_bar_included_apps_summary">Apps will show in app circle bar</string>
 </resources>
