@@ -105,11 +105,11 @@ public class ScreenAndAnimations extends SettingsPreferenceFragment implements
 	mToastAnimation.setOnPreferenceChangeListener(this);
 
 	// App circle bar
-	mEnableAppCircleBar = (CheckBoxPreference) prefScreen.findPreference(PREF_ENABLE_APP_CIRCLE_BAR);
+	mEnableAppCircleBar = (CheckBoxPreference) prefSet.findPreference(PREF_ENABLE_APP_CIRCLE_BAR);
 	mEnableAppCircleBar.setChecked((Settings.System.getInt(getContentResolver(),
 	Settings.System.ENABLE_APP_CIRCLE_BAR, 0) == 1));
 
-	mIncludedAppCircleBar = (AppMultiSelectListPreference) prefScreen.findPreference		(PREF_INCLUDE_APP_CIRCLE_BAR_KEY);
+	mIncludedAppCircleBar = (AppMultiSelectListPreference) prefSet.findPreference		(PREF_INCLUDE_APP_CIRCLE_BAR_KEY);
 	Set<String> includedApps = getIncludedApps();
 	if (includedApps != null) mIncludedAppCircleBar.setValues(includedApps);
 	mIncludedAppCircleBar.setOnPreferenceChangeListener(this);
