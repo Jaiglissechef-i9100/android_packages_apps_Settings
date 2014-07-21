@@ -192,7 +192,6 @@ public class IdenticonCreationService extends IntentService {
                 .setOngoing(true)
                 .setContentTitle(getString(R.string.identicons_creation_service_running_title))
                 .setContentText(getString(R.string.identicons_creation_service_running_summary))
-                .setSmallIcon(R.drawable.ic_settings_identicons)
                 .setWhen(System.currentTimeMillis())
                 .setContentIntent(contentIntent)
                 .getNotification();
@@ -210,7 +209,6 @@ public class IdenticonCreationService extends IntentService {
                 .setOngoing(true)
                 .setContentTitle(title)
                 .setContentText(text)
-                .setSmallIcon(R.drawable.ic_settings_identicons)
                 .setWhen(System.currentTimeMillis())
                 .setContentIntent(contentIntent)
                 .getNotification();
