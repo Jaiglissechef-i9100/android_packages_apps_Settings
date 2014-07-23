@@ -78,6 +78,16 @@
             android:key="musicfx"
             android:title="@string/musicfx_title" />
 
+    <PreferenceScreen
+            android:id="@+id/viper_audio"
+            android:title="@string/viper_settings_title"
+            android:icon="@drawable/ic_settings_viper" >
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetClass="com.vipercn.viper4android_v2.activity.ViPER4Android"
+                android:targetPackage="com.vipercn.viper4android_v2" />
+    </PreferenceScreen>
+
     <PreferenceCategory
             android:key="category_calls_and_notification"
             android:title="@string/sound_category_call_ringtone_vibrate_title"/>
