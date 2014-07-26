@@ -1,4 +1,4 @@
-package com.android.settings.ose;
+package com.android.settings.beanstalk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +30,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.internal.util.ose.SpamFilter;
-import static com.android.internal.util.ose.SpamFilter.*;
+import com.android.internal.util.beanstalk.SpamFilter;
+import static com.android.internal.util.beanstalk.SpamFilter.*;
 import com.android.settings.R;
 import com.android.settings.Settings;
 import com.android.settings.Settings.NotificationStationActivity;

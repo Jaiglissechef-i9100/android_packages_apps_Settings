@@ -2189,6 +2189,7 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="hover_exclude_topmost_title">Exclude topmost app</string>
     <string name="hover_exclude_topmost_summary">Exclude notifications from the app running in foreground</string>
 
+<<<<<<< HEAD:res/values/bs_strings.xml
     <string name="sunday">Sunday</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
@@ -2196,7 +2197,7 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="thursday">Thursday</string>
     <string name="friday">Friday</string>
    <string name="saturday">Saturday</string>
-
+=======
     <!-- Heads Up -->
     <string name="category_heads_up">Heads up</string>
     <string name="summary_heads_up_enabled">Pop-up notifications are enabled</string>
@@ -2213,6 +2214,7 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="heads_up_floating_window">Launch in floating window</string>
     <string name="heads_up_gravity_title">Show at the bottom</string>
     <string name="heads_up_gravity_summary">Show heads up notification at the bottom of the screen</string>
+>>>>>>> 4a887b9... Settings: Show heads up at the bottom of the screen (2/2):res/values/ose_strings.xml
 
     <!-- Driving mode -->
     <string name="voice_tts_title">Driving mode</string>
