@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright (C) 2010 The Android Open Source Project
+<!-- Copyright (C) 2014 SlimRoms Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -54,6 +54,17 @@
             android:fragment="com.android.settings.beanstalk.DisplayRotation"
             android:title="@string/display_rotation_title" />
 
+        <PreferenceScreen
+            android:persistent="false"
+            android:key="screencolor_settings"
+            android:title="@string/display_color_title"
+            android:summary="@string/display_color_summary">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.settings"
+                android:targetClass="com.android.settings.ScreenColorSettings" />
+        </PreferenceScreen>
+
         <ListPreference
                 android:key="screen_timeout"
                 android:title="@string/screen_timeout"
@@ -96,6 +107,16 @@
             android:key="double_tap_wake_gesture"
             android:title="@string/double_tap_to_wake_title"
             android:defaultValue="false" />
+
+        <!-- DeviceHandler device specific screen off gesture settings -->
+        <Preference
+            android:key="screen_off_gesture_settings"
+            android:title="@string/screen_off_gesture_settings_title">
+            <intent
+                android:action="com.slim.action.LAUNCH_SCREEN_OFF_GESTURE_SETTINGS"
+                android:targetPackage="com.slim.device"
+                android:targetClass="com.slim.device.settings.ScreenOffGestureSettings" />
+        </Preference>
 
         <PreferenceCategory
             android:key="lights_prefs"
