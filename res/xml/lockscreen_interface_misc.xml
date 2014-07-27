@@ -52,6 +52,12 @@
             android:entryValues="@array/lockscreen_battery_status_values"
             android:defaultValue="0" />
 
+	<CheckBoxPreference
+            android:key="lockscreen_enable_power_menu"
+            android:title="@string/lockscreen_enable_power_menu_title"
+            android:summary="@string/lockscreen_enable_power_menu_summary"
+            android:persistent="false" />
+
 	<com.android.settings.cyanogenmod.SystemSettingCheckBoxPreference
 	    android:key="double_tap_lockscreen_sleep_gesture"
 	    android:title="@string/lockscreen_double_tap_sleep_title"
