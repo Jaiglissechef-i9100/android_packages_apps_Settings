@@ -168,10 +168,10 @@ public class QuickSettingsTilesStyle extends SettingsPreferenceFragment implemen
             mQsTileAlpha.setOnPreferenceChangeListener(this);
         }
         
-		mFlipQsTiles = (CheckBoxPreference) findPreference(PREF_FLIP_QS_TILES);
+        mFlipQsTiles = (CheckBoxPreference) findPreference(PREF_FLIP_QS_TILES);
         mFlipQsTiles.setChecked(Settings.System.getInt(getActivity().getContentResolver(),
                 Settings.System.QUICK_SETTINGS_TILES_FLIP, 1) == 1);
-		mFlipQsTiles.setOnPreferenceChangeListener(this);
+        mFlipQsTiles.setOnPreferenceChangeListener(this);
 
         mTilesPerRow = (ListPreference) prefs.findPreference(PREF_TILES_PER_ROW);
         int tilesPerRow = Settings.System.getInt(getActivity().getContentResolver(),
