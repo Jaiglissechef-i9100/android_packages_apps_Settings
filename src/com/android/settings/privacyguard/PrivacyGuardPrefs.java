@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim.privacyguard;
+package com.android.settings.privacyguard;
 
 import android.app.Activity;
 import android.content.Context;
@@ -40,10 +40,8 @@ public class PrivacyGuardPrefs extends SettingsPreferenceFragment implements
     private static final String TAG = "PrivacyGuardPrefs";
 
     private static final String KEY_PRIVACY_GUARD_DEFAULT = "privacy_guard_default";
-    private static final String KEY_PRIVACY_GUARD_NOTIFICATION = "privacy_guard_notification";
 
     private CheckBoxPreference mPrivacyGuardDefault;
-    private CheckBoxPreference mPrivacyGuardNotification;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,20 +52,9 @@ public class PrivacyGuardPrefs extends SettingsPreferenceFragment implements
 
         mPrivacyGuardDefault = (CheckBoxPreference) findPreference(KEY_PRIVACY_GUARD_DEFAULT);
         mPrivacyGuardDefault.setOnPreferenceChangeListener(this);
-     
+
         mPrivacyGuardDefault.setChecked(Settings.Secure.getInt(getContentResolver(),
                 Settings.Secure.PRIVACY_GUARD_DEFAULT, 0) == 1);
-
-        mPrivacyGuardNotification =
-            (CheckBoxPreference) findPreference(KEY_PRIVACY_GUARD_NOTIFICATION);
-        mPrivacyGuardNotification.setOnPreferenceChangeListener(this);
-
-        try {
-            mPrivacyGuardNotification.setChecked(Settings.Secure.getInt(getContentResolver(),
-                    Settings.Secure.PRIVACY_GUARD_NOTIFICATION) == 1);
-        } catch (SettingNotFoundException e) {
-            mPrivacyGuardNotification.setChecked(true);
-        }
     }
 
     @Override
@@ -88,11 +75,6 @@ public class PrivacyGuardPrefs extends SettingsPreferenceFragment implements
             boolean value = (Boolean) newValue;
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.PRIVACY_GUARD_DEFAULT, value ? 1 : 0);
-            return true;
-        } else if (preference == mPrivacyGuardNotification) {
-            boolean value = (Boolean) newValue;
-            Settings.Secure.putInt(getContentResolver(),
-                    Settings.Secure.PRIVACY_GUARD_NOTIFICATION, value ? 1 : 0);
             return true;
         }
         return false;
