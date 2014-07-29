@@ -563,6 +563,14 @@ public class InstalledAppDetails extends Fragment
         boolean enabled = true;
         if (isThisASystemPackage()) {
             enabled = false;
+        }
+
+        mAppOpsButton.setEnabled(enabled);
+        if (enabled) {
+            // Register listener
+            mAppOpsButton.setOnClickListener(this);
+        }
+    }
 
     private void initHeadsUpButton() {
         boolean enabled = mPm.getHeadsUpSetting(mAppEntry.info.packageName);
