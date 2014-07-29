@@ -1276,6 +1276,9 @@ public class Settings extends PreferenceActivity
     public static class BatteryIconStyleSettingsActivity extends Settings { /* empty */ }
     public static class DisplayRotationSettingsActivity extends Settings { /* empty */ }
     public static class PerformanceSettingsActivity extends Settings { /* empty */ }
+<<<<<<< HEAD
     public static class PAPieSettingsActivity extends Settings { /* empty */ }
+=======
     public static class ShakeEventsSettingsActivity extends Settings { /* empty */ }
+>>>>>>> c763417... Settings: Shake To Perform Event (2/2)
 }
