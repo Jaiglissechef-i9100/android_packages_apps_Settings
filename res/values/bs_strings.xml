@@ -2387,6 +2387,11 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="heads_up_fullscreen_timeout">Heads up timeout on fullscreen</string>
     <string name="heads_up_floating_window">Launch in floating window</string>
 
+    <!-- Proximity wake -->
+    <string name="proximity_wake_title">Prevent accidental wake-up</string>
+    <string name="proximity_wake_summary">Check the proximity sensor prior to waking up screen</string>
+
+
     <!-- Add application dialog box title -->
     <string name="profile_choose_app">Choose app</string>
 	
@@ -2450,9 +2455,5 @@ Paranoid PIE control is wavely based on simple navigation to expanded desktop. S
     <string name="spam_last_blocked_title">Last blocked %1$s</string>
     <string name="block_notifications_title">Filter notifications</string>
     <string name="no_filters_title">No filters set</string>
-
-    <!-- Proximity wake -->
-    <string name="proximity_wake_title">Proximity wake-up</string>
-    <string name="proximity_wake_summary">Use proximity sensor to help decide whether to wake device up</string>
 
 </resources>
