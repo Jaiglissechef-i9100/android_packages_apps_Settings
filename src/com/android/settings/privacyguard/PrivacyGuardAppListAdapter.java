@@ -14,9 +14,8 @@
  * limitations under the License.
  */
 
-package com.android.settings.slim.privacyguard;
+package com.android.settings.privacyguard;
 
-import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
@@ -30,7 +29,7 @@ import android.widget.SectionIndexer;
 import android.widget.TextView;
 
 import com.android.settings.R;
-import com.android.settings.slim.privacyguard.PrivacyGuardManager.AppInfo;
+import com.android.settings.privacyguard.PrivacyGuardManager.AppInfo;
 
 import java.util.Arrays;
 import java.util.List;
@@ -109,8 +108,10 @@ public class PrivacyGuardAppListAdapter extends BaseAdapter implements SectionIn
         Drawable icon = mIcons.get(app.packageName);
         appHolder.icon.setImageDrawable(icon != null ? icon : mDefaultImg);
 
-        appHolder.privacyGuardIcon.setImageResource(
-            AppOpsManager.getPrivacyGuardIconResId(app.privacyGuardState));
+        int privacyGuardDrawableResId = app.privacyGuardEnabled
+                ? com.android.internal.R.drawable.ic_privacy_guard :
+                  com.android.internal.R.drawable.ic_privacy_guard_off;
+        appHolder.privacyGuardIcon.setImageResource(privacyGuardDrawableResId);
 
         return convertView;
     }
