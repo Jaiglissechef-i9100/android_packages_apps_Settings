@@ -493,8 +493,6 @@
         <item>@string/shortcut_action_app</item>
         <item>@string/shortcut_action_keyguard_camera</item>
         <item>@string/shortcut_action_expanded_desktop</item>
-        <item>@string/shortcut_action_navbar</item>
-        <item>@string/shortcut_action_pie</item>
         <item>@string/shortcut_action_power_menu</item>
         <item>@string/shortcut_action_power</item>
         <item>@string/shortcut_action_screenshot</item>
@@ -506,8 +504,6 @@
         <item>**app**</item>
         <item>**keyguard_camera**</item>
         <item>**expanded_desktop**</item>
-        <item>**nav_bar**</item>
-        <item>**pie**</item>
         <item>**power_menu**</item>
         <item>**power**</item>
         <item>**screenshot**</item>
