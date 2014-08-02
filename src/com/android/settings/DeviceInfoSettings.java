@@ -453,6 +453,7 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
             setStringSummary(key, value);
         } else {
             getPreferenceScreen().removePreference(findPreference(key));
+        }
     }
 
     private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
@@ -476,5 +477,6 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
                 return true;
             }
         }
+        return false;
     }
 }
