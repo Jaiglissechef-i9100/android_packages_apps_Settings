@@ -262,15 +262,11 @@ public class QuickSettingsUtil {
         // Don't show the Camera tile if the device has no cameras
         if (!DeviceUtils.deviceSupportsCamera()) {
             removeTile(TILE_CAMERA);
+        }
 
         // Don't show the Fast charge tile if not supported by kernel
         if (!DeviceUtils.fchargeEnabled(context)) {
             removeTile(TILE_FCHARGE);
-        }
-
-	// Don't show the Camera tile if the device has no cameras
-        if (!DeviceUtils.deviceSupportsCamera()) {
-            removeTile(TILE_CAMERA);
         }
 
 	// Don't show the Compass tile if the device has no orientation sensor

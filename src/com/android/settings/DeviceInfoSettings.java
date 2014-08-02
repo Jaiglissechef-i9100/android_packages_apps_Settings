@@ -448,12 +448,6 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
         return result;
     }
 
-    private void addStringPreference(String key, String value) {
-        if (value != null) {
-            setStringSummary(key, value);
-        } else {
-            getPreferenceScreen().removePreference(findPreference(key));
-
     private boolean removePreferenceIfPackageNotInstalled(Preference preference) {
         String intentUri = ((PreferenceScreen) preference).getIntent().toUri(1);
         Pattern pattern = Pattern.compile("component=([^/]+)/");
