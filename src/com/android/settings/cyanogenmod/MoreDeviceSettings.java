@@ -33,7 +33,7 @@ import com.android.settings.hardware.VibratorIntensity;
 public class MoreDeviceSettings extends SettingsPreferenceFragment {
     private static final String TAG = "MoreDeviceSettings";
 
-    private static final String KEY_SENORS_MOTORS_CATEGORY = "sensors_motors_category";
+    private static final String KEY_SENSORS_MOTORS_CATEGORY = "sensors_motors_category";
     private static final String KEY_DISPLAY_CALIBRATION_CATEGORY = "display_calibration_category";
     private static final String KEY_DISPLAY_COLOR = "color_calibration";
     private static final String KEY_DISPLAY_GAMMA = "gamma_tuning";

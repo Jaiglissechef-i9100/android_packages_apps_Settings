@@ -171,7 +171,6 @@ public class InstalledAppDetails extends Fragment
     private Button mForceStopButton;
     private Button mClearDataButton;
     private Button mMoveAppButton;
-    private CheckBox mPeekBlacklist, mFloatingBlacklist, mHaloState;
     private Button mAppOpsButton;
     private BackupService mBackupService;
     private LinearLayout mBackupsList;
