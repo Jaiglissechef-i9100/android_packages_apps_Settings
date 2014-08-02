@@ -449,8 +449,8 @@
     <string name="trds_settings_title">Dark stalk</string>
 
     <!-- Donate to 7comp Builds -->
-    <string name="donate_comp_title">Support 7comp</string>
-    <string name="donate_comp_summary">Donate to 7comp builds</string>
+    <string name="donate_beanstalk_title">Support 7comp</string>
+    <string name="donate_beanstalk_summary">Donate to 7comp builds</string>
     <string name="donate_link" formatted="false">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EF8T4VB5K338C</string>
 
     <!-- About 7comp -->

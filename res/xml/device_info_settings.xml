@@ -176,10 +176,10 @@
                 android:title="@string/mod_version"
                 android:summary="@string/mod_version_default" />
 
-	<Preference
+	<!--<Preference
             android:key="donate"
-            android:title="@string/donate_comp_title"
-            android:summary="@string/donate_comp_summary" />
+            android:title="@string/donate_beanstalk_title"
+            android:summary="@string/donate_beanstalk_summary" />-->
 
         <!-- Mod build date -->
         <Preference android:key="build_date"
@@ -188,10 +188,10 @@
                 android:summary="@string/build_date_default" />
 
         <!-- Detailed build version --> 
-        <!--<Preference android:key="build_number" 
+        <Preference android:key="build_number" 
                 style="?android:preferenceInformationStyle"
                 android:title="@string/build_number"
-                android:summary="@string/device_info_default"/>-->
+                android:summary="@string/device_info_default"/>
 
         <!-- SELinux status information -->
         <Preference android:key="selinux_status"
