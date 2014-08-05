@@ -22,4 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:gravity="center_vertical"
         android:paddingLeft="6dip"
-        android:paddingEnd="6dip" />
+        android:paddingEnd="6dip"
+        android:checkMark="?android:attr/listChoiceIndicatorSingle" />
+

@@ -307,8 +307,20 @@
     <string name="notification_hide_labels_all">Hide all labels</string>
     <string name="notification_hide_labels_text">in the notification panel</string>
 
-    <!-- StatusBar Battery Settings -->
+    <!-- Statusbar | Battery -->
+    <string name="status_bar_battery_cat_title">Battery</string>
+    <string name="battery_icon">Battery icon style</string>
     <string name="battery_icon_title">Battery icon</string>
+    <string name="battery_bar_title">Battery Bar</string>
+    <string name="battery_bar">Battery bar location</string>
+    <string name="battery_bar_color">Battery bar color</string>
+    <string name="battery_bar_cat">Battery bar style</string>
+    <string name="battery_bar_style_title">Battery bar alignment</string>
+    <string name="battery_bar_thickness_title">Battery bar thickness</string>
+    <string name="battery_bar_animate_title">Charging animation</string>
+    <string name="battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
+    <string name="battery_not_title">Battery icon in notifications</string>
+    <string name="battery_not_summary">Battery icon will show up where the clear all button shows up</string>
     <string name="battery_status_icon">Icon</string>
     <string name="battery_status_percentage">Percentage</string>
     <string name="battery_status_icon_percentage">Icon with percentage</string>
@@ -329,6 +341,10 @@
     <string name="battery_text_charging_color">Percentage text charging color (15-89%)</string>
     <string name="battery_circle_charging_color">Circle charging color</string>
     <string name="battery_style_reset_message">Reset all battery colors?</string>
+    <string name="battery_percentage_indicator_title">Show battery % indicator</string>
+    <string name="battery_percentage_indicator_summary">Show battery percentage indicator front of battery icon</string>
+    <string name="battery_percentage_indicator_plugged_title">Indicate charging</string>
+    <string name="battery_percentage_indicator_plugged_summary">Show battery percentage indicator in different color during charging</string>
 
     <!-- Animation Controls -->  
     <string name="title_animation_controls">Custom System Animations</string>  
@@ -446,39 +462,7 @@
     <string name="media_scanner_on_boot_disabled">Do not scan media</string>
 
     <!-- TRDS Settings -->
-    <string name="trds_settings_title">Dark stalk</string>
-
-    <!-- Donate to 7comp Builds -->
-    <string name="donate_beanstalk_title">Support 7comp</string>
-    <string name="donate_beanstalk_summary">Donate to 7comp builds</string>
-    <string name="donate_link" formatted="false">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=EF8T4VB5K338C</string>
-
-    <!-- About 7comp -->
-    <string name="about_beanstalk_settings_title">About 7comp</string>
-    <string name="about_beanstalk">About 7comp</string>
-    <string name="about_beanstalk_summary">@null</string>
-    <string name="app_name">7comp</string>
-    <string name="devs">Developer</string>
-    <string name="github_scotthartbti">https://github.com/scotthartbti</string>
-    <string name="github_cyanogenmod">https://github.com/CyanogenMod</string>
-    <string name="github_aokp">https://github.com/AOKP</string> 
-    <string name="donate_scotthartbti">https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HUUHRXDXNMZPU</string>
-    <string name="beanstalk_site_title">Scott.hart.bti website</string>
-    <string name="beanstalk_site_summary">Visit the scott.hart.bti website for latest news about the ROM.</string>
-    <string name="donate_cyanogenmod">http://forum.cyanogenmod.com/donate</string>
-    <string name="donate_aokp">http://aokp.co/</string>
-    <string name="google_scotthartbti">https://plus.google.com/u/0/communities/115833651542488654391</string>
-    <string name="facebook_beanstalk">http://www.facebook.com/pages/Beanstalk/421499131276932</string>
-    <string name="beanstalk">7comp Build</string>
-    <string name="beanstalk_website_title">7comp Blog</string>
-    <string name="beanstalk_website_summary">Find latest news and updates about 7comp.</string>
-    <string name="beanstalk_source_title">7comp Sources</string>
-    <string name="beanstalk_source_summary">7comp source can be found at www.github.com/scotthartbti</string>
-    <string name="beanstalk_irc_title">Join me on IRC</string>
-    <string name="beanstalk_irc_summary">#aokp-sgs2 @ irc.freenode.net</string>
-    <string name="beanstalk_facebook_title">Facebook Page</string>
-    <string name="beanstalk_facebook_summary">Subscribe to BeanStalk Facebook page for updates.</string>
-    <string name="title_about">About 7comp</string>
+    <string name="trds_settings_title">Dark Ui</string>
 
     <!-- Wi-Fi region code settings-->
     <string name="wifi_setting_countrycode_title">Wi-Fi region code</string>
@@ -1288,18 +1272,6 @@
     <string name="listview_cycle_interpolator">Cycle</string>
     <string name="listview_linear_interpolator">Linear</string>
 
-    <!-- Statusbar | Battery -->
-    <string name="battery_icon">Battery icon style</string>
-    <string name="battery_not_title">Battery icon in notifications</string>
-    <string name="battery_not_summary">Battery icon will show up where the clear all button shows up</string>
-    <string name="battery_bar">Battery bar location</string>
-    <string name="battery_bar_color">Battery bar color</string>
-    <string name="battery_bar_cat">Battery bar options</string>
-    <string name="battery_bar_style_title">Battery bar style</string>
-    <string name="battery_bar_thickness_title">Battery bar thickness</string>
-    <string name="battery_bar_animate_title">Charging animation</string>
-    <string name="battery_bar_animate_summary">The charging animation may result in a poor user experience. Enable at your own discretion.</string>
-
     <!-- Telo Radio -->
     <string name="telo_radio_settings_title">Connection manager</string>
     <string name="telo_radio_options_category">Screen on configuration</string>
@@ -1511,12 +1483,14 @@
     <string name="lockscreen_enable_power_menu_title">Enable power menu</string>
     <string name="lockscreen_enable_power_menu_summary">Show power menu when screen is locked</string>
 
-    <!-- Lockscreen Notifications -->
     <!-- Categories -->
     <string name="general">General</string>
     <string name="layout">Layout</string>
     <string name="privacy">Privacy</string>
+
+    <!-- Lockscreen Notifications -->
     <string name="lockscreen_notifications">Lockscreen notifications</string>
+    <string name="Lockscreen_notifications_header">Lockscreen Notifications</string>
     <string name="lockscreen_notifications_summary">Show pending notifications on lockscreen</string>
     <string name="pocket_mode">Pocket mode</string>
     <string name="pocket_mode_summary">Turn screen on and show all notifications when device is pulled out of pocket. Turn screen off when device gets back into pocket.</string>
@@ -1538,12 +1512,13 @@
     <string name="notifications_height_summary">Number of notifications displayed at once</string>
     <string name="offset_top">Offset to the top of the screen:</string>
     <string name="privacy_mode">Privacy Mode</string>
-    <string name="privacy_mode_summary">Disables notifications from being shown and dismissed. This way, you just see the icons of your notifications.</string>
-    <string name="dynamic_width">Dynamic width</string>
-    <string name="dynamic_width_summary">Sets the width of notifications dynamic, so that they only use the space they really need</string>
+    <string name="privacy_mode_summary">Disables notifications from beeing shown and dismissed. This way, you just see the icons of your notifications.</string>
     <string name="excluded_apps_title">Excluded applications</string>
     <string name="excluded_apps_summary">Excluded applications will not show up as lockscreen notifications</string>
     <string name="notification_color">Notification background color</string>
+
+    <string name="dynamic_width">Dynamic width</string>
+    <string name="dynamic_width_summary">Sets the width of notifications dynamic, so that they only use the space they really need</string>
 
     <string name="notifications_on_lockscreen">Notifications on lockscreen</string>
     <string name="notifications_on_lockscreen_summary">Choose between manners to show pending notifications on lockscreen</string>
@@ -1909,8 +1884,14 @@
     <string name="title_tile_onthego">On-The-Go</string>
 
     <!-- Backups -->
+    <!-- Title for the backups category in privacy settings -->
+    <string name="omnibackup">7compBackup</string>
     <!-- Title for the BackupSettings activity and the backups category in InstalledAppDetails -->
     <string name="backups_title">Backups</string>
+    <!-- Title for apps tab in ManageBackupsActivity -->
+    <string name="apps_title">Apps</string>
+    <!-- Manage applications, Header name used for backups list -->
+    <string name="backups_header_label">Backups</string>
     <!-- Manage applications, label for perform backup button -->
     <string name="restore_backup">Restore</string>
     <!-- Manage applications, label for restore backup button -->
@@ -1939,6 +1920,192 @@
     <string name="no_apps_selected">No apps selected</string>
     <!-- Displayed as a toast in ManageBackupsActivity if a restore/delete is requested, but no backup selected -->
     <string name="no_backups_selected">No backups selected</string>
+    <!-- Empty text for the BackupsFragment ListView -->
+    <string name="no_backups_found">No backups found</string>
+
+    <!-- About device screen, Hardware info -->
+    <string name="hardware_info">Hardware info</string>
+    <!-- About device screen, Cpu info. -->
+    <string name="cpu_info">CPU</string>
+    <!-- About device Screen, hardware info, GPU info -->
+    <string name="gpu_info">GPU</string>
+    <!-- About device screen, Chipset info -->
+    <string name="chipset_info">Chipset</string>
+    <!-- About phone screen, Free memory info -->
+    <string name="mem_info">Memory</string>
+    <!-- About phone screen, status item label -->
+    <!-- About device Screen, hardware info, rear camera -->
+    <string name="device_rear_camera">Rear camera</string>
+    <!-- About device Screen, hardware info, front camera -->
+    <string name="device_front_camera">Front facing camera</string>
+    <!-- About device Screen, hardware info, screen res -->
+    <string name="device_screen_resolution">Screen resolution</string>
+
+    <!-- Halo -->
+    <string name="halo_settings_summary">An alternative notification interface that launches apps as floating windows</string>
+
+    <string name="halo_colors">Enable Custom Colors</string>
+    <string name="halo_circle_color">Change Circle Color</string>
+    <string name="halo_effect_color">Change Effect Color</string>
+    <string name="halo_notif_title_color">Notification Title Color</string>
+    <string name="halo_notif_desc_color">Notification Description Color</string>
+    <string name="halo_speech_bubble_color">Speech Bubble Color</string>
+    <string name="halo_text_color">Text Color</string>
+    <string name="halo_color_category_title">Custom color settings</string>
+    <string name="halo_switch_toast">Restarting UI!</string>
+    <string name="halo_main">General</string>
+    <string name="halo_appearance">Appearance</string>
+
+    <!-- Pie controls -->
+    <string name="pie_help_title">Help</string>
+    <string name="pie_help_text"><b>What is the difference between Paranoid or Slim PIE?</b>
+\n\n
+Paranoid PIE control is wavely based on simple navigation to expanded desktop. Slim PIE Control is more about customizable targets, colors of the chevrons and easy to use to navigate to any of your apps or activity. The difference is all about user choices.
+\n\n\n </string>
+    <string name="slimpie_title">Slim PIE</string>
+    <string name="slimpie_summary">Acts like a navigation bar, but without expanded desktop experience and has multiple targets, customization</string>
+    <string name="pie_title">Paranoid PIE</string>
+    <string name="pie_summary">Controls through your expanded desktop experience</string>
+    <string name="general_ui">General UI</string>
+    <string name="buttons_layout_title">Button Layout</string>
+
+    <string name="pa_pie_controls_title">Pie controls</string>
+    <string name="pa_pie_controls_summary">Allows navigation and status report on expanded desktop mode</string>
+    <string name="pie_gravity_title">Pie gravity</string>
+    <string name="pie_gravity_summary">Select the location where the pie will be placed at</string>
+    <string name="pie_gravity_top">Top</string>
+    <string name="pie_gravity_bottom">Bottom</string>
+    <string name="pie_gravity_right">Right</string>
+    <string name="pie_gravity_left">Left</string>
+    <string name="pie_mode_title">Pie style</string>
+    <string name="pie_mode_summary">Manage how animations and status additions will be handled</string>
+    <string name="pie_mode_bare">Bare</string>
+    <string name="pie_mode_quick">Quick</string>
+    <string name="pie_mode_default">Default</string>
+    <string name="pie_mode_slow">Slow</string>
+    <string name="pie_size_title">Pie size</string>
+    <string name="pie_size_summary">Define pie controls size</string>
+    <string name="pie_size_small">Small</string>
+    <string name="pie_size_default">@string/pie_mode_default</string>
+    <string name="pie_size_large">Large</string>
+    <string name="pie_size_gigantic">Gigantic</string>
+
+    <string name="pie_angle_title">Pie angle</string>
+    <string name="pie_angle_summary">Adjust the angle of pie bords from pie attach</string>
+    <string name="pie_angle_none">None (old)</string>
+    <string name="pie_angle_small">Small</string>
+    <string name="pie_angle_big">Normal(default)</string>
+    <string name="pie_angle_huge">Big</string>
+
+    <string name="pie_menu_title">Show menu button always</string>
+    <string name="pie_menu_summary">Whether or not the menu button will appear when unneeded</string>
+    <string name="pie_search_title">Show search button</string>
+    <string name="pie_search_summary">Access to Google Now via Pie</string>
+    <string name="pie_lastapp_title">Last App button</string>
+    <string name="pie_lastapp_summary">Enable last app button on Pie</string>
+    <string name="pie_power_title">Power button</string>
+    <string name="pie_power_summary">Enable power button on pie controls</string>
+    <string name="pie_killtask_title">Kill task button</string>
+    <string name="pie_killtask_summary">Enable kill task button on Pie</string>
+    <string name="pie_actnotif_title">Action notifications</string>
+    <string name="pie_actnotif_summary">Enable expand notifications button</string>
+    <string name="pie_actqs_title">Action quicksettings</string>
+    <string name="pie_actqs_summary">Enable expand quicksettings button</string>
+    <string name="pie_appwindow_title">App window button</string>
+    <string name="pie_appwindow_summary">Enable app window button on Pie (configure app window in Ribbon settings)</string>
+    <string name="pie_screenshot_title">ScreenShot button</string>
+    <string name="pie_screenshot_summary">Enable ScreenShot button on Pie</string>
+    <string name="pie_center_title">Center pie</string>
+    <string name="pie_center_summary">Center Pie on the trigger edge</string>
+    <string name="pie_stick_title">Prevent rotation</string>
+    <string name="pie_stick_summary">If checked Pie will stay in place no matter which orientation</string>
+    <string name="pie_restart_launcher_title">Restart Launcher</string>
+    <string name="pie_restart_launcher_summary">Allows your launcher to regain sanity after a screensize change (recommended)</string>
+    <string name="pie_notifications_title">Enable chevron targets</string>
+    <string name="pie_notifications_summary">Enabling will let the Notification panel and QuickSettings activate when swiped</string>
+
+    <!-- Pie Color Settings -->
+    <string name="pie_color_title">Pie color settings</string>
+    <string name="pie_button_color_title">Pie button color</string>
+    <string name="pie_color_style_title">Pie color style</string>
+    <string name="pie_background_title">Background color</string>
+    <string name="pie_select_title">Selection color</string>
+    <string name="pie_outlines_title">Outlines color</string>
+    <string name="pie_status_clock_title">Clock color</string>
+    <string name="pie_status_title">Status color</string>
+    <string name="pie_chevron_left_title">Left chevron color</string>
+    <string name="pie_chevron_right_title">Right chevron color</string>
+    <string name="all_color">Colors Everywhere!</string>
+    <string name="stock_color">Stock Color</string>
+    <string name="pie_juice_title">Battery juice color</string>
+
+    <!-- Pie Gap-->
+    <string name="pie_gap_title">Pie gap</string>
+    <string name="pie_gap_summary">Adjust the gap in between pie elements</string>
+    <string name="pie_gap_closed">Closed</string>
+    <string name="pie_gap_small">Small (default)</string>
+    <string name="pie_gap_big">Big</string>
+    <string name="pie_gap_huge">Huge</string>
+    <string name="pie_trigger_title">Trigger size</string>
+    <string name="pie_trigger_summary">Determine the size of the triggering area that will start pie controls</string>
+    <string name="pie_trigger_small">Small</string>
+    <string name="pie_trigger_normal">Normal (Default)</string>
+    <string name="pie_trigger_big">Big</string>
+    <string name="pie_trigger_huge">Huge</string>
+
+    <!-- Status bar -->
+    <string name="status_bar_notif_count_title">Show notification count</string>
+    <string name="status_bar_notif_count_summary">Display the number of pending notifications</string>
+
+    <string name="title_tile_fcharge">Fast charge</string>
+    <string name="title_tile_screenshot">Screenshot</string>
+    <string name="pref_screenshot_delay_title">Screenshot delay</string>
+
+    <string name="time_0_seconds_off">Off</string>
+    <string name="time_0_2_seconds">.2 seconds</string>
+    <string name="time_0_5_seconds">.5 seconds</string>
+    <string name="time_1_second">1 second</string>
+    <string name="time_1_5_seconds">1.5 seconds</string>
+    <string name="time_2_seconds">2 seconds</string>
+    <string name="time_2_5_seconds">2.5 seconds</string>
+    <string name="time_3_seconds">3 seconds</string>
+    <string name="time_3_5_seconds">3.5 seconds</string>
+    <string name="time_4_seconds">4 seconds</string>
+    <string name="time_4_5_seconds">4.5 seconds</string>
+    <string name="time_5_seconds">5 seconds</string>
+    <string name="time_5_5_seconds">5.5 seconds</string>
+    <string name="time_6_seconds">6 seconds</string>
+    <string name="time_7_seconds">7 seconds</string>
+    <string name="time_8_seconds">8 seconds</string>
+    <string name="time_9_seconds">9 seconds</string>
+    <string name="time_10_seconds">10 seconds</string>
+
+    <string name="title_tile_camera">Camera</string>
+
+    <!-- show carrier label -->
+    <string name="show_status_bar_carrier_title">Status bar carrier</string>
+    <string name="show_status_bar_carrier_summary">Show carrier in status bar</string>
+
+    <!-- Quick Install -->
+    <string name="quick_mode_title">Quick Install</string>
+    <string name="quick_mode_summary">Show smaller dialog to install/uninstall,install progress will be hiden to allow people install multiple app quickly</string>
+
+    <string name="generalUI_title">User Interface</string>
+    <string name="system_title">System</string>
+    <string name="misc_title">Misc. Tweaks</string>
+
+    <!-- Text for forcing expanded notifications -->
+    <string name="force_expanded_notifications_title">Force Expanded Notifications</string>
+    <string name="force_expanded_notifications_summary">Available only for apps that support expanded notifications</string>
+
+    <string name="shortcut_action_papie">PA Pie controls</string>
+
+    <string name="expanded_desktop_system_bars_visibility">Show status and navigation bar</string>
+    <string name="expanded_desktop_system_bars_visibility_summary">Show status and navigation bar in lock screen during expanded desktop mode</string>
+
+    <!-- QuickSettings haptic feedback -->
+    <string name="haptic_qs_tiles_title">Vibrate on touch</string>
+    <string name="haptic_qs_tiles_summary">Vibrate when touching tiles</string>
 
     <!-- App moving -->
     <string name="app_moving_enable">Enable app moving</string>
@@ -2155,4 +2322,14 @@
     <string name="app_circle_bar_summary">Show circle app launcher after touching right side of screen</string>
     <string name="app_circle_bar_included_apps_title">Included apps</string>
     <string name="app_circle_bar_included_apps_summary">Apps will show in app circle bar</string>
+
+    <!-- GPS Settings -->
+    <string name="aosb_gps_settings_title">GPS Optimizer</string>
+    <string name="aosb_gps_settings_summary">Modify gps.conf to specific country</string>
+
+    <!-- Kernel Tweaker -->
+    <string name="kernel_tweaker_title">Kernel Tweaker</string>
+
+    <!-- Wireless controls, item title to go into the network settings -->
+    <string name="network_settings_title">Mobile networks</string>
 </resources>

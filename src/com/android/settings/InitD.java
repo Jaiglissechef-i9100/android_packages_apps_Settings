@@ -169,6 +169,7 @@ public class InitD extends SettingsPreferenceFragment {
     };
 
     private boolean isInitdSetup() {
+
         if (!new File(INIT_D_CFG).exists()) {
             Log.i(TAG, INIT_D_CFG + " does not exist!");
             return false;
@@ -179,6 +180,9 @@ public class InitD extends SettingsPreferenceFragment {
             Log.i(TAG, INIT_D + " does not exist!");
             return false;
         }
+
+	CMDProcessor.SH shell = new CMDProcessor().su;
+	shell.runWaitFor("chmod 777 " + INIT_D_CFG);
         return true;
     }
 

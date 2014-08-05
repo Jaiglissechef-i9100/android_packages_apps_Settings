@@ -31,9 +31,6 @@
                     android:targetClass="@string/additional_system_update_menu" />
         </PreferenceScreen>
 
-	<PreferenceScreen android:key="bs_logo"
-                          android:layout="@layout/logo_row" />
-
         <!-- Device status - launches activity -->
         <PreferenceScreen android:key="status_info"
                 android:title="@string/device_status" 
@@ -175,11 +172,6 @@
                 style="?android:preferenceInformationStyle"
                 android:title="@string/mod_version"
                 android:summary="@string/mod_version_default" />
-
-	<!--<Preference
-            android:key="donate"
-            android:title="@string/donate_beanstalk_title"
-            android:summary="@string/donate_beanstalk_summary" />-->
 
         <!-- Mod build date -->
         <Preference android:key="build_date"

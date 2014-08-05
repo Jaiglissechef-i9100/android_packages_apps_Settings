@@ -25,6 +25,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -258,6 +259,8 @@ public class LockscreenStyle extends SettingsPreferenceFragment
                 requestLockImage();
             } else if (indexOf == 2) {
                 deleteLockIcon();
+            } else {
+                resizebsLock();
             }
             return true;
         } else if (preference == mColorizeCustom) {
@@ -335,8 +338,7 @@ public class LockscreenStyle extends SettingsPreferenceFragment
         Intent intent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-        int px = (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, 144, getResources().getDisplayMetrics());
+        int px = requestImageSize();
 
         intent.setType("image/*");
         intent.putExtra("crop", "true");
@@ -374,6 +376,43 @@ public class LockscreenStyle extends SettingsPreferenceFragment
 
         mColorizeCustom.setEnabled(false);
         updateLockSummary();
+    }
+
+    private void resizebsLock() {
+        Bitmap bsLock = BitmapFactory.decodeResource(getResources(), R.drawable.comp_lock);
+        if (bsLock != null) {
+            String path = null;
+            int px = requestImageSize();
+            bsLock = Bitmap.createScaledBitmap(bsLock, px, px, true);
+            try {
+                mLockImage.createNewFile();
+                mLockImage.setWritable(true, false);
+                File image = new File(getActivity().getFilesDir() + File.separator
+                            + "comp_lock" + System.currentTimeMillis() + ".png");
+                path = image.getAbsolutePath();
+                mLockImage.renameTo(image);
+                FileOutputStream outPut = new FileOutputStream(image);
+                bsLock.compress(Bitmap.CompressFormat.PNG, 100, outPut);
+                image.setReadable(true, false);
+                outPut.flush();
+                outPut.close();
+            } catch (Exception e) {
+                // Uh-oh Nothing we can do here.
+                Log.e(TAG, e.getMessage(), e);
+                return;
+            }
+
+            deleteLockIcon();  // Delete current icon if it exists before saving new.
+            Settings.Secure.putString(getContentResolver(),
+                    Settings.Secure.LOCKSCREEN_LOCK_ICON, path);
+            mColorizeCustom.setEnabled(path != null);
+            updateLockSummary();
+        }
+    }
+
+    private int requestImageSize() {
+        return (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 68, getResources().getDisplayMetrics());
     }
 
     private void showDialogInner(int id) {

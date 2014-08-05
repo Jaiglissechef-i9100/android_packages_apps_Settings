@@ -22,7 +22,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SELinux;
@@ -54,7 +53,6 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
 
     private static final String KEY_CONTAINER = "container";
     private static final String KEY_TEAM = "team";
-    private static final String KEY_BS_DONATE= "donate";
     private static final String KEY_CONTRIBUTORS = "contributors";
     private static final String KEY_REGULATORY_INFO = "regulatory_info";
     private static final String KEY_TERMS = "terms";
@@ -202,7 +200,6 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
         removePreferenceIfBoolFalse(KEY_REGULATORY_INFO,
                 R.bool.config_show_regulatory_info);
 
-        getPreferenceScreen().findPreference(KEY_BS_DONATE).setWidgetLayoutResource(R.layout.donate);
     }
 
     @Override
@@ -281,10 +278,6 @@ public class DeviceInfoSettings extends RestrictedSettingsFragment {
                 mDevHitToast = Toast.makeText(getActivity(), R.string.show_dev_already,
                         Toast.LENGTH_LONG);
                 mDevHitToast.show();
-            } else if (preference.getKey().equals(KEY_BS_DONATE)) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                    Uri.parse(getActivity().getString(R.string.donate_link)));
-                startActivity(browserIntent);
             }
         }
         return super.onPreferenceTreeClick(preferenceScreen, preference);

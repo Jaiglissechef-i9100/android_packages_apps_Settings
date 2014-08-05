@@ -76,10 +76,10 @@
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
     <uses-permission android:name="android.permission.READ_PHONE_BLACKLIST" />
     <uses-permission android:name="android.permission.CHANGE_PHONE_BLACKLIST" />
-    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SYSTEM_NOTIFICATION_LISTENER" />
     <uses-permission android:name="android.permission.CHANGE_HEADS_UP_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
 
     <permission
         android:name="android.permission.REQUEST_SUPERUSER"
@@ -1007,9 +1007,8 @@
             </intent-filter>
             <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
                 android:value="com.android.settings.applications.AppOpsSummary" />
-            <!--
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
-                android:resource="@id/application_settings" /> -->
+                android:resource="@id/application_settings" />
         </activity>
 
         <activity android:name="Settings$LocationSettingsActivity"
@@ -1357,8 +1356,6 @@
             <meta-data android:name="com.android.settings.TOP_LEVEL_HEADER_ID"
                 android:resource="@id/development_settings" />
         </activity>
-
-	<activity android:name=".beanstalk.About" />
 
         <activity android:name="Settings$PrintSettingsActivity"
                 android:label="@string/print_settings"
@@ -2323,8 +2320,7 @@
         <service android:name=".chameleonos.labs.identicons.IdenticonRemovalService"
                  android:exported="false" />
 
-        <service
-            android:name="com.android.settings.beanstalk.backup.BackupService" />
+        <service android:name="com.android.settings.beanstalk.backup.BackupService" />
 
         <activity
             android:name="com.android.settings.beanstalk.backup.ManageBackupsActivity"
@@ -2338,6 +2334,14 @@
                android:label="@string/backups_title"
                android:taskAffinity="com.android.settings"
                android:launchMode="singleTask" />
+
+        <receiver android:name=".aokp.weather.WeatherReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="com.android.settings.INTENT_WEATHER_REQUEST" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".aokp.weather.WeatherRefreshService" />
+        <service android:name=".aokp.weather.WeatherService" />
 
     </application>
 </manifest>

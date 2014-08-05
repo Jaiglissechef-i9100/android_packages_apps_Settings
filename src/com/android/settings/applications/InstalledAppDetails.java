@@ -48,7 +48,6 @@ import android.app.INotificationManager;
 import android.app.admin.DevicePolicyManager;
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.ComponentName;
 import android.content.DialogInterface;
@@ -80,14 +79,6 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 import android.text.style.BulletSpan;
-import android.util.Log;
-
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -104,7 +95,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.util.Log;
+
 import com.android.settings.cyanogenmod.ProtectedAppsReceiver;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
 
 import com.android.settings.beanstalk.backup.Backup;
 import com.android.settings.beanstalk.backup.BackupView;
@@ -598,8 +598,9 @@ public class InstalledAppDetails extends Fragment
                 ServiceManager.getService(Context.NOTIFICATION_SERVICE));
 
         if (UserHandle.myUserId() == UserHandle.USER_OWNER) {
-            getActivity().bindService(new Intent(getActivity(), BackupService.class),
-                    mBackupServiceConnection, Context.BIND_AUTO_CREATE);
+            getActivity().bindServiceAsUser(new Intent(getActivity(), BackupService.class),
+                    mBackupServiceConnection, Context.BIND_AUTO_CREATE,
+                    new UserHandle(UserHandle.myUserId()));
         }
 
         mCanBeOnSdCardChecker = new CanBeOnSdCardChecker();
@@ -835,6 +836,11 @@ public class InstalledAppDetails extends Fragment
     public void onDestroyView() {
         super.onDestroyView();
         mSession.release();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
         getActivity().unbindService(mBackupServiceConnection);
     }
 

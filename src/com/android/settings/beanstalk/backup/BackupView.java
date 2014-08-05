@@ -1,20 +1,20 @@
 /*
-*  Copyright (C) 2013 The OmniROM Project
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *  Copyright (C) 2013 The OmniROM Project
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 package com.android.settings.beanstalk.backup;
 
@@ -31,12 +31,12 @@ import android.util.AttributeSet;
 import java.text.DateFormat;
 
 /**
-* View that represents a single {@link Backup} object.
-*
-* It displays date and size of the backup and buttons
-* to restore or delete it.
-*
-*/
+ * View that represents a single {@link Backup} object.
+ *
+ * It displays date and size of the backup and buttons
+ * to restore or delete it.
+ *
+ */
 public class BackupView extends RelativeLayout {
 
     private Backup mBackup;
@@ -54,13 +54,13 @@ public class BackupView extends RelativeLayout {
     }
 
     /**
-    * Sets the backup whose information should be displayed in this view.
-    *
-    * @param b The backup to display.
-    * @param sizeString A string that shows {@link Backup#size} in a human readable format.
-    * @param listener An OnClickListener that is invoked when either button is pressed
-    *                 (use their ids, R.id.delete and R.id.restore, to distinguish them).
-    */
+     * Sets the backup whose information should be displayed in this view.
+     *
+     * @param b The backup to display.
+     * @param sizeString A string that shows {@link Backup#size} in a human readable format.
+     * @param listener An OnClickListener that is invoked when either button is pressed
+     *                 (use their ids, R.id.delete and R.id.restore, to distinguish them).
+     */
     public void setBackup(Backup backup, String sizeString,
             View.OnClickListener listener) {
         mBackup = backup;
@@ -83,8 +83,8 @@ public class BackupView extends RelativeLayout {
     }
 
     /**
-    * Returns the backup last passed to setBackup(), or null if none was set.
-    */
+     * Returns the backup last passed to setBackup(), or null if none was set.
+     */
     public Backup getBackup() {
         return mBackup;
     }

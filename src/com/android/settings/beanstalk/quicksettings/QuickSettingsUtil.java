@@ -44,7 +44,6 @@ import static com.android.internal.util.beanstalk.QSConstants.TILE_MOBILEDATA;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_MUSIC;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_NETWORKMODE;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_NFC;
-import static com.android.internal.util.beanstalk.QSConstants.TILE_PAPIE;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_QUICKRECORD;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_QUIETHOURS;
 import static com.android.internal.util.beanstalk.QSConstants.TILE_RINGER;

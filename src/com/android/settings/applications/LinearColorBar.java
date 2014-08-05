@@ -15,6 +15,8 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
+import com.android.settings.R;
+
 public class LinearColorBar extends LinearLayout {
     static final int LEFT_COLOR = 0xffcccccc;
     static final int MIDDLE_COLOR = 0xffcccccc;
@@ -70,7 +72,7 @@ public class LinearColorBar extends LinearLayout {
                 ? 2 : 1;
         mEdgeGradientPaint.setStrokeWidth(mLineWidth);
         mEdgeGradientPaint.setAntiAlias(true);
-        
+
     }
 
     public void setOnRegionTappedListener(OnRegionTappedListener listener) {

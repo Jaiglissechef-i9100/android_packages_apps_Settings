@@ -36,6 +36,16 @@
         android:title="@string/bluetooth_settings_title"
         android:icon="@drawable/ic_settings_bluetooth2" />
 
+    <!-- Mobile networks -->
+    <header
+        android:id="@+id/mobile_network_settings"
+        android:icon="@drawable/ic_settings_mobilenetworks"
+        android:title="@string/network_settings_title"
+        android:dependency="toggle_airplane">
+        <intent
+            android:action="android.settings.DATA_ROAMING_SETTINGS" />
+    </header>
+
     <!-- Data Usage -->
     <header
         android:id="@+id/data_usage_settings"
@@ -189,14 +199,6 @@
         <intent android:action="com.android.settings.MANUFACTURER_APPLICATION_SETTING" />
     </header>
 
-    <!-- Other device controls -->
-    <header
-        android:id="@+id/more_device_settings"
-        android:title="@string/more_device_controls_title"
-        android:breadCrumbTitle="@string/more_device_settings_title"
-        android:fragment="com.android.settings.cyanogenmod.MoreDeviceSettings"
-        android:icon="@drawable/empty_icon" />
-
     <!-- PERSONAL -->
     <header android:id="@+id/personal_section"
         android:title="@string/header_category_personal" />
@@ -322,13 +324,6 @@
         android:fragment="com.brewcrewfoo.performance.activities.MainActivity"
         android:icon="@drawable/ic_settings_performance"
         android:title="@string/performance_settings" />
-
-    <!-- About BeanStalk 
-    <header
-        android:id="@+id/about_rom"
-        android:fragment="com.android.settings.beanstalk.About"
-        android:icon="@drawable/ic_settings_about_beanstalk"
-        android:title="@string/about_beanstalk_settings_title" />-->
 
     <!-- About Device -->
     <header

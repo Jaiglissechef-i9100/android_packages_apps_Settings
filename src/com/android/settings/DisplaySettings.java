@@ -47,7 +47,8 @@ import com.android.internal.view.RotationPolicy;
 import com.android.settings.DreamSettings;
 import com.android.settings.Utils;
 import com.android.settings.beanstalk.DisplayRotation;
-
+import com.android.settings.hardware.DisplayColor;
+import com.android.settings.hardware.DisplayGamma;
 import org.cyanogenmod.hardware.AdaptiveBacklight;
 import org.cyanogenmod.hardware.TapToWake;
 
@@ -70,12 +71,15 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final String KEY_ADVANCED_DISPLAY_SETTINGS = "advanced_display_settings";
     private static final String KEY_TAP_TO_WAKE = "double_tap_wake_gesture";
 
+    private static final String CATEGORY_ADVANCED = "advanced_display_prefs";
     private static final String CATEGORY_LIGHTS = "lights_prefs";
     private static final String KEY_NOTIFICATION_PULSE = "notification_pulse";
     private static final String KEY_BATTERY_LIGHT = "battery_light";
     private static final String KEY_WAKE_WHEN_PLUGGED_OR_UNPLUGGED = "wake_when_plugged_or_unplugged";
     private static final String STATUS_BAR_BRIGHTNESS = "statusbar_brightness_slider";
     private static final String KEY_SCREEN_COLOR_SETTINGS = "screencolor_settings";
+    private static final String KEY_DISPLAY_COLOR = "color_calibration";
+    private static final String KEY_DISPLAY_GAMMA = "gamma_tuning";
 
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
@@ -139,6 +143,8 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         updateTimeoutPreferenceDescription(currentTimeout);
         updateDisplayRotationPreferenceDescription();
 
+        PreferenceCategory advancedPrefs = (PreferenceCategory) findPreference(CATEGORY_ADVANCED);
+
         mFontSizePref = (FontDialogPreference) findPreference(KEY_FONT_SIZE);
         mFontSizePref.setOnPreferenceChangeListener(this);
         mFontSizePref.setOnPreferenceClickListener(this);
@@ -189,6 +195,13 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
         } else {
             getPreferenceScreen().removePreference(lightPrefs);
         }
+
+	if (!DisplayColor.isSupported()) {
+                advancedPrefs.removePreference(findPreference(KEY_DISPLAY_COLOR));
+	}
+	if (!DisplayGamma.isSupported()) {
+                advancedPrefs.removePreference(findPreference(KEY_DISPLAY_GAMMA));
+	}
 
         mScreenColorSettings = (PreferenceScreen) findPreference(KEY_SCREEN_COLOR_SETTINGS);
         if (!isPostProcessingSupported()) {

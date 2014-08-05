@@ -1,20 +1,20 @@
 /*
-*  Copyright (C) 2013 The OmniROM Project
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *  Copyright (C) 2013 The OmniROM Project
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 package com.android.settings.beanstalk.backup;
 
@@ -22,7 +22,6 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,13 +41,11 @@ import com.android.settings.beanstalk.backup.Backup;
 import com.android.settings.beanstalk.backup.BackupService;
 
 /**
-* ListAdapter that provides apps and backups so that backups are grouped by app,
-* and uninstalled apps are listed seperately.
-*/
+ * ListAdapter that provides apps and backups so that backups are grouped by app,
+ * and uninstalled apps are listed seperately.
+ */
 public class BackupsAdapter extends BaseAdapter
         implements ListAdapter, BackupService.ListBackupsObserver {
-
-    private static final String TAG = "BackupsAdapter";
 
     public static final int VIEW_TYPE_APP = 0;
 
@@ -57,11 +54,11 @@ public class BackupsAdapter extends BaseAdapter
     private int mDefaultTextColor;
 
     /**
-    * Class representing an app and all its backups.
-    *
-    * Note: Access by id is O(n), as each element has to be checked for the number
-    * of backups. As an improvement, a map from id to App could be used.
-    */
+     * Class representing an app and all its backups.
+     *
+     * Note: Access by id is O(n), as each element has to be checked for the number
+     * of backups. As an improvement, a map from id to App could be used.
+     */
     public class App implements Comparable<App> {
 
         public String label;
@@ -95,9 +92,9 @@ public class BackupsAdapter extends BaseAdapter
     }
 
     /**
-    * Populates {@link mItems} with all installed apps and their backups, and, for
-    * backups of uninstalled apps, these apps with their backups.
-    */
+     * Populates {@link mItems} with all installed apps and their backups, and, for
+     * backups of uninstalled apps, these apps with their backups.
+     */
     @Override
     public void onListBackupsCompleted(final Map<String, List<Backup>> backups) {
         new Thread(new Runnable() {
@@ -105,29 +102,30 @@ public class BackupsAdapter extends BaseAdapter
             public void run() {
                 PackageManager pm = mContext.getPackageManager();
                 List<PackageInfo> packages = pm.getInstalledPackages(0);
-                mItems.clear();
-
-                // Add installed apps and their backups.
+                ArrayList<String> packageNames = new ArrayList<String>();
                 for (PackageInfo p : packages) {
-                    App a = new App();
-                    a.packageName = p.packageName;
-                    a.label = (String) pm.getApplicationLabel(p.applicationInfo);
-                    a.isInstalled = true;
-                    if (backups.containsKey(p.packageName)) {
-                        for (Backup b : backups.get(p.packageName)) {
-                            a.backups.add(b);
-                        }
-                    }
-                    mItems.add(a);
-                    backups.remove(p.packageName);
+                    packageNames.add(p.packageName);
                 }
 
-                // Add backups for uninstalled apps.
+                mItems.clear();
                 for (Map.Entry<String, List<Backup>> entry: backups.entrySet()) {
                     App a = new App();
                     a.packageName = entry.getKey();
-                    a.label = entry.getValue().get(0).label;
-                    a.isInstalled = false;
+                    a.isInstalled = packageNames.contains(a.packageName);
+                    // Prefer data from PackageManager over backup metadata (which may be missing).
+                    if (a.isInstalled) {
+                        try {
+                            PackageInfo pInfo = pm.getPackageInfo(a.packageName, 0);
+                            a.label = (String) pm.getApplicationLabel(pInfo.applicationInfo);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            // This should only happen if an app is uninstalled during this method,
+                            // fall back on metadata then.
+                            a.label = entry.getValue().get(0).label;
+                        }
+                    } else {
+                        a.label = entry.getValue().get(0).label;
+                    }
+
                     for (Backup b : entry.getValue()) {
                         a.backups.add(b);
                     }
@@ -146,8 +144,8 @@ public class BackupsAdapter extends BaseAdapter
     }
 
     /**
-    * Returns different values for apps and backups.
-    */
+     * Returns different values for apps and backups.
+     */
     @Override
     public int getItemViewType(int position) {
         return (getItem(position) instanceof App)
@@ -155,6 +153,10 @@ public class BackupsAdapter extends BaseAdapter
                 : VIEW_TYPE_BACKUP;
     }
 
+    /**
+     * For apps, returns an uncheckable list item showing , for backups, returns a checkable,
+     * indented list item showing backup data and version.
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (convertView == null) {
@@ -168,23 +170,25 @@ public class BackupsAdapter extends BaseAdapter
 
         CheckedTextView text = (CheckedTextView) convertView;
         text.setTypeface(null, Typeface.NORMAL);
-        // TODO: replace with android.R.drawable.btn_radio_holo_dark (gives compile error)
-        text.setCheckMarkDrawable(android.R.drawable.btn_radio);
         if (getItemViewType(position) == VIEW_TYPE_APP) {
             App a = (App) getItem(position);
             text.setText(a.label);
+            text.setCheckMarkDrawable(0);
             if (!a.isInstalled) {
                 text.setTypeface(null, Typeface.ITALIC);
-                text.setCheckMarkDrawable(0);
             }
         } else {
             DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM);
             Backup b = (Backup) getItem(position);
-            text.setText(df.format(b.date) + " - " + b.versionName);
+            text.setText(df.format(b.date) + " - " +
+                    mContext.getString(R.string.version_text, b.versionName));
         }
         return convertView;
     }
 
+    /**
+     * Returns true, so that seperators are drawn between all items.
+     */
     @Override
     public boolean areAllItemsEnabled() {
         return true;
@@ -194,16 +198,12 @@ public class BackupsAdapter extends BaseAdapter
      * Returns true for all installed apps and all backups, false for uninstalled apps.
      */
     public boolean isEnabled(int position) {
-        if (getItemViewType(position) == VIEW_TYPE_APP) {
-            App item = (App) getItem(position);
-            return item.isInstalled;
-        }
-        return true;
+        return getItemViewType(position) == VIEW_TYPE_BACKUP;
     }
 
     /**
-    * Returns the number of apps and backups combined.
-    */
+     * Returns the number of apps and backups combined.
+     */
     @Override
     public int getCount() {
         int count = 0;
@@ -214,8 +214,8 @@ public class BackupsAdapter extends BaseAdapter
     }
 
     /**
-    * Returns the {@link App}or {@link Backup} represented by the specified item.
-    */
+     * Returns the {@link App}or {@link Backup} represented by the specified item.
+     */
     @Override
     public Object getItem(int position) {
         int current = 0;
@@ -229,22 +229,20 @@ public class BackupsAdapter extends BaseAdapter
             }
             current += a.backups.size();
         }
-        Log.w(TAG, "No item for position " + Integer.toString(position) + " with size " +
-                Integer.toString(getCount()));
         return null;
     }
 
     /**
-    * Returns position again.
-    */
+     * Returns position again.
+     */
     @Override
     public long getItemId(int position) {
         return position;
     }
 
     /**
-    * IDs are generated by position on the fly, so not stable.
-    */
+     * IDs are generated by position on the fly, so not stable.
+     */
     @Override
     public boolean hasStableIds() {
         return false;

@@ -27,11 +27,11 @@ public class WeatherService extends IntentService {
 
     public static final String PREFS_NAME = "WeatherServicePreferences";
 
-    public static final String INTENT_WEATHER_REQUEST = "com.aokp.romcontrol.INTENT_WEATHER_REQUEST";
-    public static final String INTENT_WEATHER_UPDATE = "com.aokp.romcontrol.INTENT_WEATHER_UPDATE";
-    public static final String INTENT_EXTRA_ISMANUAL = "com.aokp.romcontrol.INTENT_EXTRA_ISMANUAL";
-    public static final String INTENT_EXTRA_TYPE = "com.aokp.romcontrol.INTENT_EXTRA_TYPE";
-    public static final String INTENT_EXTRA_NEWLOCATION = "com.aokp.romcontrol.INTENT_EXTRA_NEWLOCATION";
+    public static final String INTENT_WEATHER_REQUEST = "com.android.settings.INTENT_WEATHER_REQUEST";
+    public static final String INTENT_WEATHER_UPDATE = "com.android.settings.INTENT_WEATHER_UPDATE";
+    public static final String INTENT_EXTRA_ISMANUAL = "com.android.settings.INTENT_EXTRA_ISMANUAL";
+    public static final String INTENT_EXTRA_TYPE = "com.android.settings.INTENT_EXTRA_TYPE";
+    public static final String INTENT_EXTRA_NEWLOCATION = "com.android.settings.INTENT_EXTRA_NEWLOCATION";
 
     public static final String EXTRA_CITY = "city";
     public static final String EXTRA_FORECAST_DATE = "forecast_date";

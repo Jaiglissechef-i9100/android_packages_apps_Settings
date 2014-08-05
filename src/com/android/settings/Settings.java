@@ -80,7 +80,6 @@ import com.android.settings.blacklist.BlacklistSettings;
 import com.android.settings.bluetooth.BluetoothEnabler;
 import com.android.settings.bluetooth.BluetoothSettings;
 import com.android.settings.cyanogenmod.ButtonSettings;
-import com.android.settings.cyanogenmod.MoreDeviceSettings;
 import com.android.settings.cyanogenmod.superuser.PolicyNativeFragment;
 import com.android.settings.deviceinfo.Memory;
 import com.android.settings.deviceinfo.UsbSettings;
@@ -91,6 +90,7 @@ import com.android.settings.inputmethod.SpellCheckersSettings;
 import com.android.settings.inputmethod.UserDictionaryList;
 import com.android.settings.location.LocationSettings;
 import com.android.settings.nfc.AndroidBeam;
+import com.android.settings.net.MobileDataEnabler;
 import com.android.settings.beanstalk.BatteryIconStyle;
 import com.android.settings.beanstalk.QuietHours;
 import com.android.settings.beanstalk.DisplayRotation;
@@ -183,7 +183,7 @@ public class Settings extends PreferenceActivity
             R.id.nfc_payment_settings,
             R.id.home_settings,
             R.id.lock_screen_settings,
-            R.id.privacy_settings,
+            R.id.privacy_settings_cyanogenmod,
             R.id.button_settings
     };
 
@@ -393,9 +393,9 @@ public class Settings extends PreferenceActivity
         DisplayRotation.class.getName(),
         HomeSettings.class.getName(),
         ButtonSettings.class.getName(),
-        MoreDeviceSettings.class.getName(),
         ProfilesSettings.class.getName(),
         PolicyNativeFragment.class.getName(),
+        com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
         ShakeEvents.class.getName()
     };
 
@@ -611,6 +611,11 @@ public class Settings extends PreferenceActivity
             } else if (id == R.id.bluetooth_settings) {
                 // Remove Bluetooth Settings if Bluetooth service is not available.
                 if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH)) {
+                    target.remove(i);
+                }
+            } else if (id == R.id.mobile_network_settings) {
+                // Remove mobile network settings if the device doesn't have telephony
+                if (Utils.isWifiOnly(this)) {
                     target.remove(i);
                 }
             } else if (id == R.id.data_usage_settings) {
@@ -895,6 +900,7 @@ public class Settings extends PreferenceActivity
 
         private final WifiEnabler mWifiEnabler;
         private final BluetoothEnabler mBluetoothEnabler;
+        private final MobileDataEnabler mMobileDataEnabler;
         private final ProfileEnabler mProfileEnabler;
         private final TRDSEnabler mTRDSEnabler;
         private AuthenticatorHelper mAuthHelper;
@@ -916,6 +922,7 @@ public class Settings extends PreferenceActivity
                 return HEADER_TYPE_CATEGORY;
             } else if (header.id == R.id.wifi_settings
                     || header.id == R.id.bluetooth_settings
+                    || header.id == R.id.mobile_network_settings
                     || header.id == R.id.profiles_settings) {
                 return HEADER_TYPE_SWITCH;
             } else if (header.id == R.id.wifi_settings || header.id == R.id.bluetooth_settings || header.id == R.id.trds_settings) {
@@ -964,6 +971,7 @@ public class Settings extends PreferenceActivity
             // Switches inflated from their layouts. Must be done before adapter is set in super
             mWifiEnabler = new WifiEnabler(context, new Switch(context));
             mBluetoothEnabler = new BluetoothEnabler(context, new Switch(context));
+            mMobileDataEnabler = new MobileDataEnabler(context, new Switch(context));
             mProfileEnabler = new ProfileEnabler(context, new Switch(context));
             mDevicePolicyManager = dpm;
             mTRDSEnabler = new TRDSEnabler(context, new Switch(context));
@@ -1037,6 +1045,8 @@ public class Settings extends PreferenceActivity
                         mWifiEnabler.setSwitch(holder.switch_);
                     } else if (header.id == R.id.bluetooth_settings) {
                         mBluetoothEnabler.setSwitch(holder.switch_);
+                    } else if (header.id == R.id.mobile_network_settings) {
+                        mMobileDataEnabler.setSwitch(holder.switch_);
                     } else if (header.id == R.id.profiles_settings) {
                         mProfileEnabler.setSwitch(holder.switch_);
                     } else if (header.id == R.id.trds_settings) {
@@ -1115,6 +1125,7 @@ public class Settings extends PreferenceActivity
         public void resume() {
             mWifiEnabler.resume();
             mBluetoothEnabler.resume();
+            mMobileDataEnabler.resume();
             mProfileEnabler.resume();
             mTRDSEnabler.resume();
         }
@@ -1122,6 +1133,7 @@ public class Settings extends PreferenceActivity
         public void pause() {
             mWifiEnabler.pause();
             mBluetoothEnabler.pause();
+            mMobileDataEnabler.resume();
             mProfileEnabler.pause();
             mTRDSEnabler.pause();
         }

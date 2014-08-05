@@ -82,7 +82,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
 
     private static final String KEY_STATUS_BAR_CLOCK = "clock_style_pref";
     private static final String STATUS_BAR_BRIGHTNESS_CONTROL = "status_bar_brightness_control";
-    private static final String STATUS_BAR_TRAFFIC_STYLE = "status_bar_traffic_style";
 
     private static final String KEY_SMS_BREATH = "sms_breath";
     private static final String KEY_MISSED_CALL_BREATH = "missed_call_breath";
@@ -91,15 +90,13 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
     private ColorPickerPreference mColorPicker;
     private PreferenceScreen mClockStyle;
     private CheckBoxPreference mStatusBarBrightnessControl;
-    private ListPreference mStatusBarTraffic;
     private CheckBoxPreference mSMSBreath;
     private CheckBoxPreference mMissedCallBreath;
     private CheckBoxPreference mVoicemailBreath;
 
     ListPreference mDbmStyletyle;
     CheckBoxPreference mHideSignal;
-    CheckBoxPreference mBatteryIndicator, mBatteryIndicatorPlugged;
-	
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,8 +104,6 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
         addPreferencesFromResource(R.xml.status_bar_settings);
 
 	PreferenceScreen prefSet = getPreferenceScreen();
-
-        ContentResolver resolver = getActivity().getContentResolver();
 
 	// Start observing for changes on auto brightness
         StatusBarBrightnessChangedObserver statusBarBrightnessChangedObserver =
@@ -126,15 +121,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                             Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL, 0) == 1));
         mStatusBarBrightnessControl.setOnPreferenceChangeListener(this);
 
-        // Statusbar Traffic
-        mStatusBarTraffic = (ListPreference) findPreference(STATUS_BAR_TRAFFIC_STYLE);
-        int trafficStyle = Settings.System.getInt(resolver, Settings.System.STATUS_BAR_TRAFFIC_STYLE, 0);
-        mStatusBarTraffic.setValue(String.valueOf(trafficStyle));
-        mStatusBarTraffic.setSummary(mStatusBarTraffic.getEntry());
-        mStatusBarTraffic.setOnPreferenceChangeListener(this);
-
-
-        mDbmStyletyle = (ListPreference) findPreference("signal_style");
+	mDbmStyletyle = (ListPreference) findPreference("signal_style");
         mDbmStyletyle.setOnPreferenceChangeListener(this);
         mDbmStyletyle.setValue(Integer.toString(Settings.System.getInt(getActivity()
                 .getContentResolver(), Settings.System.STATUSBAR_SIGNAL_TEXT,
@@ -148,36 +135,18 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                 .getContentResolver(), Settings.System.STATUSBAR_HIDE_SIGNAL_BARS,
                 0) != 0);
 
-        mBatteryIndicator = (CheckBoxPreference) findPreference("battery_percentage_indicator");
-        mBatteryIndicator.setChecked(Settings.System.getInt(getActivity()
-                .getContentResolver(), Settings.System.BATTERY_PERCENTAGE_INDICATOR,
-                0) != 0);
-
-        mBatteryIndicatorPlugged = (CheckBoxPreference) findPreference("battery_percentage_indicator_plugged");
-        mBatteryIndicatorPlugged.setChecked(Settings.System.getInt(getActivity()
-                .getContentResolver(), Settings.System.BATTERY_PERCENTAGE_INDICATOR_PLUGGED,
-                0) != 0);
-
         mSMSBreath = (CheckBoxPreference) prefSet.findPreference(KEY_SMS_BREATH);
         mMissedCallBreath = (CheckBoxPreference) prefSet.findPreference(KEY_MISSED_CALL_BREATH);
         mVoicemailBreath = (CheckBoxPreference) prefSet.findPreference(KEY_VOICEMAIL_BREATH);
-
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        ContentResolver resolver = getActivity().getContentResolver();
 	if (preference == mStatusBarBrightnessControl) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.STATUS_BAR_BRIGHTNESS_CONTROL,
                     (Boolean) newValue ? 1 : 0);
             return true;
-        } else if (preference == mStatusBarTraffic) {
-            int trafficStyle = Integer.valueOf((String) newValue);
-            int index = mStatusBarTraffic.findIndexOfValue((String) newValue);
-            Settings.System.putInt(resolver, Settings.System.STATUS_BAR_TRAFFIC_STYLE, trafficStyle);
-            mStatusBarTraffic.setSummary(mStatusBarTraffic.getEntries()[index]);
-            return true;
-	    } else if (preference == mDbmStyletyle) {
+	} else if (preference == mDbmStyletyle) {
             int val = Integer.parseInt((String) newValue);
             Settings.System.putInt(getActivity().getContentResolver(),
                     Settings.System.STATUSBAR_SIGNAL_TEXT, val);
@@ -218,20 +187,7 @@ public class StatusBar extends SettingsPreferenceFragment implements OnPreferenc
                     Settings.System.KEY_SMS_BREATH, value ? 1 : 0);
             return true;
         }
-        else if (preference == mBatteryIndicator) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.BATTERY_PERCENTAGE_INDICATOR,
-                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
-            return true;
-        }
-        else if (preference == mBatteryIndicatorPlugged) {
-            Settings.System.putInt(getActivity().getContentResolver(),
-                    Settings.System.BATTERY_PERCENTAGE_INDICATOR_PLUGGED,
-                    ((CheckBoxPreference) preference).isChecked() ? 1 : 0);
-            return true;
-        }
-
-        return false;
+        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     @Override

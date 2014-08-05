@@ -1,24 +1,25 @@
 /*
-*  Copyright (C) 2013 The OmniROM Project
-*
-* This program is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*
-*/
+ *  Copyright (C) 2013 The OmniROM Project
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 
 package com.android.settings.beanstalk.backup;
 
-import android.app.ListActivity;
+import android.app.ActionBar;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -26,35 +27,34 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.UserHandle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.android.settings.R;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
+import com.android.settings.beanstalk.backup.AppsFragment;
+import com.android.settings.beanstalk.backup.BackupsFragment;
 import com.android.settings.beanstalk.backup.BackupService;
 
 /**
-* Activity that shows a list of all apps and backups, which allows backup,
-* delete and restore operations.
-*/
-public class ManageBackupsActivity extends ListActivity {
+ * Tabbed activity that shows one tab of apps and one of backups, with options to create,
+ * restore and delete backups.
+ */
+public class ManageBackupsActivity extends FragmentActivity implements ActionBar.TabListener {
 
     private static final String TAG = "ManageBackupsActivity";
 
-    private BackupService mBackupService;
+    private static final String TAB_APPS = "apps";
 
-    private BackupsAdapter mBackupsAdapter = new BackupsAdapter(this);
+    private static final String TAB_BACKUPS = "backups";
+
+    private BackupService mBackupService;
 
     private ServiceConnection mBackupServiceConnection = new ServiceConnection() {
 
@@ -62,7 +62,7 @@ public class ManageBackupsActivity extends ListActivity {
         public void onServiceConnected(ComponentName className,
                 IBinder service) {
             mBackupService = ((BackupService.BackupServiceBinder) service).getService();
-            mBackupService.listBackups(null, mBackupsAdapter);
+            refreshList();
         }
 
         @Override
@@ -71,34 +71,19 @@ public class ManageBackupsActivity extends ListActivity {
         }
     };
 
-    class CreateBackupObserver implements BackupService.CreateBackupObserver {
-        @Override
-        public void onCreateBackupCompleted() {
-            mBackupService.listBackups(null, mBackupsAdapter);
-            uncheckAll();
-        }
-    }
+    private TabsAdapter mTabsAdapter;
 
-    class RestoreBackupObserver implements BackupService.RestoreBackupObserver {
-        @Override
-        public void onRestoreBackupCompleted() {
-            uncheckAll();
-        }
-    }
+    private ViewPager mViewPager;
 
-    class DeleteBackupObserver implements BackupService.DeleteBackupObserver {
-        @Override
-        public void onDeleteBackupCompleted() {
-            mBackupService.listBackups(null, mBackupsAdapter);
-            uncheckAll();
-        }
-    }
+    private AppsFragment mAppsFragment;
+
+    private BackupsFragment mBackupsFragment;
 
     /**
-    * Exits if the current user is not the device owner.
-    */
+     * Checks if user is device owner, binds BackupService, and initializes tabs and fragments.
+     */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (UserHandle.myUserId() != UserHandle.USER_OWNER) {
@@ -106,12 +91,99 @@ public class ManageBackupsActivity extends ListActivity {
             finish();
             return;
         }
-        bindService(new Intent(this, BackupService.class),
-                mBackupServiceConnection, Context.BIND_AUTO_CREATE);
-        getListView().setAdapter(mBackupsAdapter);
-        getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+
+        bindServiceAsUser(new Intent(this, BackupService.class),
+                mBackupServiceConnection, Context.BIND_AUTO_CREATE,
+                new UserHandle(UserHandle.myUserId()));
+
+        setContentView(R.layout.manage_backups_activity);
+
+        mTabsAdapter = new TabsAdapter(getSupportFragmentManager());
+
+        final ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+        mViewPager = (ViewPager) findViewById(R.id.pager);
+        mViewPager.setAdapter(mTabsAdapter);
+        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+            @Override
+            public void onPageSelected(int position) {
+                actionBar.setSelectedNavigationItem(position);
+            }
+        });
+
+        actionBar.addTab(actionBar.newTab()
+                        .setText(R.string.apps_title)
+                        .setTabListener(this));
+        actionBar.addTab(actionBar.newTab()
+                    .setText(R.string.backups_title)
+                    .setTabListener(this));
+
+        FragmentManager fm = getSupportFragmentManager();
+        if (savedInstanceState != null) {
+            mAppsFragment = (AppsFragment) fm.getFragment(
+                    savedInstanceState, AppsFragment.class.getName());
+            mBackupsFragment = (BackupsFragment) fm.getFragment(
+                    savedInstanceState, BackupsFragment.class.getName());
+        } else {
+            mAppsFragment = new AppsFragment();
+            mBackupsFragment = new BackupsFragment();
+        }
     }
 
+
+    @Override
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    }
+
+    @Override
+    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+        mViewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    }
+
+    private class TabsAdapter extends FragmentPagerAdapter {
+
+        public TabsAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public Fragment getItem(int i) {
+            switch (i) {
+                case 0: return mAppsFragment;
+                case 1: return mBackupsFragment;
+                default: return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return 2;
+        }
+    }
+
+    /**
+     * Finishes activity if 'back' was selected.
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /**
+     * Unbinds the service.
+     */
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -119,97 +191,40 @@ public class ManageBackupsActivity extends ListActivity {
     }
 
     /**
-    * Returns a list containing the package names of all apps that have their
-    * checkbox checked.
-    */
-    private ArrayList<String> getCheckedPackageNames() {
-        ArrayList<String> packageNames = new ArrayList<String>();
-        for (int i = 0; i < mBackupsAdapter.getCount(); i++) {
-            if (getListView().isItemChecked(i) &&
-                    mBackupsAdapter.getItemViewType(i) == BackupsAdapter.VIEW_TYPE_APP) {
-                BackupsAdapter.App item = (BackupsAdapter.App) mBackupsAdapter.getItem(i);
-                packageNames.add(item.packageName);
-            }
-        }
-        return packageNames;
-    }
-
-    /**
-    * Returns a list containing the backups that have their checkbox checked.
-    *
-    * @param multi If true, multiple backups for a single app may be returned.
-    *              Otherwise, only the newest backup is returned for each app.
-    */
-    private ArrayList<Backup> getCheckedBackups(boolean multi) {
-        ArrayList<Backup> backups = new ArrayList<Backup>();
-        for (int i = 0; i < mBackupsAdapter.getCount(); i++) {
-            if (getListView().isItemChecked(i) &&
-                    mBackupsAdapter.getItemViewType(i) == BackupsAdapter.VIEW_TYPE_BACKUP) {
-                Backup item = (Backup) mBackupsAdapter.getItem(i);
-                if (!multi) {
-                    for (Backup b : backups) {
-                        if (b.packageName.equals(item.packageName)) {
-                            continue;
-                        }
-                    }
-                }
-                backups.add(item);
-            }
-        }
-        return backups;
-    }
-
-    /**
-    * Unchecks all items in the ListView.
-    */
-    private void uncheckAll() {
-        for (int i = 0; i < mBackupsAdapter.getCount(); i++) {
-            getListView().setItemChecked(i, false);
-        }
-    }
-
-    /**
-    * Inflates options menu from manage_backups_menu.xml.
-    */
+     * Saves the state of both fragments.
+     */
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.manage_backups_menu, menu);
-        return true;
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        FragmentManager fm = getSupportFragmentManager();
+        fm.putFragment(outState, AppsFragment.class.getName(), mAppsFragment);
+        fm.putFragment(outState, BackupsFragment.class.getName(), mBackupsFragment);
     }
 
     /**
-    * Performs the corresponding action for each menu item, eg backup app
-    * or restore/delete backup.
-    */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
-        case R.id.backup:
-            ArrayList<String> packageNames = getCheckedPackageNames();
-            if (packageNames.size() == 0) {
-                Toast.makeText(this, R.string.no_apps_selected, Toast.LENGTH_SHORT).show();
-                return true;
+     * Returns the BackupService bound to this Acitivty.
+     */
+    public BackupService getBackupService() {
+        return mBackupService;
+    }
+
+    /**
+     * Forces a reload of the list items in both fragments.
+     */
+    public void refreshList() {
+        mAppsFragment.refreshList();
+        mBackupsFragment.refreshList();
+    }
+
+    /**
+     * Unchecks all items in the ListView, does nothing if the adapter is null.
+     */
+    public static void uncheckAll(ListView lv) {
+        if (lv.getAdapter() != null) {
+            for (int i = 0; i < lv.getAdapter().getCount(); i++) {
+                lv.setItemChecked(i, false);
             }
-            mBackupService.createBackup(packageNames.get(0), new CreateBackupObserver());
-            return true;
-        case R.id.restore:
-            ArrayList<Backup> backups = getCheckedBackups(false);
-            if (backups.size() == 0) {
-                Toast.makeText(this, R.string.no_backups_selected, Toast.LENGTH_SHORT).show();
-                return true;
-            }
-            mBackupService.restoreBackup(backups.get(0), null);
-            return true;
-        case R.id.delete:
-            backups = getCheckedBackups(true);
-            if (backups.size() == 0) {
-                Toast.makeText(this, R.string.no_backups_selected, Toast.LENGTH_SHORT).show();
-                return true;
-            }
-            mBackupService.deleteBackup(backups.get(0), new DeleteBackupObserver());
-            return true;
-        default:
-            return false;
         }
     }
 

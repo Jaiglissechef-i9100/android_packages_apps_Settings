@@ -71,13 +71,6 @@
                 android:persistent="false"
                 android:fragment="com.android.settings.NotificationAccessSettings"/>
 
-        <PreferenceScreen
-            android:title="@string/backups_title"
-            android:key="backup_category">
-	    <intent android:targetPackage="com.android.settings"
-            android:targetClass="com.android.settings.beanstalk.backup.BackupSettings"/>
-	</PreferenceScreen>
-
     </PreferenceCategory>
 
     <PreferenceCategory android:key="credentials_management"
