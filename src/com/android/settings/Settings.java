@@ -1295,11 +1295,6 @@ public class Settings extends PreferenceActivity
     public static class QuickSettingsTilesSettingsActivity extends Settings { /* empty */ }
     public static class BatteryIconStyleSettingsActivity extends Settings { /* empty */ }
     public static class DisplayRotationSettingsActivity extends Settings { /* empty */ }
-<<<<<<< HEAD
-    public static class PerformanceSettingsActivity extends Settings { /* empty */ }
     public static class PAPieSettingsActivity extends Settings { /* empty */ }
     public static class ShakeEventsSettingsActivity extends Settings { /* empty */ }
 }
-=======
-}
->>>>>>> 174a4f3... Replace Performance control with Kernel Tweaker (2/3)
