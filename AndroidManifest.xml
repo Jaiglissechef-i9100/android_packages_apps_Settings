@@ -2321,7 +2321,7 @@
 
         <service android:name=".search.SearchPopulator"/>
 
-        <activity android:name=".ose.headsup.HeadsUpSettings" />
+        <activity android:name=".beanstalk.headsup.HeadsUpSettings" />
 
     </application>
 </manifest>

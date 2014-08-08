@@ -294,12 +294,7 @@
     <string name="shortcuts_color_mode_title">Icon color mode</string>
     <string name="shortcuts_color_mode_summary">Change the shorcuts icon color mode</string>
 
-<<<<<<< HEAD:res/values/bs_strings.xml
-    <!-- Notification drawer settings -->
-=======
     <!-- Notification drawer settings  -->
-    <string name="notification_drawer_qs_title">Notifications &amp; QS drawer</string>
->>>>>>> 43c4965... Settings: Add HeadsUp setting.:res/values/ose_strings.xml
     <string name="notification_drawer_title">Notification drawer</string>
     <string name="notification_shortcuts_settings_title">Shortcuts</string>
     <string name="notification_shortcuts_settings_summary">Show shortcuts in the notification drawer</string>
@@ -1769,7 +1764,6 @@
     <string name="recent_panel_expanded_mode_always">Always</string>
     <string name="recent_panel_expanded_mode_never">Never</string>
 
-<<<<<<< HEAD:res/values/bs_strings.xml
     <!-- IME animations -->
     <string name="animation_settings_reset_message">Reset all animation settings to default?</string>
     <string name="animation_duration_summary">Set duration</string>
@@ -1795,14 +1789,6 @@
     <string name="ime_exit_animation_title">Exit Animation</string>
     <string name="ime_interpolator_title">Interpolator</string>
     <string name="ime_duration_title">IME Duration</string>
-=======
-    <!-- Settings Categories -->
-    <string name="category_customization_title">Customization</string>
-    <string name="category_app_launchers_title">App Launchers</string>
-    <string name="category_lockscreen_features_title">Notifications</string>
-    <string name="category_misc_title">Miscellaneous</string>
-    <string name="notification_helpers_title">Notification helpers</string>
->>>>>>> 43c4965... Settings: Add HeadsUp setting.:res/values/ose_strings.xml
 
     <!-- Recent panel -->
     <string name="recent_panel_category">Recent apps panel</string>
