@@ -52,12 +52,6 @@ limitations under the License.
         android:entryValues="@array/notification_hide_labels_values"
         android:persistent="false" />
 
-    <PreferenceScreen
-        settings:includeXmlForSearch="@xml/prefs_weather"
-        android:key="weather"
-        android:fragment="com.android.settings.aokp.Weather"
-        android:title="@string/title_weather"/>
-
      <com.android.settings.beanstalk.SeekBarPreference
          android:key="notification_alpha"
          android:title="@string/notif_alpha_title" />
