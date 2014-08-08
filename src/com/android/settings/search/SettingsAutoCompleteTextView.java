@@ -18,16 +18,19 @@ package com.android.settings.search;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AutoCompleteTextView;
 
 import com.android.settings.R;
 
 public class SettingsAutoCompleteTextView extends AutoCompleteTextView
-        implements View.OnTouchListener {
-
+        implements View.OnTouchListener, TextWatcher {
     public Drawable mClearButton;
 
     public SettingsAutoCompleteTextView(Context context) {
@@ -47,17 +50,41 @@ public class SettingsAutoCompleteTextView extends AutoCompleteTextView
 
     private void create() {
         mClearButton = getResources().getDrawable(R.drawable.ic_action_content_remove);
-
-        setCompoundDrawablesWithIntrinsicBounds(null, null, mClearButton, null);
+        setImeOptions(EditorInfo.IME_FLAG_NO_FULLSCREEN | EditorInfo.IME_ACTION_SEARCH);
 
         // set touch listener
         setOnTouchListener(this);
+        // set text change listener
+        addTextChangedListener(this);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int width = MeasureSpec.getSize(widthMeasureSpec);
+
+        switch (widthMode) {
+            case MeasureSpec.AT_MOST:
+                width = Math.min(getPreferredWidth(), width);
+                break;
+            case MeasureSpec.UNSPECIFIED:
+                width = getPreferredWidth();
+                break;
+        }
+        widthMode = MeasureSpec.EXACTLY;
+        super.onMeasure(MeasureSpec.makeMeasureSpec(width, widthMode), heightMeasureSpec);
+    }
+
+    private int getPreferredWidth() {
+        return getContext().getResources().getDimensionPixelSize(
+                com.android.internal.R.dimen.search_view_preferred_width);
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
-        if (motionEvent.getAction() != MotionEvent.ACTION_UP)
+        if (motionEvent.getAction() != MotionEvent.ACTION_UP) {
             return false;
+        }
 
         int clearButtonStart = getWidth() - getPaddingRight()
                 - mClearButton.getIntrinsicWidth();
@@ -66,5 +93,19 @@ public class SettingsAutoCompleteTextView extends AutoCompleteTextView
             setText("");
         }
         return false;
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        setCompoundDrawablesWithIntrinsicBounds(null, null,
+                TextUtils.isEmpty(getText().toString()) ? null : mClearButton, null);
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+    }
+
+    @Override
+    public void afterTextChanged(Editable editable) {
     }
 }

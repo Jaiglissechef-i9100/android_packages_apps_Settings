@@ -44,12 +44,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.nfc.NfcAdapter;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.INetworkManagementService;
 import android.os.RemoteException;
-import android.os.ResultReceiver;
 import android.os.ServiceManager;
 import android.os.UserHandle;
 import android.os.UserManager;
@@ -91,10 +88,12 @@ import com.android.settings.blacklist.BlacklistSettings;
 import com.android.settings.bluetooth.BluetoothEnabler;
 import com.android.settings.bluetooth.BluetoothSettings;
 import com.android.settings.cyanogenmod.ButtonSettings;
+import com.android.settings.cyanogenmod.PropModder;InitD;
 import com.android.settings.cyanogenmod.superuser.PolicyNativeFragment;
 import com.android.settings.deviceinfo.Memory;
 import com.android.settings.deviceinfo.UsbSettings;
 import com.android.settings.fuelgauge.PowerUsageSummary;
+import com.android.settings.InitD;
 import com.android.settings.inputmethod.InputMethodAndLanguageSettings;
 import com.android.settings.inputmethod.KeyboardLayoutPickerFragment;
 import com.android.settings.inputmethod.SpellCheckersSettings;
@@ -102,10 +101,23 @@ import com.android.settings.inputmethod.UserDictionaryList;
 import com.android.settings.location.LocationSettings;
 import com.android.settings.nfc.AndroidBeam;
 import com.android.settings.net.MobileDataEnabler;
+import com.android.settings.beanstalk.AlertsAndWarnings;
 import com.android.settings.beanstalk.BatteryIconStyle;
-import com.android.settings.beanstalk.QuietHours;
+import com.android.settings.beanstalk.BatterySaverSettings;
 import com.android.settings.beanstalk.DisplayRotation;
+import com.android.settings.beanstalk.GeneralSettings;
+import com.android.settings.beanstalk.NavbarSettings;
+import com.android.settings.beanstalk.NotificationDrawerQsSettings;
+import com.android.settings.beanstalk.MiscSettings;
+import com.android.settings.beanstalk.PieControl;
+import com.android.settings.beanstalk.QuietHours;
 import com.android.settings.beanstalk.quicksettings.QuickSettingsTiles;
+import com.android.settings.beanstalk.ScreenAndAnimation;
+import com.android.settings.beanstalk.ShakeEvents;
+import com.android.settings.beanstalk.StatusBar;
+import com.android.settings.beanstalk.themes.ThemeEnabler;
+import com.android.settings.beanstalk.themes.ThemeSettings;
+import com.android.settings.beanstalk.TtsNotification;
 import com.android.settings.nfc.PaymentSettings;
 import com.android.settings.print.PrintJobSettingsFragment;
 import com.android.settings.print.PrintServiceSettingsFragment;
@@ -114,7 +126,6 @@ import com.android.settings.profiles.AppGroupConfig;
 import com.android.settings.profiles.ProfileConfig;
 import com.android.settings.profiles.ProfileEnabler;
 import com.android.settings.profiles.ProfilesSettings;
-import com.android.settings.beanstalk.ShakeEvents;
 import com.android.settings.search.SettingsAutoCompleteTextView;
 import com.android.settings.search.SearchPopulator;
 import com.android.settings.search.SettingsSearchFilterAdapter;
@@ -168,7 +179,6 @@ public class Settings extends PreferenceActivity
     private Header mParentHeader;
     private boolean mInLocalHeaderSwitch;
     private static Switch mTRDSSwitch;
-    private SettingsSearchFilterAdapter mSearchAdapter;
 
     private boolean mAttached;
 
@@ -237,6 +247,11 @@ public class Settings extends PreferenceActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // We only want to inflate the search menu item in the top-level activity
+        if (getClass() != Settings.class) {
+            return false;
+        }
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settings_search, menu);
         mSearchItem = menu.findItem(R.id.action_search);
@@ -262,41 +277,17 @@ public class Settings extends PreferenceActivity
             }
         });
 
-        new PopulateSearchSettingsTask().execute();
-
         ActionBar.LayoutParams layout = new ActionBar.LayoutParams(
-                ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        mSearchBar.setLayoutParams(layout);
+                ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.MATCH_PARENT);
+
+        mSearchBar.setLayoutParams(layoutParams);
         mSearchBar.setHint(R.string.settings_search_autocompleteview_hint);
         mSearchBar.setThreshold(1);
         mSearchBar.setOnItemClickListener(this);
+
+        mSearchBar.setAdapter(new SettingsSearchFilterAdapter(this));
+
         return true;
-    }
-
-    private class PopulateSearchSettingsTask extends
-            AsyncTask<Void, Void, ArrayList<SearchInfo>> {
-        @Override
-        protected ArrayList<SearchInfo> doInBackground(Void... param) {
-            return SearchPopulator.loadSearchData(Settings.this);
-        }
-
-        @Override
-        protected void onPostExecute(ArrayList<SearchInfo> infos) {
-            mSearchAdapter = new SettingsSearchFilterAdapter(Settings.this,
-                    R.layout.settings_search_complete_view, infos);
-            mSearchBar.setAdapter(mSearchAdapter);
-        }
-    };
-
-    private class SearchNotifier extends ResultReceiver {
-        public SearchNotifier(Handler handler) {
-            super(handler);
-        }
-
-        @Override
-        protected void onReceiveResult(int resultCode, Bundle resultData) {
-            new PopulateSearchSettingsTask().execute();
-        }
     }
 
     @Override
@@ -304,11 +295,6 @@ public class Settings extends PreferenceActivity
         if (getIntent().hasExtra(EXTRA_UI_OPTIONS)) {
             getWindow().setUiOptions(getIntent().getIntExtra(EXTRA_UI_OPTIONS, 0));
         }
-
-        startPopulatingSearchData();
-
-        mActionBar = getActionBar();
-        mActionBar.setDisplayShowCustomEnabled(true);.
 
         mAuthenticatorHelper = new AuthenticatorHelper();
         mAuthenticatorHelper.updateAuthDescriptions(this);
@@ -438,8 +424,18 @@ public class Settings extends PreferenceActivity
 
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mSearchBar.clearFocus();
-        mSearchItem.collapseActionView();
+
+        if (newConfig.uiThemeMode != mCurrentState && HeaderAdapter.mThemeEnabler != null) {
+            mCurrentState = newConfig.uiThemeMode;
+            HeaderAdapter.mThemeEnabler.setSwitchState();
+        }
+
+        if (mSearchBar != null) {
+            mSearchBar.clearFocus();
+        }
+        if (mSearchItem != null) {
+            mSearchItem.collapseActionView();
+        }
     }
 
     @Override
@@ -511,8 +507,19 @@ public class Settings extends PreferenceActivity
         ProfilesSettings.class.getName(),
         PolicyNativeFragment.class.getName(),
         com.android.settings.cyanogenmod.PrivacySettings.class.getName(),
-        ShakeEvents.class.getName()
-        ApnSettings.class.getName(),
+        PropModder.class.getName(),
+        InitD.class.getName(),
+        AlertsAndWarnings.class.getName(),
+        BatterySaverSettings.class.getName(),
+        GeneralSettings.class.getName(),
+        NavbarSettings.class.getName(),
+        NotificationDrawerQsSettings.class.getName(),
+        MiscSettings.class.getName(),
+        PieControl.class.getName(),
+        ScreenAndAnimation.class.getName(),
+        ShakeEvents.class.getName(),
+        StatusBar.class.getName(),
+        TtsNotification.class.getName(),
         ThemeSettings.class.getName()
     };
 
@@ -595,12 +602,6 @@ public class Settings extends PreferenceActivity
                 }
             }
         }
-    }
-
-    private void startPopulatingSearchData() {
-        Intent i = new Intent(this, SearchPopulator.class);
-        i.putExtra(SearchPopulator.EXTRA_NOTIFIER, new SearchNotifier(new Handler()));
-        startService(i);
     }
 
     @Override
@@ -1019,11 +1020,19 @@ public class Settings extends PreferenceActivity
         imm.hideSoftInputFromWindow(mSearchBar.getWindowToken(), 0);
 
         if (info.level == 0) {
+            Bundle args = info.header.fragmentArguments;
+            if (args == null) {
+                args = info.header.fragmentArguments = new Bundle();
+            }
+            if (info.key != null && !args.containsKey(SearchPopulator.EXTRA_PREF_KEY)) {
+                args.putString(SearchPopulator.EXTRA_PREF_KEY, info.key);
+            }
             onHeaderClick(info.header, 0);
         } else {
             Intent i = new Intent(this, SubSettings.class);
             i.putExtra(EXTRA_SHOW_FRAGMENT, info.fragment);
-            i.putExtra(EXTRA_SHOW_FRAGMENT_TITLE_TEXT, info.parentTitle);
+            i.putExtra(EXTRA_SHOW_FRAGMENT_TITLE, info.parentTitle);
+            i.putExtra(SearchPopulator.EXTRA_PREF_KEY, info.key);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
         }
@@ -1054,6 +1063,7 @@ public class Settings extends PreferenceActivity
         private final WifiEnabler mWifiEnabler;
         private final BluetoothEnabler mBluetoothEnabler;
         private final MobileDataEnabler mMobileDataEnabler;
+        public static ThemeEnabler mThemeEnabler;
         private final ProfileEnabler mProfileEnabler;
         private final TRDSEnabler mTRDSEnabler;
         private AuthenticatorHelper mAuthHelper;
@@ -1326,7 +1336,9 @@ public class Settings extends PreferenceActivity
 
     @Override
     public boolean onPreferenceStartFragment(PreferenceFragment caller, Preference pref) {
-        mSearchItem.collapseActionView();
+         if (mSearchItem != null) {
+            mSearchItem.collapseActionView();
+        }
         // Override the fragment title for Wallpaper settings
         int titleRes = pref.getTitleRes();
         if (pref.getFragment().equals(WallpaperTypeSettings.class.getName())) {
@@ -1441,6 +1453,18 @@ public class Settings extends PreferenceActivity
     public static class QuickSettingsTilesSettingsActivity extends Settings { /* empty */ }
     public static class BatteryIconStyleSettingsActivity extends Settings { /* empty */ }
     public static class DisplayRotationSettingsActivity extends Settings { /* empty */ }
-    public static class PAPieSettingsActivity extends Settings { /* empty */ }
     public static class ShakeEventsSettingsActivity extends Settings { /* empty */ }
+    public static class PropModderSettingsActivity extends Settings { /* empty */ }
+    public static class InitDSettingsActivity extends Settings { /* empty */ }
+    public static class AlertsAndWarningsSettingsActivity extends Settings { /* empty */ }
+    public static class BatterySaverSettingsSettingsActivity extends Settings { /* empty */ }
+    public static class GeneralSettingsSettingsActivity extends Settings { /* empty */ }
+    public static class NavbarSettingsSettingsActivity extends Settings { /* empty */ }
+    public static class NotificationDrawerQsSettings.class.getName(),
+    public static class MiscSettingsSettingsActivity extends Settings { /* empty */ }
+    public static class PieControlSettingsActivity extends Settings { /* empty */ }
+    public static class ScreenAndAnimationSettingsActivity extends Settings { /* empty */ }
+    public static class StatusBarSettingsActivity extends Settings { /* empty */ }
+    public static class TtsNotificationSettingsActivity extends Settings { /* empty */ }
+    public static class ThemeSettingsSettingsActivity extends Settings { /* empty */ }
 }

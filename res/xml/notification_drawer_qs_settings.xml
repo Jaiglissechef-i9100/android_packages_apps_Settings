@@ -92,10 +92,11 @@ limitations under the License.
          android:title="@string/notif_alpha_title" />
 
      <PreferenceScreen
-             android:key="beanstalk_notification_shortcuts"
-             android:fragment="com.android.settings.beanstalk.dslv.ButtonsListViewSettings"
-             android:summary="@string/notification_shortcuts_settings_summary"
-             android:title="@string/notification_shortcuts_settings_title">
+         settings:includeXmlForSearch="@xml/notifications_shortcut_fragment"
+         android:key="beanstalk_notification_shortcuts"
+         android:fragment="com.android.settings.beanstalk.dslv.ButtonsListViewSettings"
+         android:summary="@string/notification_shortcuts_settings_summary"
+         android:title="@string/notification_shortcuts_settings_title">
          <extra android:name="buttonMode" android:value="5" />
          <extra android:name="maxAllowedButtons" android:value="16" />
          <extra android:name="disableLongpress" android:value="true" />
@@ -158,6 +159,7 @@ limitations under the License.
             android:fragment="com.android.settings.beanstalk.quicksettings.QuickSettingsTiles" />
 
         <PreferenceScreen
+            settings:includeXmlForSearch="@xml/prefweathertile"
             android:key="pref_weather"
             android:title="@string/pref_weather_tile"
             android:fragment="com.android.settings.beanstalk.PrefWeatherTile" />
@@ -189,6 +191,7 @@ limitations under the License.
             android:defaultValue="false" />
 
         <PreferenceScreen
+            settings:includeXmlForSearch="@xml/quicksettings_tiles_style"
             android:key="quicksettings_tiles_style"
             android:fragment="com.android.settings.beanstalk.quicksettings.QuickSettingsTilesStyle"
             android:title="@string/quicksettings_tiles_style"
@@ -198,6 +201,7 @@ limitations under the License.
         android:title="@string/additional_options_title" />
 
      <Preference
+         settings:includeXmlForSearch="@xml/quicksettings_tiles_style"
          android:fragment="com.android.settings.beanstalk.NotificationDrawerStyle"
          android:key="notification_style"
          android:title="@string/notification_style_title"

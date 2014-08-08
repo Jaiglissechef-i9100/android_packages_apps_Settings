@@ -6,26 +6,31 @@
     xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/status_bar_settings"
         android:key="status_bar"
         android:fragment="com.android.settings.beanstalk.StatusBar"
         android:title="@string/status_bar_title" />
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/notification_drawer_qs_settings"
         android:key="notification_drawer_qs"
         android:fragment="com.android.settings.beanstalk.NotificationDrawerQsSettings"
         android:title="@string/notification_drawer_qs_title" />
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/alerts_and_warnings"
         android:key="alerts_and_warnings"
         android:fragment="com.android.settings.beanstalk.AlertsAndWarnings"
         android:title="@string/alerts_and_warnings_title" />
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/screen_and_animations"
         android:key="screen_and_animations"
         android:fragment="com.android.settings.beanstalk.ScreenAndAnimations"
         android:title="@string/screen_and_animations_title" />
 
      <PreferenceScreen
+        settings:includeXmlForSearch="@xml/power_menu_fragment"
         android:key="navbar_targets_settings"
         android:fragment="com.android.settings.beanstalk.dslv.ButtonsListViewSettings"
         android:title="@string/power_menu_title">
@@ -39,6 +44,7 @@
      </PreferenceScreen>
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/gesture_anywhere"
         android:key="gesture_anywhere"
         android:fragment="com.android.settings.chameleonos.labs.gestureanywhere.GestureAnywhereSettings"
         android:title="@string/gesture_anywhere_title" />
@@ -49,6 +55,7 @@
 
     <!-- Driving mode -->
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/tts_notif_settings"
 	    android:key="interface_voice_tts"
 	    android:title="@string/voice_tts_title"
 	    android:summary="@string/voice_tts_summary"
@@ -56,31 +63,37 @@
 
         <!-- Weather -->
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/aicp_weather"
 	android:id="@+id/weather"
 	android:title="@string/weather_settings_title"
 	android:fragment="com.android.settings.aicp.Weather" />
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/navbar_settings"
         android:key="navbar_settings"
         android:fragment="com.android.settings.beanstalk.NavbarSettings"
         android:title="@string/navigation_bar" />
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/pa_pie_controls"
         android:key="pie_settings"
         android:fragment="com.android.settings.beanstalk.PieControl"
         android:title="@string/pie_control_title" />
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/shake_event_settings"
         android:key="shake_events"
         android:fragment="com.android.settings.beanstalk.ShakeEvents"
         android:title="@string/shake_events_title" />
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/propmodder"
         android:key="buildprop_modder"
         android:title="@string/propmodder_title" 
         android:fragment="com.android.settings.cyanogenmod.PropModder"/>
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/init_d)"
         android:id="@+id/initD"
         android:fragment="com.android.settings.InitD"
         android:title="@string/init_d_title"
@@ -96,11 +109,13 @@
     </PreferenceScreen>
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/general_settings"
         android:key="general_settings"
         android:fragment="com.android.settings.beanstalk.GeneralSettings"
         android:title="@string/general_settings_title" />
 
     <PreferenceScreen
+        settings:includeXmlForSearch="@xml/misc_settings"
 	android:key="misc_settings"
         android:fragment="com.android.settings.beanstalk.MiscSettings"
         android:title="@string/misc_settings_title" />
