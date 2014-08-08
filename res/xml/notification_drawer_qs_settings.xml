@@ -37,13 +37,13 @@ limitations under the License.
             android:key="shortcuts"
             android:title="@string/notification_bar_shortcuts">
 
-        <com.android.settings.ose.AppSelectListPreference
+        <com.android.settings.beanstalk.AppSelectListPreference
                 android:key="clock_shortcut"
                 android:title="@string/clock_shortcut_title"
                 android:positiveButtonText="@string/default_shortcut"
                 android:persistent="false"/>
 
-        <com.android.settings.ose.AppSelectListPreference
+        <com.android.settings.beanstalk.AppSelectListPreference
                 android:key="calendar_shortcut"
                 android:title="@string/calendar_shortcut_title"
                 android:positiveButtonText="@string/default_shortcut"
