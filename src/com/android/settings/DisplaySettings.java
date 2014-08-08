@@ -85,7 +85,7 @@ public class DisplaySettings extends SettingsPreferenceFragment implements
     private static final int DLG_GLOBAL_CHANGE_WARNING = 1;
 
     private CheckBoxPreference mAccelerometer;
-    private FontDialogPreference mFontSizePref;
+    private WarnedListPreference mFontSizePref;
     private CheckBoxPreference mWakeWhenPluggedOrUnplugged;
     private CheckBoxPreference mStatusbarSliderPreference;
 
